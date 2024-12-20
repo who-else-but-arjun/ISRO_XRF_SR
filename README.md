@@ -32,7 +32,7 @@ This repository contains code developed for super-resolution by deep spatial int
    ```bash
    pip install -r requirements.txt
    ```
-- **Shapefile for Mare Regions**: `LROC_GLOBAL_MARE_180.SHP` (https://drive.google.com/file/d/12J4m65JyD-cekRiMmBzjrCBWQKoxNWYq/view?usp=drive_link).
+- **Shapefile for Mare Regions**: `LROC_GLOBAL_MARE_180.SHP` ([https://drive.google.com/file/d/12J4m65JyD-cekRiMmBzjrCBWQKoxNWYq/view?usp=drive_link](https://drive.google.com/drive/folders/1Gpget_fLbG4ElaxwJFbuMO90GMVLFbqo?usp=sharing)).
 - **Lunar Surface Image**: `Lunar_LRO_LROC-WAC_Mosaic_global_100m_June2013.tif` (https://planetarymaps.usgs.gov/mosaic/Lunar_LRO_LROC-WAC_Mosaic_global_100m_June2013.tif).
 - **CSV Files**: Intermediate outputs from `file_initialisation.py`.
 
