@@ -93,10 +93,10 @@ The `final.py` script combines all components and generates the high-resolution 
 ```bash
 python Final.py --mode 1 <input_data.csv>
 ```
+mode = 1 for population of initialised csv files with the input elemental abundances data.
 ```bash
 python Final.py --mode 2 <i> <j> <num_iterations>
 ```
-mode = 1 for population of initialised csv files with the input elemental abundances data.
 mode = 2 for create the graphs for each subregion and training and interpolation for final high resolution abundnaces mapping.
 
 ---
