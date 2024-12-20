@@ -64,12 +64,12 @@ Place the downloaded files in their respective directories as outlined below:
 - **regions CSVs**:
   - Files named `subregion_<i>_<j>.csv`.
   - Columns include:
-    - `lat_center` and `lon_center`: Geographic coordinates of the chunk centers.
+    - `lat_center` and `lon_center`: Geographic coordinates of the pixel centers.
     - Elemental abundances: Features like `Fe`, `Ti`, `Ca`, etc.
     - `mareOrHighland`: Binary classification indicating whether the region is Mare or Highland.
     - Top 300 spatial features: Feature columns extracted from lunar rgb images and top 300 selected features based on variance thresholding.
 
-- **Graph-based Data Representations**:
+- **Graphs and their corresponding masks**:
   - Structured inputs for graph neural network models.
   - Encodes spatial and feature-based relationships within subregions.
   - Graphs stored in `graphs\graphs_subregion_<i>_<j>\subgraph_{i}_{j}_{row_idx}_{col_idx}.pt`.
@@ -77,7 +77,7 @@ Place the downloaded files in their respective directories as outlined below:
 
 - **Final High-Resolution Maps**:
   - Enhanced elemental abundance data for each subregion.
-  - Saved as updated `.csv` files for mapping.
+  - Saved as updated `subregion_<i>_<j>.csv` files for mapping.
 
 ---
 
