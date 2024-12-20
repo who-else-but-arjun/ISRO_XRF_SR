@@ -1,6 +1,6 @@
 # Super-Resolution of Lunar XRF Elemental Abundances
 
-This repository contains code developed for super-resolution by deep spatial interpolation model of the mapping of lunar surface elemental abundances obtained from Chandrayaan-2 CLASS instrument XRF data. The detailed description of the project is avaiable in this report (https://drive.google.com/file/d/12J4m65JyD-cekRiMmBzjrCBWQKoxNWYq/view?usp=drive_link)[Download Here](#).
+This repository contains code developed for super-resolution by deep spatial interpolation model of the mapping of lunar surface elemental abundances obtained from Chandrayaan-2 CLASS instrument XRF data. The detailed description of the project is avaiable in this report (https://drive.google.com/file/d/12J4m65JyD-cekRiMmBzjrCBWQKoxNWYq/view?usp=drive_link).
 
 ## Project Structure
 ### Main Components:
@@ -32,8 +32,8 @@ This repository contains code developed for super-resolution by deep spatial int
    ```bash
    pip install -r requirements.txt
    ```
-- **Shapefile for Mare Regions**: `LROC_GLOBAL_MARE_180.SHP` (https://drive.google.com/file/d/12J4m65JyD-cekRiMmBzjrCBWQKoxNWYq/view?usp=drive_link)[Download Here](#).
-- **Lunar Surface Image**: `Lunar_LRO_LROC-WAC_Mosaic_global_100m_June2013.tif` (https://planetarymaps.usgs.gov/mosaic/Lunar_LRO_LROC-WAC_Mosaic_global_100m_June2013.tif)[Download tif here](#).
+- **Shapefile for Mare Regions**: `LROC_GLOBAL_MARE_180.SHP` (https://drive.google.com/file/d/12J4m65JyD-cekRiMmBzjrCBWQKoxNWYq/view?usp=drive_link).
+- **Lunar Surface Image**: `Lunar_LRO_LROC-WAC_Mosaic_global_100m_June2013.tif` (https://planetarymaps.usgs.gov/mosaic/Lunar_LRO_LROC-WAC_Mosaic_global_100m_June2013.tif).
 - **CSV Files**: Intermediate outputs from `file_initialisation.py`.
 
 Place the downloaded files in their respective directories as outlined below:
