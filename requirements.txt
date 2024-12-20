@@ -1,0 +1,12 @@
+tqdm
+numpy
+Pillow
+os
+pandas
+torch
+torchvision
+torch-geometric
+shapely
+scikit-learn
+rasterio
+torch-optimizer
