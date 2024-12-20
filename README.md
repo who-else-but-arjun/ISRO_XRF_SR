@@ -6,7 +6,7 @@ This repository contains code developed for super-resolution by deep spatial int
 ### Main Components:
 1. **file_initialisation.py**:
    - Initializes the 64 subregion CSV files for the Moon's surface.
-   - For each subregion, computes the latitudes and longitudes of 2 km x 2 km chunks.
+   - For each subregion, computes the latitudes and longitudes of 2 km x 2 km pixels.
    - Extracts features from image tiles using a pre-trained ResNet50 model.
    - Populates the CSV files with selected features, mare/highland classifications, and metadata.
 
