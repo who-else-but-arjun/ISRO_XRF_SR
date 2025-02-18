@@ -61,15 +61,13 @@ os.makedirs('regions', exist_ok=True)
 # !gdown --folder --output ./regions/ 1G4hAxJ_cvsEmBWBreA2b8t69L42NyFIm
 # !gdown --folder --output ./regions/ 1shlmJDzid368w8XvAW8Q1in49SHhenDH
 
-# # Part 1: Some functions and constants
-MOON_RADIUS_KM = 1737.4 # Approximate radius of Moon in kilometers
-# Define constants
+# Part 1: Some functions and constants
+MOON_RADIUS_KM = 1737.4
 LATITUDE_RANGE = (90, -90)
 LONGITUDE_RANGE = (-180, 180)
 NUM_SUBREGIONS = 64
 SUBREGIONS_PER_ROW = 8  # Assume the regions are divided into 8x8 grid
 SQUARE_SIZE_KM = 2      # Each square's size in kilometers
-# Calculate the size of each subregion in degrees in terms of equator
 LAT_PER_REGION = ((LATITUDE_RANGE[1] - LATITUDE_RANGE[0]) / SUBREGIONS_PER_ROW)
 LON_PER_REGION = ((LONGITUDE_RANGE[1] - LONGITUDE_RANGE[0]) / SUBREGIONS_PER_ROW)
 def km_to_degrees(km):
@@ -100,8 +98,6 @@ topFeatures = [0, 1846, 1808, 1813, 1146, 1378, 923, 1237, 1558, 37, 1574, 1117,
                306, 498, 1368, 31, 918, 1639, 1236, 1797]
 wCount = len(topFeatures)
 headers = ['lat_center', 'lon_center'] + elements + mareOrHighland + [f'w_{i}' for i in range(1, wCount + 1)]
-
-# Lat Long to Pixel --> Converts latitude longitude to pixel coordinate in the image array
 def lat_long_to_pixel(lat, lon, img_width, img_height):
     """
     Converts latitude and longitude to pixel coordinates in the image.
@@ -110,11 +106,10 @@ def lat_long_to_pixel(lat, lon, img_width, img_height):
     x = min(int((lon + 180) / 360 * img_width), img_width - 125)
     y = min(int(((90 - lat) / 180) * img_height), img_height - 125)
     return x, y
-# Load the Mare Areas Shapefile
 shapefile_path = './LROC_GLOBAL_MARE_180.SHP'
 gdf = gpd.read_file(shapefile_path)
 gdf['region_type'] = gdf['MARE_NAME'].apply(lambda x: 1 if pd.notnull(x) else 2)
-gdf.sindex  # Creates a spatial index if not already present
+gdf.sindex 
 print(f"[INFO] {current_time()} Done importing geodataframe for highland-mare classification")
 
 def classify_points(lat, lon_list):
@@ -125,10 +120,8 @@ def classify_points(lat, lon_list):
     """
     points = [Point(lon, lat) for lon in lon_list]
     points_gdf = gpd.GeoDataFrame(geometry=points, crs=gdf.crs)
-
-    # Perform spatial join
     joined = gpd.sjoin(points_gdf, gdf[['geometry', 'region_type']], how='left', predicate='within')
-    classifications = joined['region_type'].fillna(2).tolist()  # Default to 2 (Highland)
+    classifications = joined['region_type'].fillna(2).tolist()
 
     return classifications
 
@@ -138,11 +131,8 @@ def isMareOrHighland(lat, lon):
         1 - Mare
         2 - Highland
     '''
-    # Create a GeoDataFrame for the point of interest
-    point = Point(lon, lat)  # Make sure lon, lat are in the correct order (lon, lat)
+    point = Point(lon, lat)  
     gdf_point = gpd.GeoDataFrame(geometry=[point], crs=gdf.crs)
-
-    # Check if the point lies within any of the polygons (maria regions)
     is_maria = gdf['geometry'].apply(lambda x: x.contains(point)).any()
 
     if is_maria:
@@ -173,7 +163,6 @@ def find_region_indices(lat, lon):
     Returns:
     - Tuple of (row_index, column_index) for the region (0-7, 0-7)
     """
-    # Calculate row and column indices
     row_index = min(7, abs(int((LATITUDE_RANGE[0] - lat) / lat_per_region)))
     col_index = min(7, abs(int((lon - LONGITUDE_RANGE[0]) / lon_per_region)))
 
@@ -191,31 +180,22 @@ def find_subregion_indices(lat, lon):
     - list of tuples [(r_i, c_i)] where r_i belongs to (0 - 5) and c_i belongs to (0 - 12)
     """
 
-    # Constants for the grid and chunk divisions
     LAT_GRID_SIZE = lat_per_region
     LON_GRID_SIZE = lon_per_region
-    LAT_CHUNK_SIZE = LAT_GRID_SIZE / 342  # Degrees per chunk in latitude
-    LON_CHUNK_SIZE = LON_GRID_SIZE / 682  # Degrees per chunk in longitude
-
-    # Subregion starting points for latitude and longitude
+    LAT_CHUNK_SIZE = LAT_GRID_SIZE / 342 
+    LON_CHUNK_SIZE = LON_GRID_SIZE / 682 
     LAT_SUBREGION_STARTS = [0, 50, 100, 150, 200, 242]
     LON_SUBREGION_STARTS = [0, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 582]
     LAT_SUBREGION_ENDS = [start + 100 for start in LAT_SUBREGION_STARTS]
     LON_SUBREGION_ENDS = [start + 100 for start in LON_SUBREGION_STARTS]
 
-    # Step 1: Identify the grid cell
     grid_row = min(7, abs(int((LATITUDE_RANGE[0] - lat) / lat_per_region)))
     grid_col = min(7, abs(int((lon - LONGITUDE_RANGE[0]) / lon_per_region)))
-
-    # Step 2: Relative position within the grid cell
     rel_lat = (90 - lat) % lat_per_region
     rel_lon = (lon + 180) % lon_per_region
-
-    # Step 3: Map to chunk coordinates within the 342x682 grid
     chunk_row = int(rel_lat // LAT_CHUNK_SIZE)
     chunk_col = int(rel_lon // LON_CHUNK_SIZE)
 
-    # Step 4: Determine overlapping subregions
     subregion_indices = []
     for r_idx, (start_lat, end_lat) in enumerate(zip(LAT_SUBREGION_STARTS, LAT_SUBREGION_ENDS)):
         if start_lat <= chunk_row < end_lat:
@@ -246,25 +226,18 @@ def calculate_abundances(A, labels, counter):
     Returns:
     - Calculated abundances matrix (C)
     """
-    # print(f"[DEBUG] Calculating abundances for label : {labels} : done : {counter}")
-    # Highland and Mare reference abundances
     # ["Fe", "Ti", "Ca", "Si", "Al", "Mg", "Na", "O"]
     Ah = torch.tensor([2.58, 0.66, 13.15, 22.41, 13.65, 0.18, 1.37, 45], dtype=torch.float32).reshape(8, 1)
     Am = torch.tensor([9.72, 4.37, 7.00, 18.76, 7.40, 7.23, 1.37, 45], dtype=torch.float32).reshape(8, 1)
-
-    # Matrix D (8x8): each column is Ah or Am based on labels
     D = torch.zeros(8, 8, dtype=torch.float32)
     for i, label in enumerate(labels):
         D[:, i] = Ah.squeeze() if label == 2 else Am.squeeze()
-
-    # Regularization parameter
     lambda_reg = 1.0
-    lambda_nonneg = 2.0  # Penalty for negative values
+    lambda_nonneg = 2.0  
 
-    # Define Lagrangian Function
     def lagrangian(B_flat):
-        B = B_flat.reshape(1, 8)  # Reshape B into 1x8
-        C = A @ B                # Compute C = A * B (8x8)
+        B = B_flat.reshape(1, 8) 
+        C = A @ B             
         loss = torch.norm(C - D, p='fro') ** 2
         constraint = (torch.mean(C, dim=1) - A.squeeze()) ** 2
         non_negativity_penalty = torch.sum(torch.relu(-C))
@@ -343,7 +316,7 @@ def group_subregions(vertices_lat, vertices_lon):
         delta_lon = np.abs(lon2 - lon1)
         delta_lon = np.minimum(delta_lon, 2 * np.pi - delta_lon)
         central_angle = np.arccos(np.sin(lat1) * np.sin(lat2) + np.cos(lat1) * np.cos(lat2) * np.cos(delta_lon))
-        return central_angle * MOON_RADIUS_KM  # Moon's radius in kilometers
+        return central_angle * MOON_RADIUS_KM 
 
     left_length = great_circle_distance(vertices_lat[0], vertices_lon[0], vertices_lat[3], vertices_lon[3])
     right_length = great_circle_distance(vertices_lat[1], vertices_lon[1], vertices_lat[2], vertices_lon[2])
@@ -410,7 +383,6 @@ def save_subregion(subregion_row, subregion_col, points):
     elements = ['Fe', 'Ti', 'Ca', 'Si', 'Al', 'Mg', 'Na', 'O']
 
     for point in points:
-        # Find the closest grid index
         grid_index = find_grid_indices_in_subregion(
             point['x_center'], point['y_center'], subregion_row, subregion_col
         )
@@ -473,7 +445,6 @@ def update_csv_files(subregion_data, indices):
 
     subregion_tasks = list(subregion_data.items())  
     with ThreadPoolExecutor(max_workers = 2) as executor:
-        # Initialize progress bar
         with tqdm(total=len(subregion_tasks), desc="Updating CSV Files") as pbar:
             futures = {
                 executor.submit(save_subregion, subregion_row, subregion_col, points):
@@ -513,7 +484,6 @@ def process_data_regions(data_regions, batch_size, updatedRegions, updatedSubreg
         subregion_data = defaultdict(list)
 
         for counter, region in tqdm(batch_regions.iterrows(), total=len(batch_regions), desc="Calculating abundances"):
-            # Extract vertex coordinates
             vertices_lat = [
                 region['V0_lat'], region['V1_lat'],
                 region['V2_lat'], region['V3_lat']
@@ -567,18 +537,14 @@ def process_data_regions(data_regions, batch_size, updatedRegions, updatedSubreg
         return updatedRegions, updatedSubregions, indices
 
 def preprocess(data):
-    # Clean column names by stripping leading/trailing whitespace
     data.columns = data.columns.str.strip()
-    # Step 1: Extract only the weight columns for elements
     weight_columns = [col for col in data.columns if col.endswith('_WT')]
     lats = ['V0_LATITUDE', 'V0_LONGITUDE', 'V1_LATITUDE', 'V1_LONGITUDE', 'V2_LATITUDE', 'V2_LONGITUDE', 'V3_LATITUDE', 'V3_LONGITUDE']
     weights_data = data[weight_columns + lats].copy()
-    # Step 2: Add fixed columns for "Na" and "O"
     weights_data['Na'] = 1.375
     weights_data['O'] = 45
     weights_data['Ti'] = 0
     weights_data['Ca'] = 0
-    # Resulting dataset
     weights_data.head()
     weights_data.rename(columns={
         'V0_LATITUDE': 'lat0', 'V0_LONGITUDE': 'lon0',
@@ -588,7 +554,6 @@ def preprocess(data):
         'MG_WT': 'Mg', 'AL_WT': 'Al', 'SI_WT': 'Si',
         'FE_WT': 'Fe'
     }, inplace=True)
-    # Assuming `df` is your dataframe
     new_column_order = [
         'lat0', 'lon0', 'lat1', 'lon1', 'lat2', 'lon2', 'lat3', 'lon3',
         'Fe', 'Ti', 'Ca', 'Si', 'Al', 'Mg', 'Na', 'O'
@@ -604,32 +569,22 @@ def RegionProcessor2(file_path, batch_size, updatedRegions, updatedSubregions, i
     """
 
     print(f"[INFO] {current_time()} Processing file: {file_path}")
-
-    # Read the data region file
     data_regions = pd.read_csv(file_path)
-
-    # data_regions = preprocess(data_regions)
     data_regions.rename(columns={
         'lat0': 'V0_lat', 'lon0': 'V0_lon',
         'lat1': 'V1_lat', 'lon1': 'V1_lon',
         'lat2': 'V2_lat', 'lon2': 'V2_lon',
         'lat3': 'V3_lat', 'lon3': 'V3_lon',
     }, inplace=True)
-
-    # Process the data in batches
     updatedRegions, updatedSubregions, indices = process_data_regions(data_regions, batch_size, updatedRegions, updatedSubregions, indices)
     return updatedRegions, updatedSubregions, indices
 
-
-# List of data region files
 def Part2(file_name):
     batch_size = 3000
 
     updatedRegions = np.zeros((8, 8))
     updatedSubregions = np.zeros((8, 8, 6, 13))
-    # Create an 8x8 array with empty lists
     indices = np.empty((8, 8), dtype=object)
-    # Initialize each element to be an empty list
     for i in range(8):
         for j in range(8):
             indices[i, j] = []
@@ -673,13 +628,9 @@ def haversine_gpu(lat1, lon1, lat2, lon2):
     Returns:
         torch.Tensor: Distances between points in kilometers
     """
-    R = MOON_RADIUS_KM  # mooon radius in kilometers
-
-    # Convert degrees to radians
+    R = MOON_RADIUS_KM 
     lat1, lat2 = torch.deg2rad(lat1), torch.deg2rad(lat2)
     lon1, lon2 = torch.deg2rad(lon1), torch.deg2rad(lon2)
-
-    # Haversine formula computation
     dlat = lat2 - lat1
     dlon = lon2 - lon1
     a = torch.sin(dlat / 2)**2 + torch.cos(lat1) * torch.cos(lat2) * torch.sin(dlon / 2)**2
@@ -716,7 +667,6 @@ def compute_mare_highland_distances_gpu(batch_mare, all_mare):
     Returns:
         torch.Tensor: Binary mare/highland distance matrix (1 if different, 0 if same)
     """
-    # Compare values to compute binary distance: 1 if different, 0 if same
     distances = (batch_mare.unsqueeze(1) != all_mare).float()
     return distances
 
@@ -770,25 +720,17 @@ def calculate_sliding_windows(window_size=WINDOW_SIZE, stride=STRIDE):
         positions = []
         sizes = []
         num_full_strides = num_windows - 1
-
-        # For all windows except the last one
         for i in range(num_full_strides):
             positions.append(i * stride)
             sizes.append(window_size)
-
-        # Handle the last window to ensure coverage of actual data size
         last_start = actual_size - window_size
         positions.append(last_start)
         sizes.append(window_size)
 
         return positions, sizes
 
-    # 6 windows in latitude direction (5 strides of 50 + last window)
     lat_positions, lat_sizes = get_windows(6, LAT_SIZE)
-
-    # 12 windows in longitude direction (11 strides of 50 + last window)
     lon_positions, lon_sizes = get_windows(13, LON_SIZE)
-
     # print(f"[INFO] {current_time()} Latitude positions: {lat_positions}")
     # print(f"[INFO] {current_time()} Longitude positions: {lon_positions}")
 
@@ -810,9 +752,6 @@ def process_subgraph(df, subregion_row, subregion_col, lat_start, lon_start, lat
     Returns:
         str: Path where the graph is saved
     """
-    # global OccupancyMatrix
-
-    # Calculate indices for the subgraph
     indices = []
     for i in range(lat_size):
         row_start = (lat_start + i) * LAT_STEP + lon_start
@@ -822,10 +761,8 @@ def process_subgraph(df, subregion_row, subregion_col, lat_start, lon_start, lat
     col_idx = int(np.ceil(float(lon_start)/STRIDE))
     print(f"[INFO] {current_time()} Started processing subregion {subregion_row} {subregion_col}, subgraph id: {row_idx} {col_idx}")
 
-    # Subset the dataframe
     sub_df = df.iloc[indices].copy()
 
-    # Extract features for the subgraph
     latitudes = sub_df['lat_center'].values
     longitudes = sub_df['lon_center'].values
     mareOrHighland = sub_df['mareOrHighland'].values
@@ -841,7 +778,6 @@ def process_subgraph(df, subregion_row, subregion_col, lat_start, lon_start, lat
     # percentage_non_zero = (non_zero_rows / total_rows) * 100
     # OccupancyMatrix[row_idx, col_idx] = percentage_non_zero
 
-    # Move data to GPU and preprocess
     latitudes_tensor = torch.tensor(latitudes, dtype=torch.float32).to(device)
     longitudes_tensor = torch.tensor(longitudes, dtype=torch.float32).to(device)
     mareOrHighland_tensor = torch.tensor(mareOrHighland, dtype=int).to(device)
@@ -888,15 +824,11 @@ def process_subgraph(df, subregion_row, subregion_col, lat_start, lon_start, lat
 
     # print(f"[INFO] {current_time()} Extracted features from dataframe, Subgraph id: {int(np.ceil(float(lat_start)/STRIDE))} {int(np.ceil(float(lon_start)/STRIDE))}")
 
-    # Process graph edges
     edge_index = []
     edge_weights = []
     num_nodes = len(latitudes)
-
-    # Iterate over batches to compute edge weights efficiently
     for batch_start in range(0, num_nodes, BATCH_SIZE):
         # print(f"[INFO] {current_time()} Starting batch {batch_start}, Subgraph id: {int(np.ceil(float(lat_start)/STRIDE))} {int(np.ceil(float(lon_start)/STRIDE))}")
-
         batch_lat = latitudes_tensor[batch_start:batch_start+BATCH_SIZE]
         batch_lon = longitudes_tensor[batch_start:batch_start+BATCH_SIZE]
         batch_w = w_vectors_tensor[batch_start:batch_start+BATCH_SIZE]
@@ -905,38 +837,27 @@ def process_subgraph(df, subregion_row, subregion_col, lat_start, lon_start, lat
         # print(f"[DEBUG] batch_lat shape: {batch_lat.shape}")
         # print(f"[DEBUG] batch_lon shape: {batch_lon.shape}")
         # print(f"[DEBUG] batch_w shape: {batch_w.shape}")
-
-        # Compute distances
         Dspatial = compute_spatial_distances_gpu(batch_lat, batch_lon, latitudes_tensor, longitudes_tensor)
         Dfeature = compute_feature_distances_gpu(batch_w, w_vectors_tensor)
         Dmare = compute_mare_highland_distances_gpu(batch_mare, mareOrHighland_tensor)
         weights = compute_edge_weights_gpu(Dspatial, Dfeature, Dmare, ALPHA, BETA, GAMMA)
-        
-        # Debugging: Check distance matrix shapes
         # print(f"[DEBUG] Dspatial shape: {Dspatial.shape}")
         # print(f"[DEBUG] Dfeature shape: {Dfeature.shape}")
         # print(f"[DEBUG] weights shape: {weights.shape}")
         # print(f"[INFO] {current_time()} Computed distances {batch_start}, Subgraph id: {int(np.ceil(float(lat_start)/STRIDE))} {int(np.ceil(float(lon_start)/STRIDE))}")
-
-        # Select top-k neighbors for all nodes in the batch at once
         top_k_values, top_k_indices = torch.topk(weights, K+1, dim=1, largest=True)
         top_k_values = top_k_values[:,1:]
         top_k_indices = top_k_indices[:,1:]
 
-        # Flatten and append edge indices and weights in one go
         batch_indices = torch.arange(batch_start, batch_start + weights.size(0), device=weights.device).unsqueeze(1).repeat(1, K+1).flatten()
         top_k_indices_flat = top_k_indices.flatten()
         top_k_values_flat = top_k_values.flatten()
-
-        # Append edge indices and weights in a vectorized manner
         edge_index.extend(zip(batch_indices.tolist(), top_k_indices_flat.tolist()))
         edge_weights.extend(top_k_values_flat.tolist())
 
-    # Convert to tensors
     edge_index = torch.tensor(edge_index, dtype=torch.long).t().contiguous()
     edge_weights = torch.tensor(edge_weights, dtype=torch.float32)
 
-    # Prepare node features
     node_features = torch.hstack((
         w_vectors_tensor,
         mareOrHighland_tensor.reshape(-1, 1),
@@ -944,7 +865,6 @@ def process_subgraph(df, subregion_row, subregion_col, lat_start, lon_start, lat
         longitudes_tensor.reshape(-1, 1),
     ))
 
-    # Create PyTorch Geometric Data object
     graph = Data(
         x=node_features,
         edge_index=edge_index,
@@ -953,7 +873,6 @@ def process_subgraph(df, subregion_row, subregion_col, lat_start, lon_start, lat
         mask=element_mask_tensor,
     )
 
-    # Add metadata for tracking and analysis
     graph.metadata = {
         "node_features_shape": node_features.shape,
         "edge_index_shape": edge_index.shape,
@@ -968,18 +887,15 @@ def process_subgraph(df, subregion_row, subregion_col, lat_start, lon_start, lat
         }
     }
 
-    # Save graph
     graphs_dir = f"./graphs/graphs_subregion_{subregion_row}_{subregion_col}"
     os.makedirs("./graphs/", exist_ok=True)
     os.makedirs(graphs_dir, exist_ok=True)
 
-    # Define save path using new directory structure
     save_path = os.path.join(
         graphs_dir,
         f"subgraph_{subregion_row}_{subregion_col}_{row_idx}_{col_idx}.pt"
     )
 
-    # Save graph
     torch.save(graph, save_path)
 
     print(f"[INFO] {current_time()} Saved subgraph to {save_path}")
@@ -991,27 +907,19 @@ def Part3(subregion_row, subregion_col, iteration_number, updatedIndices, update
     # updatedIndices is a list of csv indices where abundances are added by the file being currently processed
     # updatedSubregions is an array of size 6x13 denoting number of updates in each subregion
     # In iteration 1, we do not need to generate graphs for subregions where updatedSubregions is 0 and also we need to update/generate the mask
-
-    # Construct filename and verify file exists
     fileName = f"./regions/ISRO_RegionData{subregion_row - subregion_row%2}{1+subregion_row - subregion_row%2}/subregion_{subregion_row}_{subregion_col}.csv"
     if not os.path.isfile(fileName):
         print(f"[ERROR] File (subregion_{subregion_row}_{subregion_col}.csv) does not exist. Exiting...")
         exit()
-
-    # Read CSV file
     df = pd.read_csv(fileName)
     print(f"[INFO] {current_time()} Dataframe Read. Size = {df.memory_usage(deep=True).sum()/(1024*1024):6f} MB")
 
     lat_positions, lon_positions, lat_sizes, lon_sizes = calculate_sliding_windows()
-
-    # Add column for updating mask with updated indexes
     if iteration_number == 1:
         df['updated'] = np.where(df.index.isin(updatedIndices), 1, 0)
 
-    # Compute total number of subgraphs
     total_graphs = len(lat_positions) * len(lon_positions)
     print(f"[INFO] {current_time()} Will generate {total_graphs} subgraphs ({len(lat_positions)} rows x {len(lon_positions)} columns)")
-    # Define thread pool and process data
     with ThreadPoolExecutor() as executor:
         for j_index, lon_start in enumerate(lon_positions):
             futures = []
@@ -1020,7 +928,6 @@ def Part3(subregion_row, subregion_col, iteration_number, updatedIndices, update
                     if updatedSubregions[i_index][j_index] == 0:
                         print(f"Skipping subgraph {i_index} {j_index} for Region {subregion_row}{subregion_col}: No updated entries")
                         continue
-                # Submit each task to the thread pool
                 print(f"[INFO] {current_time()} Generating subgraph {i_index} {j_index} for Region {subregion_row} {subregion_col}")
                 futures.append(executor.submit(process_subgraph, df, subregion_row, subregion_col, lat_start, lon_start, lat_sizes[i_index], lon_sizes[j_index], iteration_number))
 
@@ -1031,8 +938,6 @@ def Part3(subregion_row, subregion_col, iteration_number, updatedIndices, update
 # This exposes a function (Part4), which given any i, j, iteration_number will load and train the combined model in an advanced mini batch fashion on all the 78 subgraphs and also delete those now redundant subgraphs and update the csv file with the calculated abundances.
 
 num_targets = len(elements)
-
-
 class GNNModel(nn.Module):
     def __init__(self, in_channels, hidden_channels, out_channels):
         super(GNNModel, self).__init__()
@@ -1072,7 +977,6 @@ class CombinedModel(nn.Module):
         self.fc2 = nn.Linear(fusion_hidden_channels, num_elements)
 
     def forward(self, data):
-        # GNN forward
         x_gnn = self.gnn(data.x, data.edge_index, data.edge_attr)
 
         grid_size = (100, 100)
@@ -1089,15 +993,12 @@ class CombinedModel(nn.Module):
         grid[0, :, lat_indices, lon_indices] = data.x.t()
         x_cnn = self.cnn(grid)
 
-        # Compute lat_indices and lon_indices directly for the reduced grid
         lat_indices = ((latitudes - latitudes.max()) / (latitudes.min() - latitudes.max()) * (x_cnn.shape[2] - 1)).int()
         lon_indices = ((longitudes - longitudes.min()) / (longitudes.max() - longitudes.min()) * (x_cnn.shape[3] - 1)).int()
         lat_indices = torch.clamp(lat_indices, 0, x_cnn.shape[2] - 1)
         lon_indices = torch.clamp(lon_indices, 0, x_cnn.shape[3] - 1)
 
         x_cnn = x_cnn[0, :, lat_indices, lon_indices].t()
-
-        # Combine GNN and CNN outputs
         x_combined = torch.cat((x_gnn, x_cnn), dim=1)
         x = F.relu(self.fc1(x_combined))
         x = self.fc2(x)
@@ -1121,7 +1022,7 @@ def masked_mse_loss(predictions, targets, mask, element_weights):
         Weighted MSE loss computed only for the known (masked) values.
     """
     loss = mse(predictions, targets)*element_weights
-    masked_loss = loss * mask.unsqueeze(1)  # Apply mask
+    masked_loss = loss * mask.unsqueeze(1)  
     return masked_loss.sum() / mask.sum()
 
 def feature_similarity_loss(predictions, features, edge_index):
@@ -1136,16 +1037,15 @@ def feature_similarity_loss(predictions, features, edge_index):
     Returns:
         Feature similarity loss.
     """
-    src, dest = edge_index  # Source and destination nodes
-    diff_predictions = predictions[src] - predictions[dest]  # Abundance differences
-    diff_features = features[src] - features[dest]  # Feature differences
+    src, dest = edge_index  
+    diff_predictions = predictions[src] - predictions[dest]  
+    diff_features = features[src] - features[dest]  
     # normalized_diff_feature = (diff_features - diff_features.min()) / (diff_features.max() - diff_features.min() + 1e-8)  # Avoid division by zero
 
-    # Normalize per edge, not globally across the whole tensor
     diff_features_norm = torch.norm(diff_features, dim=1, keepdim=True)
     normalized_diff_feature = diff_features / (diff_features_norm + 1e-8)
 
-    weights = torch.exp(-torch.norm(normalized_diff_feature, dim=1))  # Similarity weight (higher for similar features)
+    weights = torch.exp(-torch.norm(normalized_diff_feature, dim=1)) 
     return (weights.unsqueeze(1) * diff_predictions**2).mean()
 
 def logarithmic_loss(predictions, targets, mask, element_weights):
@@ -1163,7 +1063,7 @@ def logarithmic_loss(predictions, targets, mask, element_weights):
     """
     epsilon = 1e-8
     log_diff = (torch.log(predictions + epsilon) - torch.log(targets + epsilon))
-    log_loss = (log_diff ** 2) * element_weights  # Square the difference
+    log_loss = (log_diff ** 2) * element_weights 
     masked_log_loss = log_loss*mask.unsqueeze(1)
     return (masked_log_loss.sum()) / (mask.sum() + epsilon)    
 
@@ -1180,16 +1080,15 @@ def spatial_similarity_loss(predictions, edge_index, lat_lon):
         Spatial similarity loss.
     """
 
-    src, dest = edge_index  # Source and destination nodes
-    lat_lon_src = lat_lon[src]  # Get latitudes and longitudes for source nodes
-    lat_lon_dest = lat_lon[dest]  # Get latitudes and longitudes for destination nodes
-
+    src, dest = edge_index  
+    lat_lon_src = lat_lon[src] 
+    lat_lon_dest = lat_lon[dest] 
     distance = torch.norm(lat_lon_src - lat_lon_dest, dim=1)
-    normalized_distance = (distance - distance.min()) / (distance.max() - distance.min() + 1e-8)  # Avoid division by zero
+    normalized_distance = (distance - distance.min()) / (distance.max() - distance.min() + 1e-8)  
 
-    diff_predictions = predictions[src] - predictions[dest]  # (num_edges, num_elements)
+    diff_predictions = predictions[src] - predictions[dest]  
     weights = torch.exp(-normalized_distance)
-    spatial_loss = (weights.unsqueeze(1) * diff_predictions**2).mean()  # (num_edges, num_elements)
+    spatial_loss = (weights.unsqueeze(1) * diff_predictions**2).mean() 
 
     return spatial_loss
 
@@ -1204,7 +1103,6 @@ def combined_loss(mode, predictions, targets, mask, w_features, edge_index, elem
     if mode == 1:
         mse_loss = masked_mse_loss(predictions, targets, mask, element_weights)
         # log_loss = logarithmic_loss(predictions, targets, mask, element_weights)
-
         return mse_loss
     elif mode == 2:
         feature_sim_loss = feature_similarity_loss(predictions, w_features, edge_index)
@@ -1258,8 +1156,8 @@ def save_model(epoch, checkpoint_dir, model):
 
 def train_combined(data, model, optimizer, epochs, element_weights, lr):
     model.train()
-    torch.backends.cudnn.benchmark = True  # For consistent GPU performance
-    torch.backends.cudnn.deterministic = False  # Slightly faster, less reproducible
+    torch.backends.cudnn.benchmark = True  
+    torch.backends.cudnn.deterministic = False  
     early = EarlyStopper()
 
     # I will use a dual training approach,
@@ -1276,7 +1174,6 @@ def train_combined(data, model, optimizer, epochs, element_weights, lr):
     totalEpochs = int(epochs*(3/2))
 
     if os.path.isfile(f"./drive/MyDrive/ISRO_SuperResolution/masks/masks_subregion_{subregion_row_loss}_{subregion_col_loss}/mask_tensor_{subregion_row_loss}_{subregion_col_loss}_{subregion_srow}_{subregion_scol}.pt"):
-        # Mask is present, train for epochs using mse loss
         with tqdm(range(totalEpochs), desc="Training... (mask +nt)") as pbar:
             mode = 1
             scheduler = lr_scheduler.CosineAnnealingLR(optimizer, ((totalEpochs//2)+1), eta_min=0.0001)
@@ -1287,12 +1184,8 @@ def train_combined(data, model, optimizer, epochs, element_weights, lr):
 
                 loss = combined_loss(mode, output, data.y, data.mask, data.x[:, :300], data.edge_index, element_weights, data.x[:, -2:], data.metadata)
                 loss.backward()
-
-                # Gradient Clipping
                 torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
-
                 optimizer.step()
-
                 pbar.set_postfix_str(f"{loss.item():4f}")
                 pbar.update(1)
 
@@ -1313,8 +1206,6 @@ def train_combined(data, model, optimizer, epochs, element_weights, lr):
 
                 loss = combined_loss(mode, output, data.y, data.mask, data.x[:, :300], data.edge_index, element_weights, data.x[:, -2:], data.metadata)
                 loss.backward()
-
-                # Gradient Clipping
                 torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
 
                 optimizer.step()
@@ -1337,8 +1228,6 @@ def train_combined(data, model, optimizer, epochs, element_weights, lr):
 
                 loss = combined_loss(mode, output, data.y, data.mask, data.x[:, :300], data.edge_index, element_weights, data.x[:, -2:], data.metadata)
                 loss.backward()
-
-                # Gradient Clipping
                 torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
 
                 optimizer.step()
@@ -1357,7 +1246,6 @@ def train_combined(data, model, optimizer, epochs, element_weights, lr):
      # print(f'[INFO] Epoch {epoch+1}/{epochs}, Loss: {loss.item():.4f}')
 
 
-# Hyperparameters
 gnn_in, gnn_hidden, gnn_out = 303, 128, 36
 cnn_in, cnn_out = 303, 36
 fusion_hidden, num_targets = 64, num_targets
@@ -1382,20 +1270,14 @@ def find_grid_indices_in_subregion2(lat, lon, subregion_row, subregion_col):
     Returns:
     - Tuple (square_row, square_col) representing the grid indices.
     """
-    # Calculate the start of the subregion
     subregion_lat_start = LATITUDE_RANGE[0] - subregion_row * lat_per_region
     subregion_lon_start = LONGITUDE_RANGE[0] + subregion_col * lon_per_region
-
-    # Calculate the grid square within the subregion
     square_row = abs(int((lat - subregion_lat_start) // square_size_deg))
     square_col = abs(int((lon - subregion_lon_start) // square_size_deg))
 
     if not (0 <= square_row < num_squares_lat) or not (0 <= square_col < num_squares_lon):
-        # If point is out of the subregion's grid, find the nearest grid point
         square_row = max(0, min(square_row, num_squares_lat - 1))
         square_col = max(0, min(square_col, num_squares_lon - 1))
-
-    # Calculate the exact row index
     row_index = square_row * num_squares_lon + square_col
 
     return row_index
@@ -1413,28 +1295,19 @@ def find_grid_indices_in_subregion2_vectorized(latitudes, longitudes, subregion_
     Returns:
     - Numpy Array of row indices for the grid positions.
     """
-
-    # Calculate the start of the subregion
     subregion_lat_start = LATITUDE_RANGE[0] - subregion_row * lat_per_region
     subregion_lon_start = LONGITUDE_RANGE[0] + subregion_col * lon_per_region
 
-    # # Calculate the grid squares within the subregion
     # square_rows = torch.abs(((latitudes - subregion_lat_start) // square_size_deg).to(torch.int))
     # square_cols = torch.abs(((longitudes - subregion_lon_start) // square_size_deg).to(torch.int))
-
-    # Calculate the grid squares within the subregion
     square_rows = np.abs(((latitudes - subregion_lat_start) // square_size_deg).astype(int))
     square_cols = np.abs(((longitudes - subregion_lon_start) // square_size_deg).astype(int))
 
-    # # Clamp indices to valid grid ranges
     # square_rows = torch.clamp(square_rows, 0, num_squares_lat - 1)
     # square_cols = torch.clamp(square_cols, 0, num_squares_lon - 1)
-
-    # Clamp indices to valid grid ranges
     square_rows = np.clip(square_rows, 0, num_squares_lat - 1)
     square_cols = np.clip(square_cols, 0, num_squares_lon - 1)
 
-    # Calculate the exact row indices
     row_indices = square_rows * num_squares_lon + square_cols
 
     return row_indices
@@ -1449,7 +1322,6 @@ def save_predictions(d, o, graph_data, graph_output):
     Then closes the file at the end.
     """
 
-    # Read the CSV once
     df_path = f'./regions/RegionData{d - d%2}{1 + d - d%2}/subregion_{d}_{o}.csv'
     df = pd.read_csv(df_path)
 
@@ -1461,7 +1333,6 @@ def save_predictions(d, o, graph_data, graph_output):
     assert subregion_row == d, "[ERROR] Metadata row does not match d"
     assert subregion_col == o, "[ERROR] Metadata col does not match o"
 
-    # Extract latitudes, longitudes, mask, and predictions as numpy arrays
     latitudes = graph_data.x[:, -2].cpu().numpy()
     longitudes = graph_data.x[:, -1].cpu().numpy()
     masks = graph_data.mask.cpu().numpy()
@@ -1473,27 +1344,16 @@ def save_predictions(d, o, graph_data, graph_output):
         subregion_col
     )
 
-    # Filter valid rows (where data needs to be imputed) where mask is 0
     valid_rows = masks == 0
     df_indices = df_indices[valid_rows]
     predictions = predictions[valid_rows]
 
-    # Extract the relevant rows from the DataFrame for processing
     df_elements = df.loc[df_indices, elements].values
-
-    # Create a mask to identify rows with non-zero elements
     nonzero_mask = (df_elements != 0).any(axis=1)
-
-    # Weighted update for rows with non-zero elements
     df_elements[nonzero_mask] = (w * df_elements[nonzero_mask]) + ((1 - w) * predictions[nonzero_mask])
-
-    # Direct update for rows with all-zero elements
     df_elements[~nonzero_mask] = predictions[~nonzero_mask]
-
-    # Write the updated values back to the DataFrame
     df.loc[df_indices, elements] = df_elements
 
-    # # Apply updates to the DataFrame
     # for idx, prediction in zip(df_indices.tolist(), predictions.cpu().tolist()):
     #     if (df.loc[idx, elements] != 0).any():
     #         # Weighted update
@@ -1501,25 +1361,21 @@ def save_predictions(d, o, graph_data, graph_output):
     #     else:
     #         # Direct update
     #         df.loc[idx, elements] = prediction
-
-    # Save the updated DataFrame
     df.to_csv(df_path, index=False)
     print(f"[INFO] {current_time()} Saved predictions to {df_path} for subregion {graph_data.metadata['subregion_indices']['subgraph_row']} {graph_data.metadata['subregion_indices']['subgraph_col']}")
 
 
-Part4executor = ThreadPoolExecutor(max_workers=1)  # Adjust max_workers based on available resources
+Part4executor = ThreadPoolExecutor(max_workers=1) 
 
 def Part4(x, y, iteration_number):
     pattern = r"subgraph_(\d+)_(\d+)_(\d+)_(\d+)\.pt"
-
-    # I need to iterate through all the x, y files in the directory graphs/subregion_i_j/subgraph_i_j_x_y.pt
     directory = f"./graphs/graphs_subregion_{x}_{y}/"
     model = CombinedModel(gnn_in, gnn_hidden, gnn_out, cnn_in, cnn_out, fusion_hidden, num_targets).to(device)
 
     os.makedirs(f'./drive/MyDrive/ISRO_SuperResolution/models', exist_ok=True)
     if os.path.isfile(f'./drive/MyDrive/ISRO_SuperResolution/models/{x}_{y}.pth'):
         model.load_state_dict(torch.load(f"./drive/MyDrive/ISRO_SuperResolution/models/{x}_{y}.pth"))
-        num_epochs = 300 # Only need to finetune later
+        num_epochs = 300 
         lr = 0.0005
     else:
         num_epochs = 700
@@ -1532,8 +1388,6 @@ def Part4(x, y, iteration_number):
         if filename.endswith(".pt"):
             torch.cuda.empty_cache()
             file_path = os.path.join(directory, filename)
-
-            # Extract i, j, x, and y using the regular expression
             match = re.match(pattern, filename)
             if not match:
                 print(f"[ERROR] Filename {filename} does not match expected pattern. Skipping.")
@@ -1562,15 +1416,12 @@ def Part4(x, y, iteration_number):
             # os.makedirs(save_directory, exist_ok=True)
 
             graph_data = torch.load(file_path)
-            # For each data object file I need to train the Graph using that data
             train_graph(graph_data, model, optimizer, num_epochs, lr)
 
             print(f"[INFO] {current_time()} Trained model on {filename}. Now saving predictions.")
 
             # # Finally for that graph I need to open the region csv file and place where data is not avalaible
             # save_predictions(x, y, model, graph_data)
-
-            # Compute the output on the CPU and pass it to save_predictions
             graph_output = model(graph_data).cpu().detach()
             _ = Part4executor.submit(save_predictions, x, y, graph_data, graph_output)
 
@@ -1600,10 +1451,7 @@ def HandleRegion(i, j, num_iterations, updatedIndices, updatedSubregions):
     Part4(i, j, iteration)
 
 from concurrent.futures import ThreadPoolExecutor
-
 # toProcess = np.array([(0,2), (0,3), (0,4), (0,5), (0,6), (3,0), (3,1), (3,2), (3,3)])
-
-# Final function
 def ProcessDataP1(file_name, num_iteration):
   """
   This will implement the dynamic nature required
@@ -1666,16 +1514,9 @@ def ProcessDataP1(file_name, num_iteration):
 # updatedSubregions = np.load('PART2Output.npz')['updatedSubregions']
 # indices = np.load('PART2Output.npz')['indices']
 def retrieve_arguments():
-    # Create the parser
     parser = argparse.ArgumentParser(description="Subpixel resolution argument parser.")
-
-    # Add the 'mode' argument
     parser.add_argument('mode', type=int, choices=[1, 2], help="Mode of operation (1 or 2).")
-
-    # Arguments for mode 1
     parser.add_argument('filename', type=str, nargs='?', help="Filename (required if mode is 1).")
-
-    # Arguments for mode 2
     parser.add_argument('i', type=int, nargs='?', help="Value of i (required if mode is 2).")
     parser.add_argument('j', type=int, nargs='?', help="Value of j (required if mode is 2).")
     parser.add_argument('num_iterations', type=int, nargs='?', help="Number of iterations (required if mode is 2).")
@@ -1696,12 +1537,9 @@ def retrieve_arguments():
 parsed = retrieve_arguments()
 
 if parsed[0] == 1:
-    # need to call part2
     updatedRegions, updatedSubregions, indices = ProcessDataP1(parsed[1], 3)
     print(updatedRegions)
 elif parsed[0] == 2:
-    # need to call handle region
-    # Assumed part2 is called so check for file
     if os.path.isfile('PART2Output.npz'):
         from numpy import load as np_load_old
         np.load = lambda *a,**k: np_load_old(*a, allow_pickle=True, **k)
