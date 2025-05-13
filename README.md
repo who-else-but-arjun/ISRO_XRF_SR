@@ -1,6 +1,6 @@
 # Super-Resolution of Lunar XRF Elemental Abundances
 
-This repository contains code developed for super-resolution by a deep spatial interpolation model of the mapping of lunar surface elemental abundances obtained from Chandrayaan-2 CLASS instrument XRF data. The detailed description of the project is available in this report (https://drive.google.com/file/d/12J4m65JyD-cekRiMmBzjrCBWQKoxNWYq/view?usp=drive_link). The folder ```data_processing_and_mapping``` contains the codes for the extraction and processing of XRF data from the FITS file using XSPEC, XSMDAS, and GDL, and Information related to the visualization of the abundances on the Lunar albedo map using QGIS.
+This repository contains code developed for super-resolution by a deep spatial interpolation model of the mapping of lunar surface elemental abundances obtained from Chandrayaan-2 CLASS instrument XRF data. The detailed description of the project is available in this report [Report](https://drive.google.com/file/d/12J4m65JyD-cekRiMmBzjrCBWQKoxNWYq/view?usp=drive_link). The folder ```data_processing_and_mapping``` contains the codes for the extraction and processing of XRF data from the FITS file using XSPEC, XSMDAS, and GDL, and Information related to the visualization of the abundances on the Lunar albedo map using QGIS.
 
 ## Project Structure
 ### Main Components:
