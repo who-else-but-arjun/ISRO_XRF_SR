@@ -47,6 +47,13 @@ Place the downloaded files in their respective directories as outlined below:
 
 ```
 .
+├── data_processing_and_mapping/
+        | - gdl/
+        | - xspec_xsmdas/
+        | - mapping_codes/
+        | - pre_processing/
+        | - Final.csv                                        # Final extracted abundances. 
+        | - README.md                                        # Instructions for data extraction.
 ├── file_initialisation.py                                   # Initialization and feature extraction.
 ├── top_k_features.ipynb                                     # Feature analysis and selection.
 ├── Final.py
