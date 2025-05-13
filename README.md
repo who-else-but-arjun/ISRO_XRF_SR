@@ -116,7 +116,7 @@ Assuming input.csv contains the data to be added. Headers required in input.csv 
 | lat0 | lon0 | lat1 | lon1 | lat2 | lon2 | lat3 | lon3 | Fe | Ti | Ca | Si | Al | Mg | Na | O | chi2 |  |
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | -- | -- | -- | -- | -- | -- | -- | - | ---- | - |
 
-This will populate all the regions csv and create a file by the name of PART2Output.npz (an example is present in OLD_RUN folder) in the current directory which is required for Abundance Generalisation to run. It contains information regarding the number of enteries added in each region and subregion along with the updated indices of each region file. This is required for mask creation during Abundance Generalisation.
+This will populate all the regions csv and create a file by the name of PART2Output.npz in the current directory, which is required for Abundance Generalisation to run. It contains information regarding the number of entries added in each region and subregion, along with the updated indices of each region file. This is required for mask creation during Abundance Generalisation.
 
 To train on subregion i, j using parameters mode = 2, todo = run, and num_iterations :
 ```bash
