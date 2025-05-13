@@ -4,22 +4,27 @@ This repository contains code developed for super-resolution by deep spatial int
 
 ## Project Structure
 ### Main Components:
-1. **file_initialisation.py**:
+1. **data_processing_and_mapping**:
+   - **gdl**: GNU Data Language (GDL) for processing and analyzing FITS (Flexible Image Transport System) files containing data on lunar surface elemental abundances.
+   - **xspec_xsmdas**: XSPEC is a software designed for the analysis of astronomical X-ray spectra. It enables users to fit theoretical models to observational data, providing insights into the physical properties of celestial objects. XSM Data Analysis Software (XSMDAS) processes XSM data step by step to create usable results. It converts raw data (level-0) into intermediate data (level-1) and then into final products (level-2). These final products include calibrated spectra and light curves, which can be customized with different settings.
+   - **mapping**: Quantum Geographic Information System (QGIS) software for Visualizing the Lunar Abundances on Lunar Albedo Basemap at good sub-pixel resolution. The task is automated using PyQGIS codes. QGIS an open-source GIS platform that is freely available and offers a range of features suitable for various types of geospatial data analysis and visualization.
+   
+3. **file_initialisation.py**:
    - Initializes the 64 subregion CSV files for the Moon's surface.
    - For each subregion, computes the latitudes and longitudes of 2 km x 2 km pixels.
    - Extracts features from image tiles using a pre-trained ResNet50 model.
    - Populates the CSV files with selected features, mare/highland classifications, and metadata.
 
-2. **top_k_features.ipynb**:
+4. **top_k_features.ipynb**:
    - Analyzes feature importance from ResNet50 extractions.
    - Identifies the top 300 features for further processing based on variance thresholding.
 
-3. **Final.py**:
+5. **Final.py**:
    - Combines all parts of the project.
    - Constructs subgraphs for abundance maps.
    - Train the GNN-CNN combined model on these subgraphs.
    - Returns the final high resolution abundance maps.
-
+   
 ### Prerequisites :
 - Python 3.10+
 - GPU with CUDA support (optional but recommended).
