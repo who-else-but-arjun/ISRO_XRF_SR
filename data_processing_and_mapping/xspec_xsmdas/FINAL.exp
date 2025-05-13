@@ -1,0 +1,38 @@
+#!/usr/bin/expect 
+
+set timeout 600
+
+# Check if "optimization.txt" exists
+if {[file exists "optimization.txt"]} {
+    puts "File optimization.txt already exists. Overwriting with value 1."
+} else {
+    puts "File optimization.txt does not exist. Creating and writing value 1."
+}
+
+# Open the file in write mode and write the value 1
+set opt_file [open "optimization.txt" w]
+puts $opt_file "1"
+close $opt_file
+
+puts "Value 1 written to optimization.txt successfully."
+
+
+send "chmod +x script.exp\r"
+
+set file_count [exec ls -1 combined/L1_ADDED_FILES_TIME/ | wc -l]
+
+# Loop file_count times
+for {set i 1} {$i <= $file_count} {incr i} {
+    puts "Running script.exp for iteration $i"
+
+    # Spawn the script to be run
+    spawn ./script.exp
+    
+    # Wait for the process to finish
+    expect eof
+}
+
+puts "Completed running script.exp $file_count times."
+
+send "exit\r"
+expect eof

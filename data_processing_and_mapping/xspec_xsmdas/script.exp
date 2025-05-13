@@ -1,0 +1,81 @@
+#!/usr/bin/expect
+
+set timeout 90
+
+
+# MAIN_0.py
+spawn python MAIN_0.py
+expect {
+    eof { puts "MAIN_0.py completed successfully." }
+    timeout { puts "MAIN_0.py timed out."; exit 1 }
+}
+
+# MAIN_1.py
+spawn python MAIN_1.py
+expect {
+    "Number of trials exceeded: continue fitting?" {
+        send "y\r"
+        exp_continue
+    }
+    "spectrum.qdp exists, reuse it?" {
+        send "y\r"
+        exp_continue
+    }
+    "model.xcm exists. Replace? (y/n)" {
+        send "y\r"
+    }
+    eof { puts "MAIN_1.py completed successfully." }
+    timeout { puts "MAIN_1.py timed out."; exit 1 }
+}
+
+# MAIN_2.py
+spawn python MAIN_2.py
+expect {
+    eof { puts "MAIN_2.py completed successfully." }
+    timeout { puts "MAIN_2.py timed out."; exit 1 }
+}
+
+# ftflx2tab
+spawn bash
+send "ftflx2tab ftools_infile_scatter.txt scatter tbodel.fits\r"
+expect {
+    "$ " { puts "ftflx2tab completed successfully." }
+    eof { puts "Bash session ended unexpectedly."; exit 1 }
+    timeout { puts "ftflx2tab timed out."; exit 1 }
+}
+send "exit\r"
+expect eof
+
+# MAIN_3.py
+spawn python MAIN_3.py
+expect {
+    "Number of trials exceeded: continue fitting? " {
+        send "n\r"
+        exp_continue
+    }
+    eof { puts "MAIN_3.py completed successfully." }
+    timeout { puts "MAIN_3.py timed out."; exit 1 }
+}
+
+# Validate optimization.txt
+if {[file exists "optimization.txt"]} {
+    set opt_file [open "optimization.txt" r]
+    set first_line [gets $opt_file]
+    close $opt_file
+    if {$first_line != "1"} {
+        puts "First line of optimization.txt is not 1. Terminating script."
+        exit 0
+    }
+} else {
+    puts "File optimization.txt not found. Terminating script."
+    exit 1
+}
+
+# MAIN_4.py
+spawn python MAIN_4.py
+expect {
+    eof { puts "MAIN_4.py completed successfully." }
+    timeout { puts "MAIN_4.py timed out."; exit 1 }
+}
+
+puts "Script completed successfully."

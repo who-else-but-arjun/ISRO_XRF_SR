@@ -1,0 +1,44 @@
+#!/usr/bin/expect -f
+
+# Spawn GDL process
+spawn gdl
+
+# Wait for GDL prompt
+expect "GDL> "
+
+# Load the CLASS_ADD_L1_TIME procedure
+send ".rnew CLASS_add_L1_files_time.pro\r"
+
+# Wait for GDL prompt to ensure the procedure is loaded
+expect "GDL> "
+
+# Open the command file
+set file [open "command_gdl.txt" r]
+
+# Read the file line by line
+while {[gets $file line] != -1} {
+    # Print the command to the terminal for debugging
+    puts "$line"
+    
+    # Send the command to GDL
+    send "$line\r"
+    
+    # Wait for GDL to finish processing the command
+    expect "GDL> "
+}
+
+# Close the file after reading
+close $file
+
+# Print final message
+puts "MAA KA BHOSDA"
+send_user "MAA KA BHOSDA\n"
+
+# Exit GDL
+send "exit\r"
+expect eof
+
+# Run the Python script after exiting GDL
+puts "Running name.py..."
+exec python3 name.py
+puts "python script run already"

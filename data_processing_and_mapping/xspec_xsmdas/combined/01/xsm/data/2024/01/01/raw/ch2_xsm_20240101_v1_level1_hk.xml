@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1B00.sch"
+  schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<Product_Observational xmlns="http://pds.nasa.gov/pds4/pds/v1" xmlns:pds="http://pds.nasa.gov/pds4/pds/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pds.nasa.gov/pds4/pds/v1  https://pds.nasa.gov/pds4/pds/v1/PDS4_PDS_1B00.xsd">
+    <Identification_Area>
+        <logical_identifier>urn:isro:isda:ch2_cho.xsm:data_raw:ch2_xsm_20240101_level1_hk</logical_identifier>
+        <version_id>1.0</version_id>
+        <title>Chandrayaan-2 Orbiter XSM Experiment</title>
+        <information_model_version>1.11.0.0</information_model_version>
+        <product_class>Product_Observational</product_class>
+        <Modification_History>
+            <Modification_Detail>
+                <modification_date>2024-01-12</modification_date>
+                <version_id>1.0</version_id>
+                <description>Created by XSM POC PRL</description>
+            </Modification_Detail>
+        </Modification_History>
+    </Identification_Area>
+    <Observation_Area>
+        <Time_Coordinates>
+            <start_date_time>2024-01-01T00:00:00.645Z</start_date_time>
+            <stop_date_time>2024-01-01T23:59:59.568Z</stop_date_time>
+        </Time_Coordinates>
+        <Primary_Result_Summary>
+            <purpose>Science</purpose>
+            <processing_level>Raw</processing_level>
+            <description>
+        A series of multiply defined digital objects.             
+      </description>
+        </Primary_Result_Summary>
+        <Investigation_Area>
+            <name>Chandrayaan-2</name>
+            <type>Mission</type>
+            <Internal_Reference>
+                <lidvid_reference>urn:isro:isda:context:investigation:mission.chandrayaan2::1.0</lidvid_reference>
+                <reference_type>data_to_investigation</reference_type>
+            </Internal_Reference>
+        </Investigation_Area>
+        <Observing_System>
+            <name>Observing System</name>
+            <Observing_System_Component>
+                <name>Chandrayaan-2 Orbiter</name>
+                <type>Spacecraft</type>
+                <description>
+         Chandrayaan-2 Orbiter is the orbitercraft of the mission which is placed in polar orbit around Moon,  
+         carrying a suite of scientific instruments.
+        </description>
+            </Observing_System_Component>
+            <Observing_System_Component>
+                <name>Solar X-ray Monitor</name>
+                <type>Instrument</type>
+                <description>
+        Solar X-ray Monitor (abbreviated as XSM) is a scientific instrument on-board the Chandrayaan-2 
+        orbiter with an objective of performing X-ray spectroscopy of the Sun. The instrument employs 
+        Silicon Drift Detector (SDD) to cover the X-ray energy range of 1-15 keV with a spectral
+        resolution better than 180 eV at 5.9 keV. XSM also incorporates an innovative moving mechanism 
+        in order to cover the wide range of intensities of Solar X-ray flares. XSM provides measurement 
+        of Solar X-ray spectrum  with a time cadence of one second.
+        </description>
+            </Observing_System_Component>
+        </Observing_System>
+        <Target_Identification>
+            <name>Sun</name>
+            <type>Sun</type>
+            <description>
+      Sun is the star at the center of Solar system. 
+      </description>
+        </Target_Identification>
+    </Observation_Area>
+    <File_Area_Observational>
+        <File>
+            <file_name>ch2_xsm_20240101_v1_level1.hk</file_name>
+            <local_identifier>file</local_identifier>
+            <creation_date_time>2024-01-12T13:39:53</creation_date_time>
+            <file_size unit="byte">12110400</file_size>
+            <records>86399</records>
+            <md5_checksum>fd2f73a2432fa0bdf4f157858bf4fba0</md5_checksum>
+        </File>
+        <Header>
+            <local_identifier>header_Primary</local_identifier>
+            <offset unit="byte">0</offset>
+            <object_length unit="byte">2880</object_length>
+            <parsing_standard_id>FITS 3.0</parsing_standard_id>
+        </Header>
+        <Header>
+            <local_identifier>header_HKParam</local_identifier>
+            <offset unit="byte">2880</offset>
+            <object_length unit="byte">11520</object_length>
+            <parsing_standard_id>FITS 3.0</parsing_standard_id>
+        </Header>
+        <Table_Binary>
+            <local_identifier>data_HKParam</local_identifier>
+            <offset unit="byte">14400</offset>
+            <records>86399</records>
+            <description>The records count is the number of rows in this table</description>
+            <Record_Binary>
+                <fields>38</fields>
+                <groups>0</groups>
+                <record_length unit="byte">140</record_length>
+                <Field_Binary>
+                    <name>TIME</name>
+                    <field_location unit="byte">1</field_location>
+                    <data_type>IEEE754MSBDouble</data_type>
+                    <field_length unit="byte">8</field_length>
+                    <unit>Sec</unit>
+                    <description>UTC Seconds since 2017-01-01 00:00:00 </description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>UTCSTRING</name>
+                    <field_location unit="byte">9</field_location>
+                    <data_type>ASCII_String</data_type>
+                    <field_length unit="byte">30</field_length>
+                    <description>UTC Time String</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>FPGATIME</name>
+                    <field_location unit="byte">39</field_location>
+                    <data_type>IEEE754MSBDouble</data_type>
+                    <field_length unit="byte">8</field_length>
+                    <unit>Sec</unit>
+                    <description>XSM clock time</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>FRAMENO</name>
+                    <field_location unit="byte">47</field_location>
+                    <data_type>SignedMSB4</data_type>
+                    <field_length unit="byte">4</field_length>
+                    <description>Frame Number</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>SyncLW</name>
+                    <field_location unit="byte">51</field_location>
+                    <data_type>SignedMSB4</data_type>
+                    <field_length unit="byte">4</field_length>
+                    <description>Sync bytes LW</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>SyncUW</name>
+                    <field_location unit="byte">55</field_location>
+                    <data_type>SignedMSB4</data_type>
+                    <field_length unit="byte">4</field_length>
+                    <description>Sync bytes UW</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>EventCounter</name>
+                    <field_location unit="byte">59</field_location>
+                    <data_type>SignedMSB4</data_type>
+                    <field_length unit="byte">4</field_length>
+                    <description>Event Triggers</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>EventDetected</name>
+                    <field_location unit="byte">63</field_location>
+                    <data_type>SignedMSB4</data_type>
+                    <field_length unit="byte">4</field_length>
+                    <description>Number of detected events</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>RampCounter</name>
+                    <field_location unit="byte">67</field_location>
+                    <data_type>SignedMSB2</data_type>
+                    <field_length unit="byte">2</field_length>
+                    <description>Ramp frequency of reset CSPA</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>HVMonitor</name>
+                    <field_location unit="byte">69</field_location>
+                    <data_type>IEEE754MSBSingle</data_type>
+                    <field_length unit="byte">4</field_length>
+                    <unit>Volts</unit>
+                    <description>High Voltage monitor</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>Detector Temperature</name>
+                    <field_location unit="byte">73</field_location>
+                    <data_type>IEEE754MSBSingle</data_type>
+                    <field_length unit="byte">4</field_length>
+                    <unit>Volts</unit>
+                    <description>SDD Temperature monitor in volts</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>TECCurrent</name>
+                    <field_location unit="byte">77</field_location>
+                    <data_type>IEEE754MSBSingle</data_type>
+                    <field_length unit="byte">4</field_length>
+                    <unit>Volts</unit>
+                    <description>SDD Peltier current monitor in volts</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>LV1Monitor</name>
+                    <field_location unit="byte">81</field_location>
+                    <data_type>IEEE754MSBSingle</data_type>
+                    <field_length unit="byte">4</field_length>
+                    <unit>Volts</unit>
+                    <description>3.3V LV  monitor</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>LV2Monitor</name>
+                    <field_location unit="byte">85</field_location>
+                    <data_type>IEEE754MSBSingle</data_type>
+                    <field_length unit="byte">4</field_length>
+                    <unit>Volts</unit>
+                    <description>1.5V LV  monitor</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>LLDRefVoltage</name>
+                    <field_location unit="byte">89</field_location>
+                    <data_type>IEEE754MSBSingle</data_type>
+                    <field_length unit="byte">4</field_length>
+                    <unit>Volts</unit>
+                    <description>Low Level Discriminator Voltage level</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>TECRefVoltage</name>
+                    <field_location unit="byte">93</field_location>
+                    <data_type>IEEE754MSBSingle</data_type>
+                    <field_length unit="byte">4</field_length>
+                    <unit>Volts</unit>
+                    <description>Reference Voltage level for Peltier of SDD</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>MotorControlMode</name>
+                    <field_location unit="byte">97</field_location>
+                    <data_type>UnsignedByte</data_type>
+                    <field_length unit="byte">1</field_length>
+                    <description>Mode of Control 0-Auto;1-Manual;2-ForceStep</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>MotorOperationMode</name>
+                    <field_location unit="byte">98</field_location>
+                    <data_type>UnsignedByte</data_type>
+                    <field_length unit="byte">1</field_length>
+                    <description>Mode of Operation 0-IR;1-Counter;2-Step</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>MotorSetPos</name>
+                    <field_location unit="byte">99</field_location>
+                    <data_type>UnsignedByte</data_type>
+                    <field_length unit="byte">1</field_length>
+                    <description>Set Position of mechanism 0-Open;1-Cal;2-Be</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>MotorIRPos</name>
+                    <field_location unit="byte">100</field_location>
+                    <data_type>UnsignedByte</data_type>
+                    <field_length unit="byte">1</field_length>
+                    <description>Actual Position of mechanism from IR 0-Open;1-Cal;2-Be</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>IRPowerStatus</name>
+                    <field_location unit="byte">101</field_location>
+                    <data_type>UnsignedByte</data_type>
+                    <field_length unit="byte">1</field_length>
+                    <description>Power Status of IR 0-ON; 1-OFF</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>FrameDiscardFlag</name>
+                    <field_location unit="byte">102</field_location>
+                    <data_type>UnsignedByte</data_type>
+                    <field_length unit="byte">1</field_length>
+                    <description>1-Mechanism moving, discard frame</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>MotorAutoTime</name>
+                    <field_location unit="byte">103</field_location>
+                    <data_type>UnsignedByte</data_type>
+                    <field_length unit="byte">1</field_length>
+                    <description>Autmovement sampling time(ms)</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>StepModeDir</name>
+                    <field_location unit="byte">104</field_location>
+                    <data_type>UnsignedByte</data_type>
+                    <field_length unit="byte">1</field_length>
+                    <description> Direction 0-clock;1-anticlock</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>WindowLowerThresh</name>
+                    <field_location unit="byte">105</field_location>
+                    <data_type>SignedMSB4</data_type>
+                    <field_length unit="byte">4</field_length>
+                    <description>Lower threshold for movement to Open from Be</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>WindowUpperThresh</name>
+                    <field_location unit="byte">109</field_location>
+                    <data_type>SignedMSB4</data_type>
+                    <field_length unit="byte">4</field_length>
+                    <description>Upper threshold for movement to Be from Open</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>PileupRejMode</name>
+                    <field_location unit="byte">113</field_location>
+                    <data_type>UnsignedByte</data_type>
+                    <field_length unit="byte">1</field_length>
+                    <description> 0-OFF; 1-ON(default)</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>PileupRejTime</name>
+                    <field_location unit="byte">114</field_location>
+                    <data_type>UnsignedByte</data_type>
+                    <field_length unit="byte">1</field_length>
+                    <description> Dead time - 5us/10us</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>GuardBits</name>
+                    <field_location unit="byte">115</field_location>
+                    <data_type>SignedMSB2</data_type>
+                    <field_length unit="byte">2</field_length>
+                    <description>Guardbits should be zero</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>Ch1Start</name>
+                    <field_location unit="byte">117</field_location>
+                    <data_type>SignedMSB2</data_type>
+                    <field_length unit="byte">2</field_length>
+                    <description>Coarse channel 1 start</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>Ch1Stop</name>
+                    <field_location unit="byte">119</field_location>
+                    <data_type>SignedMSB2</data_type>
+                    <field_length unit="byte">2</field_length>
+                    <description>Coarse channel 1 stop</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>Ch2Start</name>
+                    <field_location unit="byte">121</field_location>
+                    <data_type>SignedMSB2</data_type>
+                    <field_length unit="byte">2</field_length>
+                    <description>Coarse channel 2 start</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>Ch2Stop</name>
+                    <field_location unit="byte">123</field_location>
+                    <data_type>SignedMSB2</data_type>
+                    <field_length unit="byte">2</field_length>
+                    <description>Coarse channel 2 stop</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>Ch3Start</name>
+                    <field_location unit="byte">125</field_location>
+                    <data_type>SignedMSB2</data_type>
+                    <field_length unit="byte">2</field_length>
+                    <description>Coarse channel 3 start</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>Ch3Stop</name>
+                    <field_location unit="byte">127</field_location>
+                    <data_type>SignedMSB2</data_type>
+                    <field_length unit="byte">2</field_length>
+                    <description>Coarse channel 3 stop</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>CoarseChEvents</name>
+                    <field_location unit="byte">129</field_location>
+                    <data_type>SignedMSB4</data_type>
+                    <field_length unit="byte">4</field_length>
+                    <description> Total events in Coarse Ch LC</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>SpecEvents</name>
+                    <field_location unit="byte">133</field_location>
+                    <data_type>SignedMSB4</data_type>
+                    <field_length unit="byte">4</field_length>
+                    <description> Total events in spectrum</description>
+                </Field_Binary>
+                <Field_Binary>
+                    <name>ULDEvents</name>
+                    <field_location unit="byte">137</field_location>
+                    <data_type>SignedMSB4</data_type>
+                    <field_length unit="byte">4</field_length>
+                    <description> Events in last channel</description>
+                </Field_Binary>
+            </Record_Binary>
+        </Table_Binary>
+    </File_Area_Observational>
+</Product_Observational>

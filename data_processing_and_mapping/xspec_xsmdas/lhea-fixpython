@@ -1,0 +1,49 @@
+#! /bin/sh
+# Filename: lhea-fixpython
+# Description: Modify given Python scripts to use python given by
+#              $LHEAPYTHON variable at run time.
+
+# get path to this fixer-upper script, and name of this script
+scripthome=`echo $0 | sed "s:/*[^/]*$::"`
+if [ "x$scripthome" = x ]; then
+  scripthome=.
+fi
+scripthome=`cd $scripthome; pwd`
+this_script=`echo $0 | sed 's:.*/::'`
+
+# arguments are files to change; no arguments, change all
+if [ $# = 0 ]; then
+  filelist=`ls`
+else
+  filelist="$*"
+fi
+
+for file in $filelist; do
+ if [ -f $file ]; then
+  if [ `grep -c '^#!.*python' $file 2> /dev/null` -gt 0 ]; then
+    echo "Modifying $file to use Python given by LHEAPYTHON at runtime."
+    cp -p $file $file-new # mainly to preserve permissions
+    if [ $? -ne 0 ]; then
+      echo "Unable to create new executable script $file-new -- aborting."
+      exit 3
+    fi
+    # write Bourne Shell block to handle runtime Python selection
+    cat > $file-new <<EOHEADER
+#! $LHEAPYTHON
+EOHEADER
+
+    # append actual script contents to the Bourne Shell block strip
+    # off everything up to and including the first #!...python
+    cat $file | sed -ne '/^#!.*python/,$p' | sed -e '1d' >> $file-new
+    if [ $? -ne 0 ]; then
+      echo "Unable to create new executable script $file-new -- aborting."
+      exit 3
+    fi
+    # make sure file has execution permission unless it's a .pl or .pm file
+    if [ `echo $file | grep -c '\.p[lm]$'` -eq 0 ]; then
+      chmod +x $file-new
+    fi
+    mv $file-new $file
+  fi
+ fi
+done

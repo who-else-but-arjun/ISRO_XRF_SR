@@ -1,0 +1,337 @@
+#!/usr/bin/perl -s
+#
+# hlp2html - convert IRAF help file to HTML
+#
+# USAGE
+#  hlp2html infile.hlp outfile.html
+#
+# This task converts IRAF-style .hlp files into formatted HTML files
+# suitable for viewing on the web.
+#
+#
+use strict;
+
+# In HEASoft, locate help files
+# find . -name '*.hlp' -print | grep -v -e 'x86' -e BLD -e BUILD -e '/bin/' | xargs grep -l '^\.help'
+
+# Find help files with uncommon formatting tags
+# find . -name '*.hlp' -print | grep -v -e 'x86' -e BLD -e BUILD -e '/bin/' | xargs grep '^\.' | grep -v -e '\.fi' -e '\.nf' -e '\.ju' -e '\.nj' -e '\.ih' -e '\.br' -e '\.ce' -e '\.sp' -e '\.in' -e '\.ls' -e '\.le'  -e '\.help' -e '\.endhelp'
+
+if (scalar(@ARGV) == 0) {
+  print "hlp2html infile.hlp outfile.html\n";
+  exit(0);
+}
+
+# Parse argments
+my $infile  = $ARGV[0]; shift;
+my $outfile = $ARGV[0]; shift;
+
+# Open input file at start and read all lines
+open(HLP,"<$infile") or die "ERROR: could not open $infile for reading";
+my @inlines = <HLP>;
+close(HLP);
+
+# Output buffer to be queued until completion
+my @outlines = ();
+
+# Read .help header line
+my $line = next_line();
+chomp($line);
+my ($taskname, $taskdate, $taskcat);
+if ($line =~ m/^\.help ([^\s]+)\s+([^\s]+)\s+([^\s]+)\s*$/i) {
+  $taskname = $1;
+  $taskdate = $2;
+  $taskcat  = $3;
+} else {
+  die "ERROR: unrecognized help header line '$line'";
+}
+push @outlines, html_header($taskname);
+
+
+# In-loop status variables
+my $in_dl = 0; # Are we in a .ls list?
+my $in = 0;    # Current indentation level
+my $last_in = 0; # Most recent indentation amount
+my @instack = (0); # Stack of previous indentation levels
+my @lastinstack = (0);
+
+# Parse each line in turn
+while($line=next_line()) {
+  chomp($line);
+  if ($line =~ m/^\.([a-zA-Z][a-zA-Z])\b(.*)$/) {
+    my $cmd = $1; my $rest = $2;
+    $cmd =~ y/A-Z/a-z/;
+    if ($cmd eq "fi") {      # fi - start filling (end <pre>)
+      end_par(\@outlines);
+      end_pre(\@outlines,1);
+    } elsif ($cmd eq "nf") { # nf - stop filling (start <pre>)
+      end_par(\@outlines);
+      begin_pre(\@outlines,1);
+    } elsif ($cmd eq "ju") { # ju - do nothing
+    } elsif ($cmd eq "nj") { # nj - do nothing
+    } elsif ($cmd eq "rj") { # rj - right justify - do nothing
+      end_par(\@outlines);
+    } elsif ($cmd eq "sh" || $cmd eq "ih") {  # sh / ih - header item
+      $in = pop(@instack);
+      $last_in = pop(@lastinstack);
+      my $nlines = 2;
+      my $nindent = 5;
+      if ($rest =~ m/^\s*(\d+)(\s+(\d+))?/) { 
+	$nlines = $1;
+	$nindent = $3 if (defined($3));
+      }
+      end_par(\@outlines);
+      foreach my $i (0 .. $nlines-2) { push @outlines, "<br>"; }
+      $line = next_line(); chomp($line);
+      secheader(\@outlines,$line);
+      push @instack, $in;
+      push @lastinstack, $last_in;
+      $in += $nindent;
+      $last_in = $nindent;
+    } elsif ($cmd eq "br") {
+      end_par(\@outlines);
+      # interject(\@outlines,"<br>");
+    } elsif ($cmd eq "ce") {
+      end_par(\@outlines);
+      $line = next_line(); chomp($line);
+      interject(\@outlines,htmlbrack("div",$line,"text-align:center"));
+    } elsif ($cmd eq "sp") {
+      my $nlines = 2;
+      if ($rest =~ m/^\s*(\d+)/) { $nlines = $1;}
+      end_par(\@outlines);
+      foreach my $i (0 .. $nlines-1) { push @outlines, "<br>"; }
+    } elsif ($cmd eq "in") { # in - indent
+      my $nindent = 0;
+      if ($rest =~ m/^\s*(\d+)/) {
+	$nindent = $1;
+      }
+      $in += $nindent;
+      $last_in = $nindent;
+      end_par(\@outlines);
+    } elsif ($cmd eq "ls") { # ls - list item start
+      my $nindent = 8;
+      end_par(\@outlines);
+      interject(\@outlines,htmlent("dl")) if (! $in_dl);
+      next_dl_item:
+      if ($rest =~ m/^\s*(\d+)?\s+(.*)$/) {
+	$nindent = $1 if (defined($1));
+	$rest = $2;
+      }
+      interject(\@outlines,htmlbrack("dt",$rest));
+      begin_dd(\@outlines);
+      push @instack, $in;
+      push @lastinstack, $last_in;
+      $in += $nindent;
+      $last_in = $nindent;
+    } elsif ($cmd eq "le") { # le - list item end
+      end_par(\@outlines);
+      end_dd(\@outlines);
+      $in = pop(@instack);  # Return to previous indentation
+      $last_in = pop(@lastinstack);
+      $line = next_line(); chomp($line); # Peek at next line
+      if ($line !~ m/^\.ls/) {
+	interject(\@outlines,htmlent("/dl"));
+      } else {
+	$in_dl = 1;
+      }
+      push_lines($line."\n");
+      next;
+    } else { # unrecognized - pure text line
+      text_line(\@outlines, $line);
+    }
+
+  } elsif (! in_pre() &&
+	   $line =~ m/^\s*$/) { # blank space - paragraph break
+    end_par(\@outlines);
+  } elsif ($line =~ m/^\.endhelp/i) { # Last line of help file
+    last;
+  } elsif (! in_par() && ! in_pre() &&
+	   $line =~ m/^(\s{3}|\t)/) { # Initial spaces or tab - treat as <PRE>
+    begin_pre(\@outlines);
+    while (defined($line) && $line =~ m/^(\s{3}|\t)/) {
+      push @outlines, hescape(hard_indent().$line);
+      $line = next_line(); chomp($line);
+    }
+    push_lines($line."\n") if (defined($line));
+    end_pre(\@outlines);
+  } else {                    # Normal text, just output
+    begin_par(\@outlines) if (! in_pre());
+    text_line(\@outlines, $line);
+  }
+
+  $in_dl = 0;
+}
+
+# Push boilerplate HTML trailer
+push @outlines, html_trailer($taskdate,$taskcat);
+
+# Create and write output file
+open(OUT,">$outfile") or die "ERROR: could not open $outfile for writing";
+print OUT join("\n",@outlines)."\n";
+close(OUT);
+
+exit 0;
+
+# ==============================================================
+
+# begin_pre and end_pre will begin and end <PRE> sections, without
+# doing it recursively
+my $in_pre = 0;
+sub in_pre() {
+    return $in_pre;
+}
+sub begin_pre($$) {
+  my ($out,$break) = (@_);
+  end_par($out);
+  push @$out, htmlent("pre") if (! $in_pre);
+  # push @$out, "<pre>" if (! $in_pre);
+  $in_pre = 1;
+  # push @$out, "<br>" if ($break);
+}
+sub end_pre($$) {
+  my ($out,$break) = (@_);
+  push @$out, "</pre>" if ($in_pre);
+  $in_pre = 0;
+  push @$out, "<br>" if ($break);
+}
+
+# begin_par and end_par will begin and end <P> sections, without
+# doing it recursively.
+my $in_par = 0;
+sub in_par() {
+  return $in_par;
+}
+sub begin_par($) {
+  my ($out) = (@_);
+  push @$out, htmlent("p") if (! $in_par);
+  $in_par = 1;
+}
+sub end_par($) {
+  my ($out) = (@_);
+  push @$out, htmlent("/p") if ($in_par);
+  $in_par = 0;
+}
+
+# begin_dd and end_dd begin and end a <DD> description attached
+# to a .ls/.le pair.
+sub begin_dd($) {
+  my ($out) = (@_);
+  push @$out, htmlent("dd") if (! $in_par);
+  $in_par = 1;
+}
+sub end_dd($) {
+  my ($out) = (@_);
+  push @$out, htmlent("/dd");
+  $in_par = 0;
+}
+
+# Output a single text line, opening a paragraph if needed.
+sub text_line($$) {
+  my ($out,$line) = (@_);
+  begin_par($out) if (! in_pre());
+  push @$out, hescape(hard_indent().$line);
+}
+sub hard_indent {
+  my $prefix = "";
+  $prefix = " " x $in if ($in_pre); # KLUDGE!! Indent <pre> elements by hand
+  return $prefix;
+}
+
+
+# Encode text as HTML - escapes & < and >; and tabs
+sub hescape ($) {
+  my ($str) = (@_);
+  $str =~ s/&/&amp;/g;
+  $str =~ s/</&lt;/g;
+  $str =~ s/>/&gt;/g;
+  $str =~ s/\t/        /g; # Replace tabs
+  return $str;
+}
+
+# Section header <H2>
+sub secheader($$$) {
+  my ($out,$str) = (@_);
+  push @$out, htmlbrack("h2",$str);
+}
+
+# Any HTML entity, with styling
+#   $ent - entity
+#   $style - entity styling, default is indented if undef
+sub htmlent($@) {
+  my ($ent,$style) = (@_);
+  my $out = "<".$ent;
+  if (defined($style)) { 
+    $style = "style='$style'";
+  } else {
+    $style = textindent($last_in);
+  }
+  $out .= " $style" if ($ent !~ m/^\//);
+  return $out.">";
+}
+# Bracketing HTML <TAG>CONTENT</TAG>
+#  $ent - tag
+#  $cont - interior HTML content
+#  $style - any style to apply or undef for standard indenting
+sub htmlbrack($$$) {
+  my ($ent,$cont,$style) = (@_);
+  return htmlent($ent,$style).hescape($cont).htmlent("/".$ent);
+}
+# Return HTML style for indenting $n characters
+sub textindent($) {
+  my ($n) = (@_);
+  my $en = $n."en";
+  return "style='text-indent: $en each-line;'";
+}
+# Add HTML control statements, and escape out of <PRE> if needed
+sub interject($$) {
+  my ($out,@text) = (@_);
+  my $old_pre = $in_pre;
+  end_pre($out,0);
+  push @$out, @text;
+  begin_pre($out,0) if ($old_pre);
+}
+
+# Return the next line from input
+sub next_line() {
+  my $line = shift(@inlines);
+  return $line;
+}
+# Push input back into input buffer
+sub push_lines($) {
+  my ($x) = (@_);
+  unshift(@inlines,$x);
+}
+
+# ---------------------------------- Boilerplate HTML header
+sub html_header($) {
+
+my ($taskname) = (@_);
+return <<"END_HEADER";
+<!--=======================================-->
+<!--  HEADAS HTML HELP FILE TEMPLATE, v1.1 -->
+<!--=======================================-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+<style type="text/css">
+  body { margin-left: 5%; margin-right: 5%; }
+  h1,h2,h3,h4 { margin-left: -5%;}
+</style>
+<title>$taskname HEADAS help file</title>
+</head>
+<body>
+
+END_HEADER
+}
+
+# ---------------------------------- Boilerplate HTML trailer
+sub html_trailer($) {
+my ($taskdate,$taskcat) = (@_);
+return <<"END_TRAILER";
+<h2>CATEGORY</h2>
+$taskdate $taskcat
+</body>
+</html>
+END_TRAILER
+}
+

@@ -1,0 +1,3150 @@
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+modified Linux system type is x86_64-pc-linux-gnu-libc2.39
+Found component heacore
+Found component tcltk
+Found component attitude
+Found component heasptools
+Found component heatools
+Found component heagen
+Found component Xspec
+Found component demo
+Found component ftools
+Found component heasim
+Did not find component calet - skipping calet
+Found component hitomixrism
+Found component integral
+Found component ixpe
+Found component maxi
+Found component nicer
+Found component nustar
+Found component suzaku
+Found component swift
+Did not find component external - skipping external
+Did not find component glast - skipping glast
+Did not find component GSSC - skipping GSSC
+Component tcltk requires heacore
+Component attitude requires heacore
+Component heasptools requires heacore
+Component heatools requires heacore
+Component heagen requires heacore attitude
+Component attitude requires heacore
+Component Xspec requires heacore tcltk
+Component tcltk requires heacore
+Component demo requires heacore
+Component ftools requires heacore attitude tcltk heasptools heatools
+Component heatools requires heacore
+Component heasptools requires heacore
+Component tcltk requires heacore
+Component attitude requires heacore
+Component heasim requires heacore Xspec heatools
+Component heatools requires heacore
+Component Xspec requires heacore tcltk
+Component tcltk requires heacore
+Component hitomixrism requires heacore heagen heatools attitude
+Component attitude requires heacore
+Component heatools requires heacore
+Component heagen requires heacore attitude
+Component attitude requires heacore
+Component integral requires heacore Xspec
+Component Xspec requires heacore tcltk
+Component tcltk requires heacore
+Component ixpe requires heatools attitude heagen
+Component heagen requires heacore attitude
+Component attitude requires heacore
+Component attitude requires heacore
+Component heatools requires heacore
+Component maxi requires heacore attitude Xspec
+Component Xspec requires heacore tcltk
+Component tcltk requires heacore
+Component attitude requires heacore
+Component nicer requires heacore attitude Xspec
+Component Xspec requires heacore tcltk
+Component tcltk requires heacore
+Component attitude requires heacore
+Component nustar requires heatools attitude
+Component attitude requires heacore
+Component heatools requires heacore
+Component suzaku requires heatools attitude
+Component attitude requires heacore
+Component heatools requires heacore
+Component swift requires heatools attitude heagen tcltk
+Component tcltk requires heacore
+Component heagen requires heacore attitude
+Component attitude requires heacore
+Component attitude requires heacore
+Component heatools requires heacore
+configure: Preliminary check of compiler choices...
+configure: Checking your C compiler setting (/usr/bin/gcc)
+checking for gcc... /usr/bin/gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to enable C11 features... none needed
+configure: Checking your C++ compiler setting (/usr/bin/g++)
+checking whether the compiler supports GNU C++... yes
+checking whether /usr/bin/g++ accepts -g... yes
+checking for /usr/bin/g++ option to enable C++11 features... none needed
+configure: Checking your Fortran compiler setting (/usr/bin/gfortran)
+checking whether the compiler supports GNU Fortran... yes
+checking whether /usr/bin/gfortran accepts -g... yes
+configure: Checking your Perl setting (/usr/bin/perl)
+ok
+configure: Checking your Python setting (/usr/bin/python3)
+ok
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/heacore/BUILD_DIR; ./configure --build=x86_64-pc-linux-gnu --with-heatop=/home/aditya/heasoft-6.34 --enable-collapse=no --enable-shared=yes --enable-symbols=no --enable-strip=yes --with-copt= --with-cxxopt= --with-fopt= --with-components=lynx gsl fgsl fftw cfitsio ape heaio heautils ahlog heainit ahgen ahfits heaapp mpfit ast wcslib wcstools CCfits heasp heaev fitsperl pilperl hdutilsperl hdinitperl perl fhelp help refdata --enable-readline=no --enable-hera=no --x-libraries=NONE --x-includes=NONE --enable-ldopt=yes --enable-mac_intel_build=no --enable-x=yes --host= --enable-heasoftpy=yes
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+modified Linux system type is x86_64-pc-linux-gnu-libc2.39
+checking for strip... strip
+checking for ar... ar
+checking for ranlib... ranlib
+checking for gmake... gmake
+checking whether gmake is GNU make... yes
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to enable C11 features... none needed
+checking whether the compiler supports GNU Fortran... yes
+checking whether /usr/bin/gfortran accepts -g... yes
+checking whether your Fortran compiler is too old... no
+checking whether the compiler supports GNU C++... yes
+checking whether /usr/bin/g++ accepts -g... yes
+checking for /usr/bin/g++ option to enable C++11 features... none needed
+checking for perl... /usr/bin/perl
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for execinfo.h... yes
+checking for main in -lreadline... yes
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for X... libraries , headers 
+Found /usr/include/X11/Xlib.h
+Using /usr/include for X11 header files
+checking for gethostbyname... yes
+checking for connect... yes
+checking for accept... yes
+checking for cos in -lm... yes
+checking for dlopen in -ldl... yes
+checking for python3... /usr/bin/python3
+Using /usr/bin/python3.12-config to locate Python headers and libraries
+Python headers: -I/usr/include/python3.12
+Python libraries: -L/usr/lib 
+checking for NumPy... yes
+checking NumPy version... 1.26
+checking for NumPy header location... /usr/lib/python3/dist-packages/numpy/core/include
+checking for AstroPy... yes
+checking AstroPy version... 6.0
+checking for SciPy... yes
+checking SciPy version... 1.11
+checking for MatPlotLib... yes
+checking MatPlotLib version... 3.6
+configure: WARNING: MatPlotLib version 3.6 may result in cryptic errors in the IXPE tools - version 3.7 or newer is recommended
+checking whether your g++ compiler is too old... no
+checking size of long... 8
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/heacore/lynx; ./configure --sysconfdir=/home/aditya/heasoft-6.34/heacore/x86_64-pc-linux-gnu-libc2.39/lib --prefix=/home/aditya/heasoft-6.34/heacore/x86_64-pc-linux-gnu-libc2.39 --exec-prefix=/home/aditya/heasoft-6.34/heacore/x86_64-pc-linux-gnu-libc2.39 --disable-rpath-hack --disable-idna
+Configuring lynx version 2.9.1
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+Configuring for linux-gnu
+checking for DESTDIR... 
+checking for gcc... /usr/bin/gcc
+checking for C compiler default output... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... no
+checking for executable suffix... 
+checking for object suffix... o
+checking whether we are using the GNU C compiler... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking version of /usr/bin/gcc... 13.2.0
+checking if this is really Intel C compiler... no
+checking if this is really Clang C compiler... no
+checking for /usr/bin/gcc option to accept ANSI C... none needed
+checking $CFLAGS variable... ok
+checking $CC variable... ok
+checking for inline... inline
+checking for ggrep... no
+checking for grep... grep
+checking for egrep... grep -E
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking if preprocessor -C option works... yes
+checking whether ln -s works... yes
+checking whether gmake sets ${MAKE}... yes
+checking for a BSD compatible install... /usr/bin/install -c
+checking for byacc... no
+checking for bison... no
+checking for egrep... (cached) grep -E
+checking for lint... no
+checking for cppcheck... no
+checking for splint... no
+checking for fgrep... grep -F
+checking for makeflags variable... 
+checking for ".PHONY" make-support... yes
+checking if filesystem supports mixed-case filenames... yes
+checking for exctags... no
+checking for ctags... no
+checking for exetags... no
+checking for etags... no
+checking for ctags... no
+checking for etags... no
+checking for windres... none
+checking for ranlib... ranlib
+checking for ar... ar
+checking for options to update archives... -curvU
+checking if you want to see long compiling messages... yes
+checking if you want to check memory-leaks... no
+checking if you want to enable debug-code... no
+checking if you want to enable lynx trace code *recommended* ... yes
+checking if you want verbose trace code... no
+checking if you want to use C11 _Noreturn feature... no
+checking if you want to turn on gcc warnings... no
+checking if you want to use dbmalloc for testing... no
+checking if you want to use dmalloc for testing... no
+checking $CFLAGS variable... ok
+checking $CC variable... ok
+checking for /usr/bin/gcc option to accept ANSI C... -DCC_HAS_PROTOS
+checking if the POSIX test-macros are already defined... no
+checking if this is the GNU C library... yes
+checking if _DEFAULT_SOURCE can be used as a basis... yes
+checking if _XOPEN_SOURCE=500 works with _DEFAULT_SOURCE... yes
+checking if _XOPEN_SOURCE really is set... yes
+checking for special C compiler options needed for large files... no
+checking for _FILE_OFFSET_BITS value needed for large files... no
+checking for _LARGE_FILES value needed for large files... no
+checking for _LARGEFILE_SOURCE value needed for large files... no
+checking for fseeko... yes
+checking whether to use struct dirent64... no
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking whether exit is declared... yes
+checking for PATH separator... :
+checking for msginit... no
+checking for iconv... yes
+checking if the declaration of iconv() needs const.... no
+checking for nl_langinfo and CODESET... yes
+checking whether NLS is requested... no
+checking if you want full utility pathnames... yes
+checking for system mailer... unknown
+checking system mail flags... -t -oi
+checking if SIGWINCH is defined... yes
+checking if you want NSS compatible SSL libraries... no
+checking if you want ssl library... no
+checking if you want gnutls support... no
+checking if you want gnutls-openssl compat... no
+checking if you want socks library... no
+checking if you want socks5 library... no
+checking for network libraries... working...
+checking for gethostname... yes
+checking for main in -linet... no
+checking for socket... yes
+checking for gethostbyname... yes
+checking for inet_ntoa... yes
+checking for gethostbyname... (cached) yes
+checking for strcasecmp... yes
+checking for inet_aton function... yes
+checking if you want to use pkg-config... yes
+checking for pkg-config... /usr/bin/pkg-config
+checking whether to enable ipv6... no
+checking for screen type... curses
+checking for specific curses-directory... no
+checking for extra include directories... no
+checking if we have identified curses headers... ncurses.h
+checking for ncurses.h... yes
+checking for terminfo header... term.h
+checking for ncurses version... 6.4.20240113
+checking if we have identified curses libraries... no
+checking for tgoto... no
+checking for tgoto in -lncurses... yes
+checking if we can link with ncurses library... yes
+checking for curses performance tradeoff... no
+checking for curses touchline function... sysv
+checking for an rpath option... -Wl,-rpath,
+checking for chtype typedef... yes
+checking if chtype is scalar or struct... scalar
+checking if you want the wide-curses features... no
+checking if color-style code should be used... yes
+checking for location of style-sheet file... /home/aditya/heasoft-6.34/heacore/x86_64-pc-linux-gnu-libc2.39/lib/lynx.lss
+checking for the default configuration-file... /home/aditya/heasoft-6.34/heacore/x86_64-pc-linux-gnu-libc2.39/lib/lynx.cfg
+checking for the default configuration-path... /home/aditya/heasoft-6.34/heacore/x86_64-pc-linux-gnu-libc2.39/lib
+checking if htmlized lynx.cfg should be built... no
+checking if local doc directory should be linked to help page... no
+checking for MIME library directory... /etc
+checking if locale-charset selection logic should be used... yes
+checking if you want only a few charsets... no
+checking whether time.h and sys/time.h may both be included... yes
+checking for dirent.h that defines DIR... yes
+checking for opendir in -ldir... no
+checking for arpa/inet.h... yes
+checking for fcntl.h... yes
+checking for limits.h... yes
+checking for sys/fcntl.h... yes
+checking for sys/filio.h... no
+checking for sys/ioctl.h... yes
+checking for sys/param.h... yes
+checking for sys/timeb.h... yes
+checking for sys/time.h... yes
+checking for syslog.h... yes
+checking for termio.h... yes
+checking for termios.h... yes
+checking for vfork.h... no
+checking for wchar.h... yes
+checking termio.h and termios.h... yes
+checking for sigaction and structs... yes
+checking for sys/wait.h... yes
+checking for union wait... no
+checking for uid_t in sys/types.h... yes
+checking type of array argument to getgroups... gid_t
+checking for off_t... yes
+checking for pid_t... yes
+checking for uid_t in sys/types.h... (cached) yes
+checking for mode_t... yes
+checking for ssize_t... yes
+checking for socklen_t... yes
+checking for long long type... yes
+checking for tm.tm_gmtoff... yes
+checking for int... yes
+checking size of int... 4
+checking for long... yes
+checking size of long... 8
+checking for off_t... (cached) yes
+checking size of off_t... 8
+checking for size_t... yes
+checking size of size_t... 8
+checking for time_t... yes
+checking size of time_t... 8
+checking for intptr_t... yes
+checking for working alloca.h... yes
+checking for alloca... yes
+checking for unistd.h... (cached) yes
+checking for vfork.h... (cached) no
+checking for fork... yes
+checking for vfork... yes
+checking for working fork... (cached) yes
+checking for working vfork... (cached) yes
+checking if we should use fcntl or ioctl... ioctl
+checking for broken/missing definition of remove... no
+checking for lstat... yes 
+checking for getpwuid... yes
+checking for passwd.pw_gecos... yes
+checking for vasprintf... yes
+checking if vasprintf requires workaround... no
+checking for atoll... yes
+checking for ctermid... yes
+checking for cuserid... yes
+checking for ftime... yes
+checking for getcwd... yes
+checking for getgroups... yes
+checking for gettimeofday... yes
+checking for getuid... yes
+checking for popen... yes
+checking for putenv... yes
+checking for readdir... yes
+checking for setuid... yes
+checking for truncate... yes
+checking for ttyname... yes
+checking for unsetenv... yes
+checking for sleep... yes
+checking for usleep... yes
+checking for waitpid... yes
+checking for mkdtemp... yes
+checking for mktime... yes
+checking for strstr... yes
+checking for wcwidth... yes
+checking for limits.h... (cached) yes
+checking for arc4random... yes
+checking for random-integer functions... arc4random_stir/arc4random
+checking for range of random-integers... 0xFFFFFFFFUL
+checking if <bsd/stdlib.h> should be included... no
+checking if <bsd/random.h> should be included... no
+configure: WARNING: no header file found for arc4random
+checking for sleep declaration... yes
+checking for strstr declaration... yes
+checking for getgrgid declaration... yes
+checking for getgrnam declaration... yes
+checking if TRUE/FALSE are defined... yes
+checking if external errno is declared... yes
+checking if external errno exists... no
+checking if we can set errno... yes
+checking for setlocale()... yes
+checking for sys/param.h... (cached) yes
+checking for limits.h... (cached) yes
+checking if NGROUPS is defined... yes
+checking for strerror... yes
+checking for lastlog.h... yes
+checking for paths.h... yes
+checking for lastlog path... _PATH_LASTLOG
+checking for utmp implementation... utmp
+checking if utmp.ut_host is declared... yes
+checking if utmp.ut_syslen is declared... no
+checking if utmp.ut_name is declared... ut_name
+checking for exit-status in utmp... ut_exit.e_exit
+checking if utmp.ut_xtime is declared... yes
+checking if utmp.ut_session is declared... yes
+checking if utmp is SYSV flavor... yes
+checking if external h_errno exists... no
+checking if bibp: URLs should be supported... yes
+checking if configuration info should be browsable... yes
+checking if new-style forms-based options screen should be used... yes
+checking if old-style options menu should be used... yes
+checking if sessions code should be used... yes
+checking if session-caching code should be used... yes
+checking if address-list page should be used... yes
+checking if support for CJK should be used... yes
+checking for iconv... (cached) yes
+checking if the declaration of iconv() needs const.... (cached) no
+checking if experimental support for Chinese UTF-8 should be used... yes
+checking if support for Japanese UTF-8 should be used... yes
+checking if experimental wcwidth/UTF-8 logic should be used... no
+checking if you want to use default-colors... no
+checking if experimental keyboard-layout logic should be used... no
+checking if experimental nested-table logic should be used... no
+checking if alternative line-edit bindings should be used... yes
+checking if ascii case-conversion should be used... yes
+checking if you want to use extended HTML DTD logic... yes
+checking if file-upload logic should be used... yes
+checking if IDNA support should be used... no
+checking if element-justification logic should be used... yes
+checking if partial-display should be used... yes
+checking if persistent-cookie logic should be used... yes
+checking if html source should be colorized... yes
+checking if progress-bar code should be used... yes
+checking if read-progress message should show ETA... yes
+checking if source caching should be used... yes
+checking if scrollbar code should be used... yes
+checking if charset-selection logic should be used... no
+checking if you want to use external commands... no
+checking if you want to use setfont support... no
+checking if you want cgi-link support... no
+checking if you want change-exec support... no
+checking if you want exec-links support... no
+checking if you want exec-scripts support... no
+checking if you want internal-links feature... no
+checking if you want to fork NSL requests... no
+checking if you want to log URL requests via syslog... no
+checking if you want to underline links... no
+checking if help files should be gzip'ed... no
+checking if you want to use libbz2 for decompression of some bzip2 files... yes
+checking if you want to use zlib for decompression of some gzip files... yes
+checking for zError... yes
+checking if you want to use brotli decompression... yes
+checking if you want to exclude FINGER code... no
+checking if you want to exclude GOPHER code... no
+checking if you want to exclude NEWS code... no
+checking if you want to exclude FTP code... no
+checking if you want to include WAIS code... no
+checking if directory-editor code should be used... yes
+checking if you wish to allow extracting from archives via DirEd... yes
+checking if DirEd mode should override keys... yes
+checking if you wish to allow permissions commands via DirEd... yes
+checking if you wish to allow executable-permission commands via DirEd... yes
+checking if you wish to allow "tar" commands from DirEd... yes
+checking if you wish to allow "uudecode" commands from DirEd... yes
+checking if you wish to allow "zip" and "unzip" commands from DirEd... yes
+checking if you wish to allow "gzip" and "gunzip" commands from DirEd... yes
+checking if you want long-directory listings... yes
+checking if parent-directory references are permitted... yes
+checking for telnet... no
+checking for telnet... no
+checking for tn3270... no
+checking for tn3270... no
+checking for rlogin... no
+checking for rlogin... no
+checking for mv... /usr/bin/mv
+checking for gzip... /usr/bin/gzip
+checking for gunzip... /usr/bin/gunzip
+checking for unzip... no
+checking for unzip... no
+checking for bzip2... /usr/bin/bzip2
+checking for brotli... /home/aditya/miniconda3/bin/brotli
+checking for tar... /usr/bin/tar
+checking for compress... no
+checking for compress... no
+checking for rm... /usr/bin/rm
+checking for uudecode... no
+checking for uudecode... no
+checking for zcat... /usr/bin/zcat
+checking for zip... no
+checking for zip... no
+checking for /usr/bin/install... /usr/bin/install -c
+checking if we can include termio.h with curses... yes
+checking for curses/term.h... no
+checking for term.h... yes
+checking if curses supports alternate-character set... acs_map
+checking if curses supports fancy attributes... yes
+checking for function curses_version... yes
+checking for obsolete/broken version of ncurses... no
+checking if curses supports color attributes... yes
+checking for termio.h... (cached) yes
+checking for termios.h... (cached) yes
+checking for unistd.h... (cached) yes
+checking for sys/ioctl.h... (cached) yes
+checking for sys/termio.h... no
+checking whether termios.h needs _POSIX_SOURCE... no
+checking declaration of size-change... yes
+checking if ttytype is declared in curses library... yes
+checking definition to turn on extended curses functions... _XOPEN_SOURCE_EXTENDED
+checking for term.h... (cached) term.h
+checking for unctrl.h... unctrl.h
+checking for assume_default_colors... yes
+checking for cbreak... yes
+checking for define_key... yes
+checking for delscreen... yes
+checking for getattrs... yes
+checking for getbegx... yes
+checking for getbegy... yes
+checking for keypad... yes
+checking for napms... yes
+checking for newpad... yes
+checking for newterm... yes
+checking for pnoutrefresh... yes
+checking for resizeterm... yes
+checking for touchline... yes
+checking for touchwin... yes
+checking for use_default_colors... yes
+checking for use_legacy_coding... yes
+checking for wattr_get... yes
+checking for wborder... yes
+checking for wredrawln... yes
+checking for wresize... yes
+checking for curses_exit... no
+checking for _nc_free_and_exit... yes
+checking for _nc_freeall... yes
+checking if rpath-hack should be disabled... yes
+srcdir is .
+updating cache config.cache
+configure: creating ./config.status
+config.status: creating makefile
+config.status: creating WWW/Library/Implementation/makefile
+config.status: creating src/makefile
+config.status: creating src/chrtrans/makefile
+config.status: creating lynx_cfg.h
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/heacore/gsl; ./configure --enable-shared=yes --prefix=/home/aditya/heasoft-6.34/heacore/x86_64-pc-linux-gnu-libc2.39 --exec-prefix=/home/aditya/heasoft-6.34/heacore/x86_64-pc-linux-gnu-libc2.39
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a race-free mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether gmake sets $(MAKE)... yes
+checking whether gmake supports nested variables... yes
+checking whether to enable maintainer-specific portions of Makefiles... no
+checking for a sed that does not truncate output... /usr/bin/sed
+checking whether gmake sets $(MAKE)... (cached) yes
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking for gcc... /usr/bin/gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to enable C11 features... none needed
+checking whether /usr/bin/gcc understands -c and -o together... yes
+checking whether gmake supports the include directive... yes (GNU style)
+checking dependency style of /usr/bin/gcc... gcc3
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking whether ln -s works... yes
+checking how to print strings... printf
+checking for a sed that does not truncate output... (cached) /usr/bin/sed
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by /usr/bin/gcc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking the maximum length of command line arguments... 1572864
+checking how to convert x86_64-unknown-linux-gnu file names to x86_64-unknown-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-unknown-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for ar... ar
+checking for archiver @FILE support... @
+checking for strip... strip
+checking for ranlib... ranlib
+checking command to parse /usr/bin/nm -B output from /usr/bin/gcc object... ok
+checking for sysroot... no
+checking for a working dd... /usr/bin/dd
+checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+checking for mt... no
+checking if : is a manifest tool... no
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if /usr/bin/gcc supports -fno-rtti -fno-exceptions... no
+checking for /usr/bin/gcc option to produce PIC... -fPIC -DPIC
+checking if /usr/bin/gcc PIC flag -fPIC -DPIC works... yes
+checking if /usr/bin/gcc static flag -static works... yes
+checking if /usr/bin/gcc supports -c -o file.o... yes
+checking if /usr/bin/gcc supports -c -o file.o... (cached) yes
+checking whether the /usr/bin/gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking for size_t... yes
+checking for working volatile... yes
+checking for inline... inline
+checking whether char is unsigned... no
+checking for cos in -lm... yes
+checking for GNU-style extern inline... no
+checking for C99-style inline... yes
+checking for ieeefp.h... no
+checking for complex.h... yes
+checking for vprintf... yes
+checking for memcpy... yes
+checking for memmove... yes
+checking for strdup... yes
+checking for strtol... yes
+checking for strtoul... yes
+checking for EXIT_SUCCESS and EXIT_FAILURE... yes
+checking for cos in -lm... (cached) yes
+checking for /usr/bin/gcc options needed to detect all undeclared functions... none needed
+checking whether feenableexcept is declared... yes
+checking whether fesettrapenable is declared... no
+checking whether hypot is declared... yes
+checking whether expm1 is declared... yes
+checking whether acosh is declared... yes
+checking whether asinh is declared... yes
+checking whether atanh is declared... yes
+checking whether ldexp is declared... yes
+checking whether frexp is declared... yes
+checking whether fprnd_t is declared... no
+checking whether isinf is declared... yes
+checking whether isfinite is declared... yes
+checking whether finite is declared... yes
+checking whether isnan is declared... yes
+checking whether log1p is declared... yes
+checking for long double stdio... yes
+checking for extended floating point registers... yes
+checking for IEEE arithmetic interface type... gnux86
+checking for FPU_SETCW... yes
+checking for SSE extensions... yes
+checking for IEEE compiler flags... none
+checking for IEEE comparisons... yes
+checking for IEEE denormalized values... yes
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating gsl_version.h
+config.status: creating gsl.spec
+config.status: creating blas/Makefile
+config.status: creating block/Makefile
+config.status: creating bspline/Makefile
+config.status: creating bst/Makefile
+config.status: creating cblas/Makefile
+config.status: creating cdf/Makefile
+config.status: creating cheb/Makefile
+config.status: creating combination/Makefile
+config.status: creating complex/Makefile
+config.status: creating const/Makefile
+config.status: creating deriv/Makefile
+config.status: creating dht/Makefile
+config.status: creating diff/Makefile
+config.status: creating doc/Makefile
+config.status: creating doc/examples/Makefile
+config.status: creating eigen/Makefile
+config.status: creating err/Makefile
+config.status: creating fft/Makefile
+config.status: creating filter/Makefile
+config.status: creating fit/Makefile
+config.status: creating gsl/Makefile
+config.status: creating histogram/Makefile
+config.status: creating ieee-utils/Makefile
+config.status: creating integration/Makefile
+config.status: creating interpolation/Makefile
+config.status: creating linalg/Makefile
+config.status: creating matrix/Makefile
+config.status: creating min/Makefile
+config.status: creating monte/Makefile
+config.status: creating movstat/Makefile
+config.status: creating multifit/Makefile
+config.status: creating multifit_nlinear/Makefile
+config.status: creating multilarge/Makefile
+config.status: creating multilarge_nlinear/Makefile
+config.status: creating multimin/Makefile
+config.status: creating multiroots/Makefile
+config.status: creating multiset/Makefile
+config.status: creating ntuple/Makefile
+config.status: creating ode-initval/Makefile
+config.status: creating ode-initval2/Makefile
+config.status: creating permutation/Makefile
+config.status: creating poly/Makefile
+config.status: creating qrng/Makefile
+config.status: creating randist/Makefile
+config.status: creating rng/Makefile
+config.status: creating roots/Makefile
+config.status: creating rstat/Makefile
+config.status: creating siman/Makefile
+config.status: creating sort/Makefile
+config.status: creating spblas/Makefile
+config.status: creating splinalg/Makefile
+config.status: creating spmatrix/Makefile
+config.status: creating specfunc/Makefile
+config.status: creating statistics/Makefile
+config.status: creating sum/Makefile
+config.status: creating sys/Makefile
+config.status: creating test/Makefile
+config.status: creating utils/Makefile
+config.status: creating vector/Makefile
+config.status: creating wavelet/Makefile
+config.status: creating config.h
+config.status: executing depfiles commands
+config.status: executing libtool commands
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/heacore/fgsl; gsl_CFLAGS=-I/home/aditya/heasoft-6.34/heacore/x86_64-pc-linux-gnu-libc2.39/include; gsl_LIBS='-L/home/aditya/heasoft-6.34/heacore/x86_64-pc-linux-gnu-libc2.39/lib -lgsl -lgslcblas'; export gsl_CFLAGS gsl_LIBS; ./configure --enable-shared=yes --prefix=/home/aditya/heasoft-6.34/heacore/x86_64-pc-linux-gnu-libc2.39 --exec-prefix=/home/aditya/heasoft-6.34/heacore/x86_64-pc-linux-gnu-libc2.39
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether gmake sets $(MAKE)... yes
+checking whether gmake supports nested variables... yes
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking whether gmake supports the include directive... yes (GNU style)
+checking for gcc... /usr/bin/gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to accept ISO C89... none needed
+checking whether /usr/bin/gcc understands -c and -o together... yes
+checking dependency style of /usr/bin/gcc... gcc3
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking minix/config.h usability... no
+checking minix/config.h presence... no
+checking for minix/config.h... no
+checking whether it is safe to define __EXTENSIONS__... yes
+checking for ar... ar
+checking the archiver (ar) interface... ar
+checking how to print strings... printf
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by /usr/bin/gcc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... 1572864
+checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for archiver @FILE support... @
+checking for strip... strip
+checking for ranlib... ranlib
+checking command to parse /usr/bin/nm -B output from /usr/bin/gcc object... ok
+checking for sysroot... no
+checking for a working dd... /usr/bin/dd
+checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+checking for mt... no
+checking if : is a manifest tool... no
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if /usr/bin/gcc supports -fno-rtti -fno-exceptions... no
+checking for /usr/bin/gcc option to produce PIC... -fPIC -DPIC
+checking if /usr/bin/gcc PIC flag -fPIC -DPIC works... yes
+checking if /usr/bin/gcc static flag -static works... yes
+checking if /usr/bin/gcc supports -c -o file.o... yes
+checking if /usr/bin/gcc supports -c -o file.o... (cached) yes
+checking whether the /usr/bin/gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking for gcc... (cached) /usr/bin/gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether /usr/bin/gcc accepts -g... (cached) yes
+checking for /usr/bin/gcc option to accept ISO C89... (cached) none needed
+checking whether /usr/bin/gcc understands -c and -o together... (cached) yes
+checking dependency style of /usr/bin/gcc... (cached) gcc3
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for gsl... yes
+Package gsl was not found in the pkg-config search path.
+Perhaps you should add the directory containing `gsl.pc'
+to the PKG_CONFIG_PATH environment variable
+Package 'gsl', required by 'virtual:world', not found
+checking whether we are using the GNU Fortran compiler... yes
+checking whether /usr/bin/gfortran accepts -g... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking for /usr/bin/gfortran option to produce PIC... -fPIC
+checking if /usr/bin/gfortran PIC flag -fPIC works... yes
+checking if /usr/bin/gfortran static flag -static works... yes
+checking if /usr/bin/gfortran supports -c -o file.o... yes
+checking if /usr/bin/gfortran supports -c -o file.o... (cached) yes
+checking whether the /usr/bin/gfortran linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking dynamic linker characteristics... (cached) GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking for Fortran flag to compile .F90 files... none
+checking whether the fortran compiler supports the 2003 feature: ieee_exceptions... yes
+checking for Fortran flag to compile .F90 files... (cached) none
+checking whether the fortran compiler supports the 2008 feature: c_loc for targeted arrays... yes
+checking size of long... 8
+checking size of size_t... 8
+configure: 64 bit architecture detected
+checking for a sed that does not truncate output... (cached) /usr/bin/sed
+checking for /usr/bin/gfortran option to support OpenMP... -fopenmp
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating tests/Makefile
+config.status: creating fgsl.pc
+config.status: creating fgsl.spec
+config.status: creating doc/Makefile
+config.status: creating doc/examples/Makefile
+config.status: creating config.h
+config.status: executing depfiles commands
+config.status: executing libtool commands
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/heacore/fftw; ./configure --enable-shared=yes --prefix=/home/aditya/heasoft-6.34/heacore/x86_64-pc-linux-gnu-libc2.39 --exec-prefix=/home/aditya/heasoft-6.34/heacore/x86_64-pc-linux-gnu-libc2.39 --x-libraries=/usr/lib/X11 --x-includes=/usr/include
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether gmake sets $(MAKE)... yes
+checking whether gmake supports nested variables... yes
+checking whether to enable maintainer-specific portions of Makefiles... no
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking for gcc... /usr/bin/gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to accept ISO C89... none needed
+checking whether /usr/bin/gcc understands -c and -o together... yes
+checking whether gmake supports the include directive... yes (GNU style)
+checking dependency style of /usr/bin/gcc... gcc3
+checking for C compiler vendor... gnu
+checking for /usr/bin/gcc option to accept ISO C99... none needed
+checking for /usr/bin/gcc option to accept ISO Standard C... (cached) none needed
+checking whether ln -s works... yes
+checking whether gmake sets $(MAKE)... (cached) yes
+checking how to print strings... printf
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by /usr/bin/gcc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking the maximum length of command line arguments... 1572864
+checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... dlltool
+checking how to associate runtime and link libraries... printf %s\n
+checking for ar... ar
+checking for archiver @FILE support... @
+checking for strip... strip
+checking for ranlib... ranlib
+checking command to parse /usr/bin/nm -B output from /usr/bin/gcc object... ok
+checking for sysroot... no
+checking for a working dd... /usr/bin/dd
+checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+checking for mt... no
+checking if : is a manifest tool... no
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if /usr/bin/gcc supports -fno-rtti -fno-exceptions... no
+checking for /usr/bin/gcc option to produce PIC... -fPIC -DPIC
+checking if /usr/bin/gcc PIC flag -fPIC -DPIC works... yes
+checking if /usr/bin/gcc static flag -static works... yes
+checking if /usr/bin/gcc supports -c -o file.o... yes
+checking if /usr/bin/gcc supports -c -o file.o... (cached) yes
+checking whether the /usr/bin/gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking for ranlib... (cached) ranlib
+checking for ocamlbuild... no
+checking whether C compiler accepts -mtune=native... yes
+checking whether C compiler accepts -malign-double... yes
+checking whether C compiler accepts -fstrict-aliasing... yes
+checking whether C compiler accepts -fno-schedule-insns... yes
+checking whether C compiler accepts -O3 -fomit-frame-pointer -mtune=native -malign-double -fstrict-aliasing -fno-schedule-insns... yes
+checking for ANSI C header files... (cached) yes
+checking fcntl.h usability... yes
+checking fcntl.h presence... yes
+checking for fcntl.h... yes
+checking fenv.h usability... yes
+checking fenv.h presence... yes
+checking for fenv.h... yes
+checking limits.h usability... yes
+checking limits.h presence... yes
+checking for limits.h... yes
+checking malloc.h usability... yes
+checking malloc.h presence... yes
+checking for malloc.h... yes
+checking stddef.h usability... yes
+checking stddef.h presence... yes
+checking for stddef.h... yes
+checking sys/time.h usability... yes
+checking sys/time.h presence... yes
+checking for sys/time.h... yes
+checking altivec.h usability... no
+checking altivec.h presence... no
+checking for altivec.h... no
+checking for an ANSI C-conforming const... yes
+checking for inline... inline
+checking for size_t... yes
+checking for uint32_t... yes
+checking for uint64_t... yes
+checking whether time.h and sys/time.h may both be included... yes
+checking for long double... yes
+checking for hrtime_t... no
+checking size of int... 4
+checking size of unsigned int... 4
+checking size of long... 8
+checking size of unsigned long... 8
+checking size of long long... 8
+checking size of unsigned long long... 8
+checking size of size_t... 8
+checking size of ptrdiff_t... 8
+checking for ptrdiff_t... yes
+checking for uintptr_t... yes
+checking size of float... 4
+checking size of double... 8
+checking size of fftw_r2r_kind... 4
+checking for working alloca.h... yes
+checking for alloca... yes
+checking for working strtod... yes
+checking for vprintf... yes
+checking for _doprnt... no
+checking for sin in -lm... yes
+checking for BSDgettimeofday... no
+checking for gettimeofday... yes
+checking for gethrtime... no
+checking for read_real_time... no
+checking for time_base_to_time... no
+checking for drand48... yes
+checking for sqrt... yes
+checking for memset... yes
+checking for posix_memalign... yes
+checking for memalign... yes
+checking for _mm_malloc... no
+checking for _mm_free... no
+checking for clock_gettime... yes
+checking for mach_absolute_time... no
+checking for sysctl... no
+checking for abort... yes
+checking for sinl... yes
+checking for cosl... yes
+checking for snprintf... yes
+checking for memmove... yes
+checking for strchr... yes
+checking for getpagesize... yes
+checking whether sinl is declared... yes
+checking whether cosl is declared... yes
+checking whether sinq is declared... no
+checking whether cosq is declared... no
+checking whether memalign is declared... yes
+checking whether drand48 is declared... yes
+checking whether srand48 is declared... yes
+checking whether posix_memalign is declared... yes
+checking for _rtc intrinsic... no
+checking for isnan... yes
+checking whether C compiler accepts -mpreferred-stack-boundary=4... yes
+checking whether the stack is at least 8-byte aligned by gcc... checking whether C compiler accepts -malign-double... (cached) yes
+yes
+checking whether we are using the GNU Fortran 77 compiler... yes
+checking whether /usr/bin/gfortran accepts -g... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking for /usr/bin/gfortran option to produce PIC... -fPIC
+checking if /usr/bin/gfortran PIC flag -fPIC works... yes
+checking if /usr/bin/gfortran static flag -static works... yes
+checking if /usr/bin/gfortran supports -c -o file.o... yes
+checking if /usr/bin/gfortran supports -c -o file.o... (cached) yes
+checking whether the /usr/bin/gfortran linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking dynamic linker characteristics... (cached) GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking how to get verbose linking output from /usr/bin/gfortran... -v
+checking for Fortran 77 libraries of /usr/bin/gfortran...  -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. -lgfortran -lm -lquadmath
+checking for dummy main to link with Fortran 77 libraries... none
+checking for Fortran 77 name-mangling scheme... lower case, underscore, no extra underscore
+checking whether a cycle counter is available... yes
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating support/Makefile
+config.status: creating genfft/Makefile
+config.status: creating kernel/Makefile
+config.status: creating simd-support/Makefile
+config.status: creating dft/Makefile
+config.status: creating dft/scalar/Makefile
+config.status: creating dft/scalar/codelets/Makefile
+config.status: creating dft/simd/Makefile
+config.status: creating dft/simd/common/Makefile
+config.status: creating dft/simd/sse2/Makefile
+config.status: creating dft/simd/avx/Makefile
+config.status: creating dft/simd/avx-128-fma/Makefile
+config.status: creating dft/simd/avx2/Makefile
+config.status: creating dft/simd/avx2-128/Makefile
+config.status: creating dft/simd/avx512/Makefile
+config.status: creating dft/simd/kcvi/Makefile
+config.status: creating dft/simd/altivec/Makefile
+config.status: creating dft/simd/vsx/Makefile
+config.status: creating dft/simd/neon/Makefile
+config.status: creating dft/simd/generic-simd128/Makefile
+config.status: creating dft/simd/generic-simd256/Makefile
+config.status: creating rdft/Makefile
+config.status: creating rdft/scalar/Makefile
+config.status: creating rdft/scalar/r2cf/Makefile
+config.status: creating rdft/scalar/r2cb/Makefile
+config.status: creating rdft/scalar/r2r/Makefile
+config.status: creating rdft/simd/Makefile
+config.status: creating rdft/simd/common/Makefile
+config.status: creating rdft/simd/sse2/Makefile
+config.status: creating rdft/simd/avx/Makefile
+config.status: creating rdft/simd/avx-128-fma/Makefile
+config.status: creating rdft/simd/avx2/Makefile
+config.status: creating rdft/simd/avx2-128/Makefile
+config.status: creating rdft/simd/avx512/Makefile
+config.status: creating rdft/simd/kcvi/Makefile
+config.status: creating rdft/simd/altivec/Makefile
+config.status: creating rdft/simd/vsx/Makefile
+config.status: creating rdft/simd/neon/Makefile
+config.status: creating rdft/simd/generic-simd128/Makefile
+config.status: creating rdft/simd/generic-simd256/Makefile
+config.status: creating reodft/Makefile
+config.status: creating threads/Makefile
+config.status: creating api/Makefile
+config.status: creating mpi/Makefile
+config.status: creating libbench2/Makefile
+config.status: creating tests/Makefile
+config.status: creating doc/Makefile
+config.status: creating doc/FAQ/Makefile
+config.status: creating tools/Makefile
+config.status: creating tools/fftw_wisdom.1
+config.status: creating tools/fftw-wisdom-to-conf
+config.status: creating m4/Makefile
+config.status: creating fftw.pc
+config.status: creating config.h
+config.status: executing depfiles commands
+config.status: executing libtool commands
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/heacore/cfitsio; touch aclocal.m4 configure Makefile.am Makefile.in; ./configure --prefix=/home/aditya/heasoft-6.34/heacore/x86_64-pc-linux-gnu-libc2.39 --exec-prefix=/home/aditya/heasoft-6.34/heacore/x86_64-pc-linux-gnu-libc2.39 --enable-symbols=no --enable-hera=no
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a race-free mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether gmake sets $(MAKE)... yes
+checking whether gmake supports nested variables... yes
+checking how to print strings... printf
+checking whether gmake supports the include directive... yes (GNU style)
+checking for gcc... /usr/bin/gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to enable C11 features... none needed
+checking whether /usr/bin/gcc understands -c and -o together... yes
+checking dependency style of /usr/bin/gcc... gcc3
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by /usr/bin/gcc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... 1572864
+checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for file... file
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for ar... ar
+checking for archiver @FILE support... @
+checking for strip... strip
+checking for ranlib... ranlib
+checking command to parse /usr/bin/nm -B output from /usr/bin/gcc object... ok
+checking for sysroot... no
+checking for a working dd... /usr/bin/dd
+checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+checking for mt... no
+checking if : is a manifest tool... no
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if /usr/bin/gcc supports -fno-rtti -fno-exceptions... no
+checking for /usr/bin/gcc option to produce PIC... -fPIC -DPIC
+checking if /usr/bin/gcc PIC flag -fPIC -DPIC works... yes
+checking if /usr/bin/gcc static flag -static works... yes
+checking if /usr/bin/gcc supports -c -o file.o... yes
+checking if /usr/bin/gcc supports -c -o file.o... (cached) yes
+checking whether the /usr/bin/gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking whether ln -s works... yes
+checking for gcc... (cached) /usr/bin/gcc
+checking whether the compiler supports GNU C... (cached) yes
+checking whether /usr/bin/gcc accepts -g... (cached) yes
+checking for /usr/bin/gcc option to enable C11 features... (cached) none needed
+checking whether /usr/bin/gcc understands -c and -o together... (cached) yes
+checking dependency style of /usr/bin/gcc... (cached) gcc3
+configure: cfitsio: == Adding Fortran wrappers
+checking whether the compiler supports GNU Fortran 77... yes
+checking whether /usr/bin/gfortran accepts -g... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking for /usr/bin/gfortran option to produce PIC... -fPIC
+checking if /usr/bin/gfortran PIC flag -fPIC works... yes
+checking if /usr/bin/gfortran static flag -static works... yes
+checking if /usr/bin/gfortran supports -c -o file.o... yes
+checking if /usr/bin/gfortran supports -c -o file.o... (cached) yes
+checking whether the /usr/bin/gfortran linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking dynamic linker characteristics... (cached) GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+configure: cfitsio: == Adding wrapper support for GNU Fortran
+checking for ar... ar
+checking for ranlib... (cached) ranlib
+checking for stdlib.h... (cached) yes
+checking for string.h... (cached) yes
+checking for math.h... yes
+checking for limits.h... yes
+cfitsio: == Using /usr/bin/gcc version 13
+checking for curl-config... /usr/bin/curl-config
+checking for inflateEnd in -lz... yes
+checking whether ftruncate works... yes
+checking whether long long is defined... yes
+checking whether system V style IPC services are supported... yes
+checking whether flock_t is defined in sys/fcntl.h... no
+checking whether flock_t is defined in sys/flock.h... no
+checking whether union semun is defined... no
+checking for fmemopen... yes
+checking for library containing gethostbyname... none required
+checking for library containing connect... none required
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: executing depfiles commands
+config.status: executing libtool commands
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating cfitsio.pc
+config.status: executing depfiles commands
+config.status: executing libtool commands
+
+    Congratulations, Makefile update was successful.
+    You may want to run make now.
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/heacore/ast; ./configure --without-stardocs --without-pthreads
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether gmake sets $(MAKE)... yes
+checking whether gmake supports nested variables... yes
+checking for gcc... /usr/bin/gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to accept ISO C89... none needed
+checking whether /usr/bin/gcc understands -c and -o together... yes
+checking for style of include used by gmake... GNU
+checking dependency style of /usr/bin/gcc... gcc3
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking how to print strings... printf
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by /usr/bin/gcc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... 1572864
+checking whether the shell understands some XSI constructs... yes
+checking whether the shell understands "+="... yes
+checking how to convert x86_64-pc-linux-gnu file names to x86_64-pc-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for ar... ar
+checking for archiver @FILE support... @
+checking for strip... strip
+checking for ranlib... ranlib
+checking command to parse /usr/bin/nm -B output from /usr/bin/gcc object... ok
+checking for sysroot... no
+checking for mt... no
+checking if : is a manifest tool... no
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if /usr/bin/gcc supports -fno-rtti -fno-exceptions... no
+checking for /usr/bin/gcc option to produce PIC... -fPIC -DPIC
+checking if /usr/bin/gcc PIC flag -fPIC -DPIC works... yes
+checking if /usr/bin/gcc static flag -static works... yes
+checking if /usr/bin/gcc supports -c -o file.o... yes
+checking if /usr/bin/gcc supports -c -o file.o... (cached) yes
+checking whether the /usr/bin/gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking whether ln -s works... yes
+checking whether we are using the GNU Fortran compiler... yes
+checking whether /usr/bin/gfortran accepts -g... yes
+checking whether we are using the GNU Fortran compiler... (cached) yes
+checking whether /usr/bin/gfortran accepts -g... (cached) yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking for /usr/bin/gfortran option to produce PIC... -fPIC
+checking if /usr/bin/gfortran PIC flag -fPIC works... yes
+checking if /usr/bin/gfortran static flag -static works... yes
+checking if /usr/bin/gfortran supports -c -o file.o... yes
+checking if /usr/bin/gfortran supports -c -o file.o... (cached) yes
+checking whether the /usr/bin/gfortran linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking dynamic linker characteristics... (cached) GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+configure: Starlink tree located at /stardev/git/starlink/star
+checking for git... /usr/bin/git
+checking for pax... no
+checking for gnutar... no
+checking for tar... /usr/bin/tar
+checking whether we are using the GNU Fortran compiler... (cached) yes
+checking whether /usr/bin/gfortran accepts -g... (cached) yes
+checking how to get verbose linking output from /usr/bin/gfortran... -v
+checking for Fortran libraries of /usr/bin/gfortran...  -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. -lgfortran -lm -lquadmath
+checking for yaml_parser_initialize in -lyaml... no
+checking stdarg.h usability... yes
+checking stdarg.h presence... yes
+checking for stdarg.h... yes
+checking execinfo.h usability... yes
+checking execinfo.h presence... yes
+checking for execinfo.h... yes
+checking for backtrace... yes
+checking for strerror_r... yes
+checking for strtok_r... yes
+checking for vsnprintf... yes
+checking for long double... yes
+checking for int64_t... yes
+checking for uint64_t... yes
+checking size of long... 8
+checking size of long long... 8
+checking whether C compiler defines __func__... yes
+checking for perl... /usr/bin/perl
+checking for isnan... yes
+checking whether isnan is declared... yes
+checking for isfinite... no
+checking whether isfinite is declared... yes
+checking if /usr/bin/gfortran is in strict f2c compatible mode... no
+checking size of void*... 8
+checking whether /usr/bin/gfortran has the %LOC extension... yes
+checking type used for Fortran string lengths... size_t
+configure: in post-distribution state
+checking for messgen... messgen
+checking whether the sscanf function is ANSI-compatible... yes
+configure: WARNING: not installing docs sun210 sun211
+checking for star2html... star2html
+checking for prolat... prolat
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating component.xml
+config.status: creating ast_link
+config.status: creating ast_link_adam
+config.status: creating src/object.h
+config.status: creating src/f77.h
+config.status: creating ast_cpp
+config.status: creating config.h
+config.status: executing depfiles commands
+config.status: executing libtool commands
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/heacore/wcslib; ./configure --prefix=/home/aditya/heasoft-6.34/heacore/x86_64-pc-linux-gnu-libc2.39 --exec-prefix=/home/aditya/heasoft-6.34/heacore/x86_64-pc-linux-gnu-libc2.39 --disable-fortran --disable-utils --without-pgplot --without-cfitsio
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking for flex... no
+configure: WARNING: Flex version 2.6.0 or later does not appear to be
+           available, will use pre-generated sources.
+checking for gcc... /usr/bin/gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to enable C11 features... none needed
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for gcc... (cached) /usr/bin/gcc
+checking whether the compiler supports GNU C... (cached) yes
+checking whether /usr/bin/gcc accepts -g... (cached) yes
+checking for /usr/bin/gcc option to enable C11 features... (cached) none needed
+configure: Using gcc version 13.2.0
+checking for an ANSI C-conforming const... yes
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for size_t... yes
+checking for off_t... yes
+checking for int8_t... yes
+checking for int16_t... yes
+checking for int32_t... yes
+checking for uint8_t... yes
+checking for uint16_t... yes
+checking for uint32_t... yes
+checking for ctype.h... yes
+checking for errno.h... yes
+checking for limits.h... yes
+checking for locale.h... yes
+checking for math.h... yes
+checking for setjmp.h... yes
+checking for stdarg.h... yes
+checking for stdio.h... (cached) yes
+checking for stdlib.h... (cached) yes
+checking for string.h... (cached) yes
+checking for floor in -lm... yes
+checking for _LARGEFILE_SOURCE value needed for large files... no
+checking for GNU libc compatible malloc... yes
+checking for GNU libc compatible realloc... yes
+checking whether lstat correctly handles trailing slash... yes
+checking whether stat accepts an empty string... no
+checking for vprintf... yes
+checking for floor... yes
+checking for memset... yes
+checking for pow... yes
+checking for setlocale... yes
+checking for sqrt... yes
+checking for strchr... yes
+checking for strstr... yes
+checking for cosd in -lsunmath... no
+checking for sincos... yes
+checking size of int... 4
+checking size of long int... 8
+checking size of long long int... 8
+checking for printf z format modifier for size_t type... yes
+configure: WARNING: Compilation of Fortran wrappers and PGSBOX disabled.
+checking for printf$LDBLStub in -lSystemStubs... no
+checking for ranlib... ranlib
+checking whether ln -s works... yes
+checking for a BSD-compatible install... /usr/bin/install -c
+configure: End of primary configuration.
+
+configure: Looking for libraries etc. for utilities and test suite...
+checking for unistd.h... (cached) yes
+checking for _LARGEFILE_SOURCE value needed for large files... (cached) no
+checking for special C compiler options needed for large files... no
+checking for _FILE_OFFSET_BITS value needed for large files... no
+configure: WARNING: CFITSIO disabled.
+configure: WARNING: PGPLOT disabled.
+configure: WARNING: Compilation of WCS utilities disabled.
+configure: End of auxiliary configuration.
+
+configure: Configuring files...
+configure: creating ./config.status
+config.status: creating makedefs
+config.status: creating wcslib.pc
+config.status: creating wcsconfig.h
+config.status: creating wcsconfig_f77.h
+config.status: creating wcsconfig_tests.h
+config.status: creating wcsconfig_utils.h
+--------------------------------------------------------------------------------
+configure: creating ./config.status
+config.status: creating hmakerc
+config.status: creating headas-setup
+config.status: creating Makefile
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/tcltk/BUILD_DIR; ./configure --build=x86_64-pc-linux-gnu --with-heatop=/home/aditya/heasoft-6.34 --enable-collapse=no --with-heacore=heacore --enable-shared=yes --enable-symbols=no --enable-strip=yes --with-copt= --with-cxxopt= --with-fopt= --enable-ldopt=yes --with-components=tcl tk tclreadline xpa pgplot plt pow itcl itk iwidgets220 iwidgets tix pgplotperl --enable-hera=no --x-libraries=NONE --x-includes=NONE --enable-tkpgplot=yes --with-png= --enable-mac_intel_build=no --enable-x=yes --host=
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+modified Linux system type is x86_64-pc-linux-gnu-libc2.39
+checking for strip... strip
+checking for ar... ar
+checking for ranlib... ranlib
+checking for gmake... gmake
+checking whether gmake is GNU make... yes
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to enable C11 features... none needed
+checking whether the compiler supports GNU Fortran... yes
+checking whether /usr/bin/gfortran accepts -g... yes
+checking whether the compiler supports GNU C++... yes
+checking whether /usr/bin/g++ accepts -g... yes
+checking for /usr/bin/g++ option to enable C++11 features... none needed
+checking for perl... /usr/bin/perl
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for dirent.h... yes
+checking for fcntl.h... yes
+checking for limits.h... yes
+checking for malloc.h... yes
+checking for string.h... (cached) yes
+checking for sys/time.h... yes
+checking for unistd.h... (cached) yes
+checking for size_t... yes
+checking for working alloca.h... yes
+checking for alloca... yes
+checking for png_set_longjmp_fn in -lpng... yes
+checking for an ANSI C-conforming const... yes
+checking for mode_t... yes
+checking for size_t... (cached) yes
+checking whether struct tm is in sys/time.h or time.h... time.h
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for X... libraries , headers 
+Found /usr/include/X11/Xlib.h
+Using /usr/include for X11 header files
+checking for gethostbyname... yes
+checking for connect... yes
+checking for accept... yes
+checking for frexp in -lm... yes
+checking for dlopen in -ldl... yes
+checking for curl-config... /usr/bin/curl-config
+checking for png_set_longjmp_fn in -lpng... (cached) yes
+checking for deflate in -lz... yes
+checking size of long... 8
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/tcltk/tcl/unix; ./configure --enable-shared=yes --enable-symbols=no --prefix=/home/aditya/heasoft-6.34/tcltk/x86_64-pc-linux-gnu-libc2.39 --exec-prefix=/home/aditya/heasoft-6.34/tcltk/x86_64-pc-linux-gnu-libc2.39 --x-libraries=/usr/lib/X11 --x-includes=/usr/include
+checking whether to use symlinks for manpages... no
+checking whether to compress the manpages... no
+checking whether to add a package name suffix for the manpages... no
+checking for gcc... /usr/bin/gcc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... no
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to accept ANSI C... none needed
+checking for inline... inline
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for egrep... grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking dirent.h... yes
+checking float.h usability... yes
+checking float.h presence... yes
+checking for float.h... yes
+checking values.h usability... yes
+checking values.h presence... yes
+checking for values.h... yes
+checking for stdlib.h... (cached) yes
+checking for string.h... (cached) yes
+checking sys/wait.h usability... yes
+checking sys/wait.h presence... yes
+checking for sys/wait.h... yes
+checking dlfcn.h usability... yes
+checking dlfcn.h presence... yes
+checking for dlfcn.h... yes
+checking sys/param.h usability... yes
+checking sys/param.h presence... yes
+checking for sys/param.h... yes
+checking if the compiler understands -pipe... yes
+checking for pthread_mutex_init in -lpthread... yes
+checking for pthread_attr_setstacksize... yes
+checking for pthread_atfork... yes
+checking for building with threads... yes
+checking for sin... no
+checking for main in -linet... no
+checking net/errno.h usability... no
+checking net/errno.h presence... no
+checking for net/errno.h... no
+checking for connect... yes
+checking for gethostbyname... yes
+checking how to build libraries... shared
+checking for tclsh... /home/aditya/miniconda3/bin/tclsh8.6
+checking zlib.h usability... yes
+checking zlib.h presence... yes
+checking for zlib.h... yes
+checking for gz_header... yes
+checking for library containing deflateSetHeader... -lz
+checking for ranlib... ranlib
+checking if 64bit support is requested... no
+checking if 64bit Sparc VIS support is requested... no
+checking if compiler supports visibility "hidden"... yes
+checking if rpath support is requested... yes
+checking system version... Linux-5.15.153.1-microsoft-standard-WSL2
+checking for dlopen in -ldl... yes
+checking for ar... ar
+checking for cast to union support... yes
+checking for build with symbols... no
+checking for required early compiler flags...  _LARGEFILE64_SOURCE
+checking for 64-bit integer type... using long
+checking whether byte ordering is bigendian... no
+checking for getcwd... yes
+checking for mkstemp... yes
+checking for opendir... yes
+checking for strtol... yes
+checking for waitpid... yes
+checking for strerror... yes
+checking for getwd... yes
+checking for wait3... yes
+checking for uname... yes
+checking for realpath... yes
+checking for getnameinfo... yes
+checking for getaddrinfo... yes
+checking for freeaddrinfo... yes
+checking for gai_strerror... yes
+checking for struct addrinfo... yes
+checking for struct in6_addr... yes
+checking for struct sockaddr_in6... yes
+checking for struct sockaddr_storage... yes
+checking for getpwuid_r... yes
+checking for getpwuid_r with 5 args... yes
+checking for getpwnam_r... yes
+checking for getpwnam_r with 5 args... yes
+checking for getgrgid_r... yes
+checking for getgrgid_r with 5 args... yes
+checking for getgrnam_r... yes
+checking for getgrnam_r with 5 args... yes
+checking whether gethostbyname_r is declared... yes
+checking for gethostbyname_r... yes
+checking for gethostbyname_r with 6 args... yes
+checking whether gethostbyaddr_r is declared... yes
+checking for gethostbyaddr_r... yes
+checking for gethostbyaddr_r with 7 args... no
+checking for gethostbyaddr_r with 8 args... yes
+checking termios.h usability... yes
+checking termios.h presence... yes
+checking for termios.h... yes
+checking sys/ioctl.h usability... yes
+checking sys/ioctl.h presence... yes
+checking for sys/ioctl.h... yes
+checking sys/modem.h usability... no
+checking sys/modem.h presence... no
+checking for sys/modem.h... no
+checking for fd_set in sys/types... yes
+checking sys/time.h usability... yes
+checking sys/time.h presence... yes
+checking for sys/time.h... yes
+checking whether time.h and sys/time.h may both be included... yes
+checking for gmtime_r... yes
+checking for localtime_r... yes
+checking for mktime... yes
+checking tm_tzadj in struct tm... no
+checking tm_gmtoff in struct tm... yes
+checking long timezone variable... yes
+checking for struct stat.st_blocks... yes
+checking for struct stat.st_blksize... yes
+checking for blkcnt_t... yes
+checking for fstatfs... yes
+checking for working memcmp... yes
+checking for memmove... yes
+checking for strstr... yes
+checking proper strstr implementation... ok
+checking for strtoul... yes
+checking proper strtoul implementation... ok
+checking for mode_t... yes
+checking for pid_t... yes
+checking for size_t... yes
+checking for uid_t in sys/types.h... yes
+checking for socklen_t... yes
+checking for intptr_t... yes
+checking for uintptr_t... yes
+checking for opendir... (cached) yes
+checking union wait... no
+checking for strncasecmp... yes
+checking for gettimeofday... yes
+checking for gettimeofday declaration... present
+checking whether char is unsigned... no
+checking signed char declarations... yes
+checking for a putenv() that copies the buffer... no
+checking langinfo.h usability... yes
+checking langinfo.h presence... yes
+checking for langinfo.h... yes
+checking whether to use nl_langinfo... yes
+checking for chflags... no
+checking for mkstemps... yes
+checking isnan... yes
+checking for fts... yes
+checking for sys/ioctl.h... (cached) yes
+checking sys/filio.h usability... no
+checking sys/filio.h presence... no
+checking for sys/filio.h... no
+checking system version... (cached) Linux-5.15.153.1-microsoft-standard-WSL2
+checking FIONBIO vs. O_NONBLOCK for nonblocking I/O... O_NONBLOCK
+checking whether to use dll unloading... yes
+checking for timezone data... /usr/share/zoneinfo
+checking whether to enable DTrace support... no
+checking whether the cpuid instruction is usable... yes
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating dltest/Makefile
+config.status: creating tclConfig.sh
+config.status: creating tcl.pc
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/tcltk/tk/unix; ./configure --enable-shared=yes --enable-symbols=no --prefix=/home/aditya/heasoft-6.34/tcltk/x86_64-pc-linux-gnu-libc2.39 --exec-prefix=/home/aditya/heasoft-6.34/tcltk/x86_64-pc-linux-gnu-libc2.39 --x-libraries=/usr/lib/X11 --x-includes=/usr/include --disable-xft
+checking for Tcl configuration... found /home/aditya/heasoft-6.34/tcltk/tcl/unix/tclConfig.sh
+checking for existence of /home/aditya/heasoft-6.34/tcltk/tcl/unix/tclConfig.sh... loading
+checking for tclsh... /home/aditya/miniconda3/bin/tclsh8.6
+checking for tclsh in Tcl build directory... /home/aditya/heasoft-6.34/tcltk/tcl/unix/tclsh
+checking whether to use symlinks for manpages... no
+checking whether to compress the manpages... no
+checking whether to add a package name suffix for the manpages... no
+checking for gcc... /usr/bin/gcc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... no
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to accept ANSI C... none needed
+checking for inline... inline
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for egrep... grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for stdlib.h... (cached) yes
+checking if the compiler understands -pipe... yes
+checking for pthread_mutex_init in -lpthread... yes
+checking for pthread_attr_setstacksize... yes
+checking for pthread_atfork... yes
+checking for building with threads... yes (threaded core)
+checking how to build libraries... shared
+checking for ranlib... ranlib
+checking if 64bit support is requested... no
+checking if 64bit Sparc VIS support is requested... no
+checking if compiler supports visibility "hidden"... yes
+checking if rpath support is requested... yes
+checking system version... Linux-5.15.153.1-microsoft-standard-WSL2
+checking for dlopen in -ldl... yes
+checking for ar... ar
+checking for cast to union support... yes
+checking for build with symbols... no
+checking for required early compiler flags...  _LARGEFILE64_SOURCE
+checking for 64-bit integer type... using long
+checking whether byte ordering is bigendian... no
+checking for fd_set in sys/types... yes
+checking sys/time.h usability... yes
+checking sys/time.h presence... yes
+checking for sys/time.h... yes
+checking whether time.h and sys/time.h may both be included... yes
+checking for mode_t... yes
+checking for pid_t... yes
+checking for size_t... yes
+checking for uid_t in sys/types.h... yes
+checking for intptr_t... yes
+checking for uintptr_t... yes
+checking pw_gecos in struct pwd... yes
+checking for X... libraries /usr/lib/X11, headers /usr/include
+checking for main in -lXbsd... no
+checking whether to use xft... no
+checking for X11/XKBlib.h... yes
+checking for XkbKeycodeToKeysym in -lX11... yes
+checking whether XKeycodeToKeysym is deprecated... yes
+checking whether to try to use XScreenSaver... yes
+checking for X11/extensions/scrnsaver.h... yes
+checking for XScreenSaverQueryInfo... no
+checking for XScreenSaverQueryInfo in -lXext... no
+checking for XScreenSaverQueryInfo in -lXss... yes
+checking whether char is unsigned... no
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating tkConfig.sh
+config.status: creating tk.pc
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/tcltk/tclreadline; ./configure --enable-shared=yes --prefix=/home/aditya/heasoft-6.34/tcltk/x86_64-pc-linux-gnu-libc2.39 --exec-prefix=/home/aditya/heasoft-6.34/tcltk/x86_64-pc-linux-gnu-libc2.39 --with-tcl=/home/aditya/heasoft-6.34/tcltk/tcl/unix --with-tcl-includes=/home/aditya/heasoft-6.34/tcltk/tcl/unix/../generic --with-readline-includes= --with-readline-library= --x-libraries=/usr/lib/X11 --x-includes=/usr/include
+creating cache ./config.cache
+checking for a BSD compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking whether make sets ${MAKE}... yes
+checking for working aclocal... found
+checking for working autoconf... found
+checking for working automake... missing
+checking for working autoheader... missing
+checking for working makeinfo... missing
+checking whether make sets ${MAKE}... (cached) yes
+checking host system type... x86_64-pc-linux-gnu
+checking for gcc... /usr/bin/gcc
+checking whether the C compiler (/usr/bin/gcc  ) works... yes
+checking whether the C compiler (/usr/bin/gcc  ) is a cross-compiler... no
+checking whether we are using GNU C... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking build system type... x86_64-pc-linux-gnu
+checking for ranlib... ranlib
+checking for ld used by GCC... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD-compatible nm... /usr/bin/nm -B
+checking whether ln -s works... yes
+updating cache ./config.cache
+loading cache ./config.cache within ltconfig
+checking for object suffix... o
+checking for executable suffix... no
+checking for /usr/bin/gcc option to produce PIC... -fPIC
+checking if /usr/bin/gcc PIC flag -fPIC works... yes
+checking if /usr/bin/gcc supports -c -o file.o... yes
+checking if /usr/bin/gcc supports -c -o file.lo... yes
+checking if /usr/bin/gcc supports -fno-rtti -fno-exceptions ... no
+checking if /usr/bin/gcc static flag -static works... -static
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking whether the linker (/usr/bin/ld) supports shared libraries... yes
+checking command to parse /usr/bin/nm -B output... ok
+checking how to hardcode library paths into programs... immediate
+checking for /usr/bin/ld option to reload object files... -r
+checking dynamic linker characteristics... Linux ld.so
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking for objdir... .libs
+creating libtool
+updating cache ./config.cache
+loading cache ./config.cache
+checking for working const... yes
+checking for a BSD compatible install... /usr/bin/install -c
+checking for ranlib... (cached) ranlib
+checking whether ln -s works... (cached) yes
+checking which tclConfig.sh to use... /home/aditya/heasoft-6.34/tcltk/tcl/unix/tclConfig.sh
+checking for your tcl version... 8.6, patchlevel .11
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for ANSI C header files... yes
+checking for string.h... yes
+checking where to look for tcl.h... /home/aditya/heasoft-6.34/tcltk/tcl/unix/../generic/tcl.h
+checking for tputs in -ltinfo... yes
+checking where to look for readline.h... /usr/include/readline/readline.h
+checking for _rl_executing_macro in -lreadline... no
+checking for rl_cleanup_after_signal() in -lreadline... no
+checking for the readline version number... failed
+updating cache ./config.cache
+creating ./config.status
+creating Makefile
+creating tclreadline.h
+creating tclreadlineInit.tcl
+creating tclreadlineSetup.tcl
+creating tclreadline.n
+creating pkgIndex.tcl
+creating config.h
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/tcltk/xpa; ./configure --enable-shared=yes --prefix=/home/aditya/heasoft-6.34/tcltk/x86_64-pc-linux-gnu-libc2.39 --exec-prefix=/home/aditya/heasoft-6.34/tcltk/x86_64-pc-linux-gnu-libc2.39 --with-tcl=/home/aditya/heasoft-6.34/tcltk/tcl/unix --x-libraries=/usr/lib/X11 --x-includes=/usr/include
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking for gcc... /usr/bin/gcc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... no
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to accept ANSI C... none needed
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for egrep... grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for long... yes
+checking size of long... 8
+checking for ranlib... ranlib
+checking for ANSI C header files... (cached) yes
+checking malloc.h usability... yes
+checking malloc.h presence... yes
+checking for malloc.h... yes
+checking getopt.h usability... yes
+checking getopt.h presence... yes
+checking for getopt.h... yes
+checking pwd.h usability... yes
+checking pwd.h presence... yes
+checking for pwd.h... yes
+checking values.h usability... yes
+checking values.h presence... yes
+checking for values.h... yes
+checking dlfcn.h usability... yes
+checking dlfcn.h presence... yes
+checking for dlfcn.h... yes
+checking setjmp.h usability... yes
+checking setjmp.h presence... yes
+checking for setjmp.h... yes
+checking sys/un.h usability... yes
+checking sys/un.h presence... yes
+checking for sys/un.h... yes
+checking sys/shm.h usability... yes
+checking sys/shm.h presence... yes
+checking for sys/shm.h... yes
+checking sys/mman.h usability... yes
+checking sys/mman.h presence... yes
+checking for sys/mman.h... yes
+checking sys/ipc.h usability... yes
+checking sys/ipc.h presence... yes
+checking for sys/ipc.h... yes
+checking sys/select.h usability... yes
+checking sys/select.h presence... yes
+checking for sys/select.h... yes
+checking for socklen_t... yes
+checking for an ANSI C-conforming const... yes
+checking for strchr... yes
+checking for memcpy... yes
+checking for snprintf... yes
+checking for atexit... yes
+checking for setenv... yes
+checking for getaddrinfo... yes
+checking for connect... yes
+checking for gethostbyname... yes
+checking for threaded xpans... no
+checking for shared library build... yes
+checking for request to use posix_spawn... no
+checking for X... libraries /usr/lib/X11, headers /usr/include
+checking for gethostbyname... (cached) yes
+checking for connect... (cached) yes
+checking for remove... yes
+checking for shmat... yes
+checking for IceConnectionNumber in -lICE... yes
+checking for Tcl configuration... found /home/aditya/heasoft-6.34/tcltk/tcl/unix/tclConfig.sh
+checking for existence of /home/aditya/heasoft-6.34/tcltk/tcl/unix/tclConfig.sh... loading
+warning: tcl.h not found with --with-tcl ... tcl build might fail
+checking for incorporation of thread support... no
+checking for gtk... no
+checking linux-gnu configuration... adding -fPIC to gcc
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating xpa.pc
+config.status: creating conf.h
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/tcltk/tcl/pkgs/itcl4.2.1; ./configure --enable-shared=yes --enable-symbols=no --prefix=/home/aditya/heasoft-6.34/tcltk/x86_64-pc-linux-gnu-libc2.39 --exec-prefix=/home/aditya/heasoft-6.34/tcltk/x86_64-pc-linux-gnu-libc2.39 --with-tcl=/home/aditya/heasoft-6.34/tcltk/tcl/unix --x-libraries=/usr/lib/X11 --x-includes=/usr/include
+checking TEA configuration... ok (TEA 3.13)
+configure: configuring itcl 4.2.1
+checking system version... Linux-5.15.153.1-microsoft-standard-WSL2
+checking whether ln -s works... yes
+checking for Tcl configuration... found /home/aditya/heasoft-6.34/tcltk/tcl/unix/tclConfig.sh
+checking for gcc... /usr/bin/gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to accept ISO C89... none needed
+checking for existence of /home/aditya/heasoft-6.34/tcltk/tcl/unix/tclConfig.sh... loading
+checking platform... unix
+checking for gcc... (cached) /usr/bin/gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether /usr/bin/gcc accepts -g... (cached) yes
+checking for /usr/bin/gcc option to accept ISO C89... (cached) none needed
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking whether make sets $(MAKE)... yes
+checking for ranlib... ranlib
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking if the compiler understands -pipe... yes
+checking whether byte ordering is bigendian... no
+checking for Tcl public headers... /home/aditya/heasoft-6.34/tcltk/tcl/generic
+checking for Tcl private include files... Using srcdir found in tclConfig.sh: /home/aditya/heasoft-6.34/tcltk/tcl
+checking for pthread_mutex_init in -lpthread... yes
+checking for building with threads... yes (default)
+checking how to build libraries... shared
+checking for ranlib... (cached) ranlib
+checking if 64bit support is requested... no
+checking if 64bit Sparc VIS support is requested... no
+checking if compiler supports visibility "hidden"... yes
+checking if rpath support is requested... yes
+checking system version... (cached) Linux-5.15.153.1-microsoft-standard-WSL2
+checking for ar... ar
+checking for cast to union support... yes
+checking stdbool.h usability... yes
+checking stdbool.h presence... yes
+checking for stdbool.h... yes
+checking for required early compiler flags...  _LARGEFILE64_SOURCE
+checking for 64-bit integer type... yes
+checking for build with symbols... no
+checking for intptr_t... yes
+checking for tclsh... /home/aditya/heasoft-6.34/tcltk/tcl/unix/tclsh
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating pkgIndex.tcl
+config.status: creating itclConfig.sh
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/tcltk/itk; ./configure --enable-shared=yes --enable-symbols=no --prefix=/home/aditya/heasoft-6.34/tcltk/x86_64-pc-linux-gnu-libc2.39 --exec-prefix=/home/aditya/heasoft-6.34/tcltk/x86_64-pc-linux-gnu-libc2.39 --with-tcl=/home/aditya/heasoft-6.34/tcltk/tcl/unix --with-tk=/home/aditya/heasoft-6.34/tcltk/tk/unix --with-itcl=/home/aditya/heasoft-6.34/tcltk/tcl/pkgs/itcl4.2.1 --x-libraries=/usr/lib/X11 --x-includes=/usr/include
+checking for correct TEA configuration... ok (TEA 3.9)
+configure: configuring itk 4.1.0
+checking whether ln -s works... yes
+checking for Tcl configuration... found /home/aditya/heasoft-6.34/tcltk/tcl/unix/tclConfig.sh
+checking for gcc... /usr/bin/gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to accept ISO C89... none needed
+checking for existence of /home/aditya/heasoft-6.34/tcltk/tcl/unix/tclConfig.sh... loading
+checking platform... unix
+checking for Tk configuration... found /home/aditya/heasoft-6.34/tcltk/tk/unix/tkConfig.sh
+checking for existence of /home/aditya/heasoft-6.34/tcltk/tk/unix/tkConfig.sh... loading
+checking for itcl configuration... found /home/aditya/heasoft-6.34/tcltk/tcl/pkgs/itcl4.2.1/itclConfig.sh
+checking for existence of /home/aditya/heasoft-6.34/tcltk/tcl/pkgs/itcl4.2.1/itclConfig.sh... loading
+configure: WARNING: Found Makefile - using build library specs for itcl
+checking For itcl_STUB library for LIBS... using itcl_STUB_LIB_SPEC -L/home/aditya/heasoft-6.34/tcltk/tcl/pkgs/itcl4.2.1 -litclstub4.2.1
+checking for gcc... (cached) /usr/bin/gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether /usr/bin/gcc accepts -g... (cached) yes
+checking for /usr/bin/gcc option to accept ISO C89... (cached) none needed
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking whether make sets $(MAKE)... yes
+checking for ranlib... ranlib
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking if the compiler understands -pipe... yes
+checking whether byte ordering is bigendian... no
+checking for sin... no
+checking for main in -lieee... no
+checking for main in -linet... no
+checking net/errno.h usability... no
+checking net/errno.h presence... no
+checking for net/errno.h... no
+checking for connect... yes
+checking for gethostbyname... yes
+checking dirent.h... yes
+checking errno.h usability... yes
+checking errno.h presence... yes
+checking for errno.h... yes
+checking float.h usability... yes
+checking float.h presence... yes
+checking for float.h... yes
+checking values.h usability... yes
+checking values.h presence... yes
+checking for values.h... yes
+checking limits.h usability... yes
+checking limits.h presence... yes
+checking for limits.h... yes
+checking for stdlib.h... (cached) yes
+checking for string.h... (cached) yes
+checking sys/wait.h usability... yes
+checking sys/wait.h presence... yes
+checking for sys/wait.h... yes
+checking dlfcn.h usability... yes
+checking dlfcn.h presence... yes
+checking for dlfcn.h... yes
+checking sys/param.h usability... yes
+checking sys/param.h presence... yes
+checking for sys/param.h... yes
+checking for Tcl public headers... /home/aditya/heasoft-6.34/tcltk/tcl/generic
+checking for Tcl private include files... Using srcdir found in tclConfig.sh: /home/aditya/heasoft-6.34/tcltk/tcl
+checking for Tk public headers... /home/aditya/heasoft-6.34/tcltk/tk/generic
+checking for X... libraries /usr/lib/X11, headers /usr/include
+checking how to build libraries... shared
+checking for ranlib... (cached) ranlib
+checking if 64bit support is requested... no
+checking if 64bit Sparc VIS support is requested... no
+checking if compiler supports visibility "hidden"... yes
+checking if rpath support is requested... yes
+checking system version... Linux-5.15.153.1-microsoft-standard-WSL2
+checking for ar... ar
+checking for cast to union support... yes
+checking for required early compiler flags...  _LARGEFILE64_SOURCE
+checking for 64-bit integer type... using long
+checking for build with symbols... no
+checking for tclsh... /home/aditya/heasoft-6.34/tcltk/tcl/unix/tclsh
+checking for wish... /home/aditya/heasoft-6.34/tcltk/tk/unix/wish
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating pkgIndex.tcl
+config.status: creating itkConfig.sh
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/tcltk/iwidgets2.2.0; ./configure --enable-shared=yes --enable-symbols=no --prefix=/home/aditya/heasoft-6.34/tcltk/x86_64-pc-linux-gnu-libc2.39 --exec-prefix=/home/aditya/heasoft-6.34/tcltk/x86_64-pc-linux-gnu-libc2.39 --with-tcl=/home/aditya/heasoft-6.34/tcltk/tcl/unix --with-itcl=/home/aditya/heasoft-6.34/tcltk/tcl/pkgs/itcl4.2.1 --x-libraries=/usr/lib/X11 --x-includes=/usr/include
+checking for a BSD-compatible install... /usr/bin/install -c
+checking for Tcl configuration... found /home/aditya/heasoft-6.34/tcltk/tcl/unix/tclConfig.sh
+checking for existence of /home/aditya/heasoft-6.34/tcltk/tcl/unix/tclConfig.sh... loading
+checking for Tk configuration... found /home/aditya/heasoft-6.34/tcltk/tk/unix/tkConfig.sh
+checking for existence of /home/aditya/heasoft-6.34/tcltk/tk/unix/tkConfig.sh... loading
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating iwidgets.tcl
+config.status: creating pkgIndex.tcl
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/tcltk/iwidgets; TCLSH_PROG=/home/aditya/heasoft-6.34/tcltk/tcl/unix/tclsh; WISH_PROG=/home/aditya/heasoft-6.34/tcltk/tk/unix/wish; export TCLSH_PROG WISH_PROG; ./configure --enable-shared=yes --enable-symbols=no --prefix=/home/aditya/heasoft-6.34/tcltk/x86_64-pc-linux-gnu-libc2.39 --exec-prefix=/home/aditya/heasoft-6.34/tcltk/x86_64-pc-linux-gnu-libc2.39 --with-tcl=/home/aditya/heasoft-6.34/tcltk/tcl/unix --with-itcl=/home/aditya/heasoft-6.34/tcltk/tcl/pkgs/itcl4.2.1 --with-itk=/home/aditya/heasoft-6.34/tcltk/itk --x-libraries=/usr/lib/X11 --x-includes=/usr/include
+checking for correct TEA configuration... ok (TEA 3.2)
+checking for Tcl configuration... found /home/aditya/heasoft-6.34/tcltk/tcl/unix/tclConfig.sh
+checking for existence of /home/aditya/heasoft-6.34/tcltk/tcl/unix/tclConfig.sh... loading
+checking for Tk configuration... found /home/aditya/heasoft-6.34/tcltk/tk/unix/tkConfig.sh
+checking for existence of /home/aditya/heasoft-6.34/tcltk/tk/unix/tkConfig.sh... loading
+checking for itcl configuration... found /home/aditya/heasoft-6.34/tcltk/tcl/pkgs/itcl4.2.1/itclConfig.sh
+checking for existence of /home/aditya/heasoft-6.34/tcltk/tcl/pkgs/itcl4.2.1/itclConfig.sh... loading
+configure: WARNING: Found Makefile - using build library specs for itcl
+checking for a BSD-compatible install... /usr/bin/install -c
+checking for gcc... /usr/bin/gcc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... no
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to accept ANSI C... none needed
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for egrep... grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking if 64bit support is enabled... no
+checking if 64bit Sparc VIS support is requested... no
+checking system version (for dynamic loading)... Linux-5.15.153.1-microsoft-standard-WSL2
+checking for dlopen in -ldl... yes
+checking for ar... ar
+checking for required early compiler flags...  _LARGEFILE64_SOURCE
+checking for 64-bit integer type... using long
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating iwidgets.tcl
+config.status: creating pkgIndex.tcl
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/tcltk/tix; ./configure --enable-shared=yes --prefix=/home/aditya/heasoft-6.34/tcltk/x86_64-pc-linux-gnu-libc2.39 --exec-prefix=/home/aditya/heasoft-6.34/tcltk/x86_64-pc-linux-gnu-libc2.39 --with-tcl=/home/aditya/heasoft-6.34/tcltk/tcl/unix --with-tk=/home/aditya/heasoft-6.34/tcltk/tk/unix --x-libraries=/usr/lib/X11 --x-includes=/usr/include --enable-64bit=yes
+checking for correct TEA configuration... ok (TEA 3.6)
+checking for Tcl configuration... found /home/aditya/heasoft-6.34/tcltk/tcl/unix/tclConfig.sh
+checking for existence of /home/aditya/heasoft-6.34/tcltk/tcl/unix/tclConfig.sh... loading
+checking for Tk configuration... found /home/aditya/heasoft-6.34/tcltk/tk/unix/tkConfig.sh
+checking for existence of /home/aditya/heasoft-6.34/tcltk/tk/unix/tkConfig.sh... loading
+checking for gcc... /usr/bin/gcc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... no
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to accept ANSI C... none needed
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether make sets $(MAKE)... yes
+checking for ranlib... ranlib
+checking for egrep... grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking if the compiler understands -pipe... yes
+checking whether byte ordering is bigendian... no
+checking for sin... no
+checking for main in -lieee... no
+checking for main in -linet... no
+checking net/errno.h usability... no
+checking net/errno.h presence... no
+checking for net/errno.h... no
+checking for connect... yes
+checking for gethostbyname... yes
+checking dirent.h... yes
+checking errno.h usability... yes
+checking errno.h presence... yes
+checking for errno.h... yes
+checking float.h usability... yes
+checking float.h presence... yes
+checking for float.h... yes
+checking values.h usability... yes
+checking values.h presence... yes
+checking for values.h... yes
+checking limits.h usability... yes
+checking limits.h presence... yes
+checking for limits.h... yes
+checking for stdlib.h... (cached) yes
+checking for string.h... (cached) yes
+checking sys/wait.h usability... yes
+checking sys/wait.h presence... yes
+checking for sys/wait.h... yes
+checking dlfcn.h usability... yes
+checking dlfcn.h presence... yes
+checking for dlfcn.h... yes
+checking sys/param.h usability... yes
+checking sys/param.h presence... yes
+checking for sys/param.h... yes
+checking for Tcl private include files... Using srcdir found in tclConfig.sh: /home/aditya/heasoft-6.34/tcltk/tcl
+checking for Tk private include files... Using srcdir found in tkConfig.sh: /home/aditya/heasoft-6.34/tcltk/tk
+checking for X... libraries /usr/lib/X11, headers /usr/include
+checking for pthread_mutex_init in -lpthread... yes
+checking for building with threads... yes (default)
+checking how to build libraries... shared
+checking if 64bit support is requested... yes
+checking if 64bit Sparc VIS support is requested... no
+checking system version... Linux-5.15.153.1-microsoft-standard-WSL2
+checking for dlopen in -ldl... yes
+checking for ar... ar
+checking if compiler accepts -m64 flag... yes
+checking for required early compiler flags...  _LARGEFILE64_SOURCE
+checking for 64-bit integer type... using long
+checking for build with symbols... no
+checking for tclsh... /home/aditya/heasoft-6.34/tcltk/tcl/unix/tclsh
+checking for wish... /home/aditya/heasoft-6.34/tcltk/tk/unix/wish
+configure: creating ./config.status
+config.status: creating Makefile
+--------------------------------------------------------------------------------
+configure: creating ./config.status
+config.status: creating hmakerc
+config.status: creating headas-setup
+config.status: creating Makefile
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/attitude/BUILD_DIR; ./configure --build=x86_64-pc-linux-gnu --with-heatop=/home/aditya/heasoft-6.34 --enable-collapse=no --with-heacore=heacore --enable-shared=yes --enable-symbols=no --enable-strip=yes --enable-hera=no --x-libraries=NONE --x-includes=NONE --with-copt= --with-cxxopt= --with-fopt= --enable-ldopt=yes --enable-mac_intel_build=no --enable-x=yes --host=
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+modified Linux system type is x86_64-pc-linux-gnu-libc2.39
+checking for strip... strip
+checking for ar... ar
+checking for ranlib... ranlib
+checking for gmake... gmake
+checking whether gmake is GNU make... yes
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to enable C11 features... none needed
+checking whether the compiler supports GNU Fortran... yes
+checking whether /usr/bin/gfortran accepts -g... yes
+checking whether the compiler supports GNU C++... yes
+checking whether /usr/bin/g++ accepts -g... yes
+checking for /usr/bin/g++ option to enable C++11 features... none needed
+checking for perl... /usr/bin/perl
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for X... libraries , headers 
+Found /usr/include/X11/Xlib.h
+Using /usr/include for X11 header files
+checking for gethostbyname... yes
+checking for connect... yes
+checking for accept... yes
+checking for frexp in -lm... yes
+checking for dlopen in -ldl... yes
+checking for python3... /usr/bin/python3
+checking whether your g++ compiler is too old... no
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking size of long... 8
+configure: creating ./config.status
+config.status: creating hmakerc
+config.status: creating headas-setup
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/heasptools/BUILD_DIR; ./configure --build=x86_64-pc-linux-gnu --with-heatop=/home/aditya/heasoft-6.34 --enable-collapse=no --with-heacore=heacore --enable-shared=yes --enable-symbols=no --enable-strip=yes --enable-hera=no --x-libraries=NONE --x-includes=NONE --with-copt= --with-cxxopt= --with-fopt= --enable-ldopt=yes --with-png= --enable-mac_intel_build=no --enable-x=yes --host=
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+modified Linux system type is x86_64-pc-linux-gnu-libc2.39
+checking for strip... strip
+checking for ar... ar
+checking for ranlib... ranlib
+checking for gmake... gmake
+checking whether gmake is GNU make... yes
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to enable C11 features... none needed
+checking whether the compiler supports GNU Fortran... yes
+checking whether /usr/bin/gfortran accepts -g... yes
+checking whether the compiler supports GNU C++... yes
+checking whether /usr/bin/g++ accepts -g... yes
+checking for /usr/bin/g++ option to enable C++11 features... none needed
+checking for perl... /usr/bin/perl
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for X... libraries , headers 
+Found /usr/include/X11/Xlib.h
+Using /usr/include for X11 header files
+checking for gethostbyname... yes
+checking for connect... yes
+checking for accept... yes
+checking for frexp in -lm... yes
+checking for dlopen in -ldl... yes
+checking for python3... /usr/bin/python3
+checking whether your g++ compiler is too old... no
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking size of long... 8
+configure: creating ./config.status
+config.status: creating hmakerc
+config.status: creating headas-setup
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/heatools/BUILD_DIR; ./configure --build=x86_64-pc-linux-gnu --with-heatop=/home/aditya/heasoft-6.34 --enable-collapse=no --with-heacore=heacore --enable-shared=yes --enable-symbols=no --enable-strip=yes --enable-hera=no --x-libraries=NONE --x-includes=NONE --with-copt= --with-cxxopt= --with-fopt= --enable-ldopt=yes --with-png= --enable-mac_intel_build=no --enable-x=yes --host=
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+modified Linux system type is x86_64-pc-linux-gnu-libc2.39
+checking for strip... strip
+checking for ar... ar
+checking for ranlib... ranlib
+checking for gmake... gmake
+checking whether gmake is GNU make... yes
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to enable C11 features... none needed
+checking whether the compiler supports GNU Fortran... yes
+checking whether /usr/bin/gfortran accepts -g... yes
+checking whether the compiler supports GNU C++... yes
+checking whether /usr/bin/g++ accepts -g... yes
+checking for /usr/bin/g++ option to enable C++11 features... none needed
+checking for perl... /usr/bin/perl
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for X... libraries , headers 
+Found /usr/include/X11/Xlib.h
+Using /usr/include for X11 header files
+checking for gethostbyname... yes
+checking for connect... yes
+checking for accept... yes
+checking for frexp in -lm... yes
+checking for dlopen in -ldl... yes
+checking for python3... /usr/bin/python3
+checking whether your g++ compiler is too old... no
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking size of long... 8
+configure: creating ./config.status
+config.status: creating hmakerc
+config.status: creating headas-setup
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/heagen/BUILD_DIR; ./configure --build=x86_64-pc-linux-gnu --with-heatop=/home/aditya/heasoft-6.34 --enable-collapse=no --with-heacore=heacore --enable-shared=yes --enable-symbols=no --enable-strip=yes --enable-hera=no --x-libraries=NONE --x-includes=NONE --with-copt= --with-cxxopt= --with-fopt= --enable-ldopt=yes --enable-mac_intel_build=no --enable-x=yes --host=
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+modified Linux system type is x86_64-pc-linux-gnu-libc2.39
+checking for strip... strip
+checking for ar... ar
+checking for ranlib... ranlib
+checking for gmake... gmake
+checking whether gmake is GNU make... yes
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to enable C11 features... none needed
+checking whether the compiler supports GNU Fortran... yes
+checking whether /usr/bin/gfortran accepts -g... yes
+checking whether the compiler supports GNU C++... yes
+checking whether /usr/bin/g++ accepts -g... yes
+checking for /usr/bin/g++ option to enable C++11 features... none needed
+checking for perl... /usr/bin/perl
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for X... libraries , headers 
+Found /usr/include/X11/Xlib.h
+Using /usr/include for X11 header files
+checking for gethostbyname... yes
+checking for connect... yes
+checking for accept... yes
+checking for frexp in -lm... yes
+checking for dlopen in -ldl... yes
+checking for python3... /usr/bin/python3
+checking whether your g++ compiler is too old... no
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking size of long... 8
+configure: creating ./config.status
+config.status: creating hmakerc
+config.status: creating headas-setup
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/Xspec/BUILD_DIR; ./configure --build=x86_64-pc-linux-gnu --with-heatop=/home/aditya/heasoft-6.34 --enable-collapse=no --with-heacore=heacore --enable-shared=yes --enable-symbols=no --enable-strip=yes --enable-guis=no --with-copt= --with-cxxopt= --with-fopt= --enable-ldopt=yes --with-components=src/xslib src/XSUtil src/XSFunctions src/XSModel src/XSStat src/XSFit src/XSPlot src/XSModel/Model/MixFunction src/XSFit/FitMethod/Minuit/minuit2/src src/XSFit/FitMethod/Minuit src/XSUser python mpython Integral src/tools src/main --enable-hera=no --with-png= --x-libraries=NONE --x-includes=NONE --enable-openmp=no --enable-mac_intel_build=no --enable-x=yes --host=
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+modified Linux system type is x86_64-pc-linux-gnu-libc2.39
+checking for strip... strip
+checking for ar... ar
+checking for ranlib... ranlib
+checking for gmake... gmake
+checking whether gmake is GNU make... yes
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to enable C11 features... none needed
+checking whether the compiler supports GNU Fortran... yes
+checking whether /usr/bin/gfortran accepts -g... yes
+checking whether the compiler supports GNU C++... yes
+checking whether /usr/bin/g++ accepts -g... yes
+checking for /usr/bin/g++ option to enable C++11 features... none needed
+checking whether the compiler has a std::count defect... no
+checking whether the host requires -lpthread... no
+checking for perl... /usr/bin/perl
+checking for gtar... no
+checking for tar... /usr/bin/tar
+checking for gunzip... /usr/bin/gunzip
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for dirent.h... yes
+checking for fcntl.h... yes
+checking for limits.h... yes
+checking for malloc.h... yes
+checking for string.h... (cached) yes
+checking for sys/time.h... yes
+checking for unistd.h... (cached) yes
+checking for size_t... yes
+checking for working alloca.h... yes
+checking for alloca... yes
+checking for an ANSI C-conforming const... yes
+checking for mode_t... yes
+checking for size_t... (cached) yes
+checking whether struct tm is in sys/time.h or time.h... time.h
+checking for sigset... yes
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for X... libraries , headers 
+Found /usr/include/X11/Xlib.h
+Using /usr/include for X11 header files
+checking for gethostbyname... yes
+checking for connect... yes
+checking for accept... yes
+checking for frexp in -lm... yes
+checking for dlopen in -ldl... yes
+checking for png_set_longjmp_fn in -lpng... yes
+checking for deflate in -lz... yes
+checking for python3... /usr/bin/python3
+Using /usr/bin/python3.12-config to locate Python headers and libraries
+Python headers: -I/usr/include/python3.12
+Python libraries: -L/usr/lib 
+checking whether your g++ compiler is too old... no
+checking size of long... 8
+configure: creating ./config.status
+config.status: creating hmakerc
+config.status: creating headas-setup
+config.status: creating Makefile
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/demo/BUILD_DIR; ./configure --build=x86_64-pc-linux-gnu --with-heatop=/home/aditya/heasoft-6.34 --enable-collapse=no --with-heacore=heacore --enable-shared=yes --enable-symbols=no --enable-strip=yes --enable-hera=no --x-libraries=NONE --x-includes=NONE --with-copt= --with-cxxopt= --with-fopt= --enable-ldopt=yes --enable-mac_intel_build=no --enable-x=yes --host=
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+modified Linux system type is x86_64-pc-linux-gnu-libc2.39
+checking for strip... strip
+checking for ar... ar
+checking for ranlib... ranlib
+checking for gmake... gmake
+checking whether gmake is GNU make... yes
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to enable C11 features... none needed
+checking whether the compiler supports GNU Fortran... yes
+checking whether /usr/bin/gfortran accepts -g... yes
+checking whether the compiler supports GNU C++... yes
+checking whether /usr/bin/g++ accepts -g... yes
+checking for /usr/bin/g++ option to enable C++11 features... none needed
+checking for perl... /usr/bin/perl
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for X... libraries , headers 
+Found /usr/include/X11/Xlib.h
+Using /usr/include for X11 header files
+checking for gethostbyname... yes
+checking for connect... yes
+checking for accept... yes
+checking for frexp in -lm... yes
+checking for dlopen in -ldl... yes
+checking for python3... /usr/bin/python3
+checking whether your g++ compiler is too old... no
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking size of long... 8
+configure: creating ./config.status
+config.status: creating hmakerc
+config.status: creating headas-setup
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/ftools/BUILD_DIR; ./configure --build=x86_64-pc-linux-gnu --with-heatop=/home/aditya/heasoft-6.34 --enable-collapse=no --with-heacore=heacore --enable-shared=yes --enable-symbols=no --enable-strip=yes --enable-hera=no --x-libraries=NONE --x-includes=NONE --with-copt= --with-cxxopt= --with-fopt= --enable-ldopt=yes --with-components=refdata bin.perl xanlib ftoolslib cftoolslib callib asca caltools einstein exosat fimage futils gro heao1 oso8 qdp rosat time timing/xronos heasarc vela5b xselect xstar xte image guis --with-png= --enable-mac_intel_build=no --enable-x=yes --host=
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+modified Linux system type is x86_64-pc-linux-gnu-libc2.39
+checking for strip... strip
+checking for ar... ar
+checking for ranlib... ranlib
+checking for gmake... gmake
+checking whether gmake is GNU make... yes
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to enable C11 features... none needed
+checking whether the compiler supports GNU Fortran... yes
+checking whether /usr/bin/gfortran accepts -g... yes
+checking whether the compiler supports GNU C++... yes
+checking whether /usr/bin/g++ accepts -g... yes
+checking for /usr/bin/g++ option to enable C++11 features... none needed
+checking for perl... /usr/bin/perl
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for dirent.h... yes
+checking for fcntl.h... yes
+checking for limits.h... yes
+checking for malloc.h... yes
+checking for string.h... (cached) yes
+checking for sys/time.h... yes
+checking for unistd.h... (cached) yes
+checking for size_t... yes
+checking for working alloca.h... yes
+checking for alloca... yes
+checking for an ANSI C-conforming const... yes
+checking for mode_t... yes
+checking for size_t... (cached) yes
+checking whether struct tm is in sys/time.h or time.h... time.h
+checking for working memcmp... yes
+checking for strftime... yes
+checking for getcwd... yes
+checking for socket... yes
+checking for strcspn... yes
+checking for strspn... yes
+checking for strstr... yes
+checking for strtod... yes
+checking for strtol... yes
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for X... libraries , headers 
+Found /usr/include/X11/Xlib.h
+Using /usr/include for X11 header files
+checking for gethostbyname... yes
+checking for connect... yes
+checking for accept... yes
+checking for frexp in -lm... yes
+checking for dlopen in -ldl... yes
+checking for curl-config... /usr/bin/curl-config
+checking for png_set_longjmp_fn in -lpng... yes
+checking for deflate in -lz... yes
+checking size of long... 8
+configure: creating ./config.status
+config.status: creating hmakerc
+config.status: creating headas-setup
+config.status: creating Makefile
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/heasim/BUILD_DIR; ./configure --build=x86_64-pc-linux-gnu --with-heatop=/home/aditya/heasoft-6.34 --enable-collapse=no --with-heacore=heacore --enable-shared=yes --enable-symbols=no --enable-strip=yes --enable-hera=no --x-libraries=NONE --x-includes=NONE --with-copt= --with-cxxopt= --with-fopt= --enable-ldopt=yes --enable-mac_intel_build=no --enable-x=yes --host=
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+modified Linux system type is x86_64-pc-linux-gnu-libc2.39
+checking for strip... strip
+checking for ar... ar
+checking for ranlib... ranlib
+checking for gmake... gmake
+checking whether gmake is GNU make... yes
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to enable C11 features... none needed
+checking whether the compiler supports GNU Fortran... yes
+checking whether /usr/bin/gfortran accepts -g... yes
+checking whether the compiler supports GNU C++... yes
+checking whether /usr/bin/g++ accepts -g... yes
+checking for /usr/bin/g++ option to enable C++11 features... none needed
+checking for perl... /usr/bin/perl
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for X... libraries , headers 
+Found /usr/include/X11/Xlib.h
+Using /usr/include for X11 header files
+checking for gethostbyname... yes
+checking for connect... yes
+checking for accept... yes
+checking for frexp in -lm... yes
+checking for dlopen in -ldl... yes
+checking for python3... /usr/bin/python3
+checking whether your g++ compiler is too old... no
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking size of long... 8
+configure: creating ./config.status
+config.status: creating hmakerc
+config.status: creating headas-setup
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/hitomixrism/BUILD_DIR; ./configure --build=x86_64-pc-linux-gnu --with-heatop=/home/aditya/heasoft-6.34 --enable-collapse=no --with-heatools=heatools --enable-shared=yes --enable-symbols=no --enable-strip=yes --enable-hera=no --x-libraries=NONE --x-includes=NONE --with-copt= --with-cxxopt= --with-fopt= --enable-ldopt=yes --with-png= --enable-mac_intel_build=no --enable-x=yes --host=
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+modified Linux system type is x86_64-pc-linux-gnu-libc2.39
+checking for strip... strip
+checking for ar... ar
+checking for ranlib... ranlib
+checking for gmake... gmake
+checking whether gmake is GNU make... yes
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to enable C11 features... none needed
+checking whether the compiler supports GNU Fortran... yes
+checking whether /usr/bin/gfortran accepts -g... yes
+checking whether the compiler supports GNU C++... yes
+checking whether /usr/bin/g++ accepts -g... yes
+checking for /usr/bin/g++ option to enable C++11 features... none needed
+checking for perl... /usr/bin/perl
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for X... libraries , headers 
+Found /usr/include/X11/Xlib.h
+Using /usr/include for X11 header files
+checking for gethostbyname... yes
+checking for connect... yes
+checking for accept... yes
+checking for frexp in -lm... yes
+checking for dlopen in -ldl... yes
+checking for python3... /usr/bin/python3
+checking whether your g++ compiler is too old... no
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking size of long... 8
+configure: creating ./config.status
+config.status: creating hmakerc
+config.status: creating headas-setup
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/integral/BUILD_DIR; ./configure --build=x86_64-pc-linux-gnu --with-heatop=/home/aditya/heasoft-6.34 --enable-collapse=no --with-heacore=heacore --enable-shared=yes --enable-symbols=no --enable-strip=yes --enable-hera=no --x-libraries=NONE --x-includes=NONE --with-copt= --with-cxxopt= --with-fopt= --enable-ldopt=yes --enable-mac_intel_build=no --enable-x=yes --host=
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+modified Linux system type is x86_64-pc-linux-gnu-libc2.39
+checking for strip... strip
+checking for ar... ar
+checking for ranlib... ranlib
+checking for gmake... gmake
+checking whether gmake is GNU make... yes
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to enable C11 features... none needed
+checking whether the compiler supports GNU Fortran... yes
+checking whether /usr/bin/gfortran accepts -g... yes
+checking whether the compiler supports GNU C++... yes
+checking whether /usr/bin/g++ accepts -g... yes
+checking for /usr/bin/g++ option to enable C++11 features... none needed
+checking for perl... /usr/bin/perl
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for X... libraries , headers 
+Found /usr/include/X11/Xlib.h
+Using /usr/include for X11 header files
+checking for gethostbyname... yes
+checking for connect... yes
+checking for accept... yes
+checking for frexp in -lm... yes
+checking for dlopen in -ldl... yes
+checking for python3... /usr/bin/python3
+checking whether your g++ compiler is too old... no
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking size of long... 8
+configure: creating ./config.status
+config.status: creating hmakerc
+config.status: creating headas-setup
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/ixpe/BUILD_DIR; ./configure --build=x86_64-pc-linux-gnu --with-heatop=/home/aditya/heasoft-6.34 --enable-collapse=no --with-heatools=heatools --enable-shared=yes --enable-symbols=no --enable-strip=yes --enable-hera=no --x-libraries=NONE --x-includes=NONE --with-copt= --with-cxxopt= --with-fopt= --enable-ldopt=yes --enable-mac_intel_build=no --enable-x=yes --host=
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+modified Linux system type is x86_64-pc-linux-gnu-libc2.39
+checking for strip... strip
+checking for ar... ar
+checking for ranlib... ranlib
+checking for gmake... gmake
+checking whether gmake is GNU make... yes
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to enable C11 features... none needed
+checking whether the compiler supports GNU Fortran... yes
+checking whether /usr/bin/gfortran accepts -g... yes
+checking whether the compiler supports GNU C++... yes
+checking whether /usr/bin/g++ accepts -g... yes
+checking for /usr/bin/g++ option to enable C++11 features... none needed
+checking for perl... /usr/bin/perl
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for X... libraries , headers 
+Found /usr/include/X11/Xlib.h
+Using /usr/include for X11 header files
+checking for gethostbyname... yes
+checking for connect... yes
+checking for accept... yes
+checking for frexp in -lm... yes
+checking for dlopen in -ldl... yes
+checking for python3... /usr/bin/python3
+checking whether your g++ compiler is too old... no
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking size of long... 8
+configure: creating ./config.status
+config.status: creating hmakerc
+config.status: creating headas-setup
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/maxi/BUILD_DIR; ./configure --build=x86_64-pc-linux-gnu --with-heatop=/home/aditya/heasoft-6.34 --enable-collapse=no --with-heacore=heacore --enable-shared=yes --enable-symbols=no --enable-strip=yes --enable-hera=no --x-libraries=NONE --x-includes=NONE --with-copt= --with-cxxopt= --with-fopt= --enable-ldopt=yes --with-png= --enable-mac_intel_build=no --enable-x=yes --host=
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+modified Linux system type is x86_64-pc-linux-gnu-libc2.39
+checking for strip... strip
+checking for ar... ar
+checking for ranlib... ranlib
+checking for gmake... gmake
+checking whether gmake is GNU make... yes
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to enable C11 features... none needed
+checking whether the compiler supports GNU Fortran... yes
+checking whether /usr/bin/gfortran accepts -g... yes
+checking whether the compiler supports GNU C++... yes
+checking whether /usr/bin/g++ accepts -g... yes
+checking for /usr/bin/g++ option to enable C++11 features... none needed
+checking for perl... /usr/bin/perl
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for X... libraries , headers 
+Found /usr/include/X11/Xlib.h
+Using /usr/include for X11 header files
+checking for gethostbyname... yes
+checking for connect... yes
+checking for accept... yes
+checking for frexp in -lm... yes
+checking for dlopen in -ldl... yes
+checking for python3... /usr/bin/python3
+checking whether your g++ compiler is too old... no
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking size of long... 8
+configure: creating ./config.status
+config.status: creating hmakerc
+config.status: creating headas-setup
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/nicer/BUILD_DIR; ./configure --build=x86_64-pc-linux-gnu --with-heatop=/home/aditya/heasoft-6.34 --enable-collapse=no --with-heatools= --enable-shared=yes --enable-symbols=no --enable-strip=yes --enable-hera=no --x-libraries=NONE --x-includes=NONE --with-copt= --with-cxxopt= --with-fopt= --enable-ldopt=yes --enable-mac_intel_build=no --enable-x=yes --host=
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+modified Linux system type is x86_64-pc-linux-gnu-libc2.39
+checking for strip... strip
+checking for ar... ar
+checking for ranlib... ranlib
+checking for gmake... gmake
+checking whether gmake is GNU make... yes
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to enable C11 features... none needed
+checking whether the compiler supports GNU Fortran... yes
+checking whether /usr/bin/gfortran accepts -g... yes
+checking whether the compiler supports GNU C++... yes
+checking whether /usr/bin/g++ accepts -g... yes
+checking for /usr/bin/g++ option to enable C++11 features... none needed
+checking for perl... /usr/bin/perl
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for X... libraries , headers 
+Found /usr/include/X11/Xlib.h
+Using /usr/include for X11 header files
+checking for gethostbyname... yes
+checking for connect... yes
+checking for accept... yes
+checking for frexp in -lm... yes
+checking for dlopen in -ldl... yes
+checking for python3... /usr/bin/python3
+checking whether your g++ compiler is too old... no
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking size of long... 8
+configure: creating ./config.status
+config.status: creating hmakerc
+config.status: creating headas-setup
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/nustar/BUILD_DIR; ./configure --build=x86_64-pc-linux-gnu --with-heatop=/home/aditya/heasoft-6.34 --enable-collapse=no --with-heatools=heatools --enable-shared=yes --enable-symbols=no --enable-strip=yes --enable-hera=no --x-libraries=NONE --x-includes=NONE --with-copt= --with-cxxopt= --with-fopt= --enable-ldopt=yes --enable-mac_intel_build=no --enable-x=yes --host=
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+modified Linux system type is x86_64-pc-linux-gnu-libc2.39
+checking for strip... strip
+checking for ar... ar
+checking for ranlib... ranlib
+checking for gmake... gmake
+checking whether gmake is GNU make... yes
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to enable C11 features... none needed
+checking whether the compiler supports GNU Fortran... yes
+checking whether /usr/bin/gfortran accepts -g... yes
+checking whether the compiler supports GNU C++... yes
+checking whether /usr/bin/g++ accepts -g... yes
+checking for /usr/bin/g++ option to enable C++11 features... none needed
+checking for perl... /usr/bin/perl
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for X... libraries , headers 
+Found /usr/include/X11/Xlib.h
+Using /usr/include for X11 header files
+checking for gethostbyname... yes
+checking for connect... yes
+checking for accept... yes
+checking for frexp in -lm... yes
+checking for dlopen in -ldl... yes
+checking for python3... /usr/bin/python3
+checking whether your g++ compiler is too old... no
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking size of long... 8
+configure: creating ./config.status
+config.status: creating hmakerc
+config.status: creating headas-setup
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/suzaku/BUILD_DIR; ./configure --build=x86_64-pc-linux-gnu --with-heatop=/home/aditya/heasoft-6.34 --enable-collapse=no --with-heatools=heatools --enable-shared=yes --enable-symbols=no --enable-strip=yes --enable-hera=no --x-libraries=NONE --x-includes=NONE --with-copt= --with-cxxopt= --with-fopt= --enable-ldopt=yes --enable-mac_intel_build=no --enable-x=yes --host=
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+modified Linux system type is x86_64-pc-linux-gnu-libc2.39
+checking for strip... strip
+checking for ar... ar
+checking for ranlib... ranlib
+checking for gmake... gmake
+checking whether gmake is GNU make... yes
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to enable C11 features... none needed
+checking whether the compiler supports GNU Fortran... yes
+checking whether /usr/bin/gfortran accepts -g... yes
+checking whether the compiler supports GNU C++... yes
+checking whether /usr/bin/g++ accepts -g... yes
+checking for /usr/bin/g++ option to enable C++11 features... none needed
+checking for perl... /usr/bin/perl
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for X... libraries , headers 
+Found /usr/include/X11/Xlib.h
+Using /usr/include for X11 header files
+checking for gethostbyname... yes
+checking for connect... yes
+checking for accept... yes
+checking for frexp in -lm... yes
+checking for dlopen in -ldl... yes
+checking for python3... /usr/bin/python3
+checking whether your g++ compiler is too old... no
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking size of long... 8
+configure: creating ./config.status
+config.status: creating hmakerc
+config.status: creating headas-setup
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+cd /home/aditya/heasoft-6.34/swift/BUILD_DIR; ./configure --build=x86_64-pc-linux-gnu --with-heatop=/home/aditya/heasoft-6.34 --enable-collapse=no --with-heatools=heatools --enable-shared=yes --enable-symbols=no --enable-strip=yes --enable-hera=no --x-libraries=NONE --x-includes=NONE --with-copt= --with-cxxopt= --with-fopt= --enable-ldopt=yes --enable-mac_intel_build=no --enable-x=yes --host=
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... x86_64-pc-linux-gnu
+checking target system type... x86_64-pc-linux-gnu
+modified Linux system type is x86_64-pc-linux-gnu-libc2.39
+checking for strip... strip
+checking for ar... ar
+checking for ranlib... ranlib
+checking for gmake... gmake
+checking whether gmake is GNU make... yes
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /usr/bin/gcc accepts -g... yes
+checking for /usr/bin/gcc option to enable C11 features... none needed
+checking whether the compiler supports GNU Fortran... yes
+checking whether /usr/bin/gfortran accepts -g... yes
+checking whether the compiler supports GNU C++... yes
+checking whether /usr/bin/g++ accepts -g... yes
+checking for /usr/bin/g++ option to enable C++11 features... none needed
+checking for perl... /usr/bin/perl
+checking how to run the C preprocessor... /usr/bin/gcc -E
+checking for X... libraries , headers 
+Found /usr/include/X11/Xlib.h
+Using /usr/include for X11 header files
+checking for gethostbyname... yes
+checking for connect... yes
+checking for accept... yes
+checking for frexp in -lm... yes
+checking for dlopen in -ldl... yes
+checking for python3... /usr/bin/python3
+checking whether your g++ compiler is too old... no
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking size of long... 8
+configure: creating ./config.status
+config.status: creating hmakerc
+config.status: creating headas-setup
+--------------------------------------------------------------------------------
+checking for perl... /usr/bin/perl
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating headas-setup
+config.status: creating fermi-setup
+Finished

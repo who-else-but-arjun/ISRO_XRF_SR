@@ -1,0 +1,337 @@
+dnl Process this file with autoconf to produce a configure script.
+AC_INIT()
+
+AC_REVISION($Revision$)
+
+AC_PREREQ(2.59)
+
+AC_CANONICAL_TARGET([])
+
+UNAME_SYSTEM=`(uname -s) 2>/dev/null` || UNAME_SYSTEM=unknown
+
+AC_PREFIX_DEFAULT(`cd ../..; pwd`)
+
+#-------------------------------------------------------------------------------
+
+h_this_script=`echo $0 | sed 's%.*/%%'`
+h_this_dir=`echo $0 | sed "s%$h_this_script\$%%"`
+h_top=`cd $h_this_dir/..; pwd`
+HD_SRC=$h_top
+AC_SUBST(HD_SRC)
+
+AC_PATH_PROGS(PERL, perl perl5)
+$PERL -v 2> /dev/null > /tmp/$$.log
+if test `cat /tmp/$$.log | grep -c '5\.00[01234]'` -ne 0 -o `cat /tmp/$$.log | grep -c '[1234]\.[0123456789]'` -ne 0; then
+  AC_MSG_ERROR(Perl version 5.005 or better is required!)
+fi
+rm -f /tmp/$$.*
+AC_SUBST(PERL)
+
+if test -d ../lib/python/heasoftpy/heasoftpy; then
+  AC_PATH_PROGS(PYTHON, python3 python)
+  if test "x$PYTHON" = x -o ! -x "$PYTHON"; then
+    AC_MSG_WARN(Python executable $PYTHON not found or unusable - Skipping HEASoftPy install)
+    PYTHON=""
+  else
+    # Get python dirname and version number:
+    PYTHON_VERSION_RAW=`$PYTHON -V 2>&1 | sed 's:^Python ::' | sed 's:[ ].*$::'`
+    changequote(,)
+    # Get the python version (3.6 or newer is required):
+    PYTHON_VERSION_MAJOR=`echo $PYTHON_VERSION_RAW | cut -d. -f1`
+    PYTHON_VERSION_MINOR=`echo $PYTHON_VERSION_RAW | cut -d. -f2`
+    PYTHON_VERSION="${PYTHON_VERSION_MAJOR}.${PYTHON_VERSION_MINOR}"
+    PYTHON_VERSION_SUPPORTED=`echo $PYTHON_VERSION | grep -c '^\(3.[6789]\)'`
+    changequote([,])
+    # Extra grep for version 3.10 or newer, if needed:
+    if test "$PYTHON_VERSION_SUPPORTED" -eq 0; then
+      changequote(,)
+      PYTHON_VERSION_SUPPORTED=`echo $PYTHON_VERSION | grep -c '^\(3.1[0123456789]\)'`
+      changequote([,])
+    fi
+    # Check for NumPy/AstroPy/SciPy if Python version is supported by HEASoftPy:
+    if test "$PYTHON_VERSION_SUPPORTED" -ne 0; then
+      # NumPy version (avoid versions older than 1.7.x):
+      changequote(,)
+      NUMPY_VER=`$PYTHON -c "import numpy; print(numpy.version.version)" 2>&1 | grep -o '^[0-9].[0-9]*'`
+      changequote([,])
+      if test "x$NUMPY_VER" = x; then
+        AC_MSG_WARN(NumPy not available - not installing HEASoftPy)
+        PYTHON=""
+      else
+        changequote(,)
+        old_numpy_test=`echo $NUMPY_VER | grep -c '^[1]\.[0123456]$'`
+        changequote([,])
+        if test $old_numpy_test -ne 0; then
+          AC_MSG_WARN(NumPy version $NUMPY_VER is too old - 1.7 or newer is required for building HEASoftPy)
+          PYTHON=""
+        fi
+      fi
+      # AstroPy version (avoid versions older than 4.0.0):
+      changequote(,)
+      ASTROPY_VER=`$PYTHON -c "import astropy; print(astropy.version.version)" 2>&1 | grep -o '^[0-9].[0-9]*'`
+      changequote([,])
+      if test "x$ASTROPY_VER" = x; then
+        AC_MSG_WARN(AstroPy not found - not installing HEASoftPy)
+        PYTHON=""
+      else
+        changequote(,)
+        old_astropy_test=`echo $ASTROPY_VER | grep -c '^[123]\.[0123456789]$'`
+        changequote([,])
+        if test $old_astropy_test -ne 0; then
+          AC_MSG_WARN(AstroPy version $ASTROPY_VER is too old - 4.0 or newer is required for building HEASoftPy)
+          PYTHON=""
+        fi
+      fi
+      # SciPy version (avoid versions older than 1.5.0):
+      changequote(,)
+      SCIPY_VER=`$PYTHON -c "import scipy; print(scipy.version.version)" 2>&1 | grep -o '^[0-9].[0-9]*'`
+      changequote([,])
+      if test "x$SCIPY_VER" = x; then
+        AC_MSG_WARN(SciPy not found - not installing HEASoftPy)
+        PYTHON=""
+      else
+        changequote(,)
+        old_scipy_test=`echo $SCIPY_VER | grep -c '^[1]\.[01234]$'`
+        changequote([,])
+        if test $old_scipy_test -ne 0; then
+          AC_MSG_WARN(SciPy version $SCIPY_VER is too old - 1.5 or newer is required for building HEASoftPy)
+          PYTHON=""
+        fi
+      fi
+      # MatPlotLib (required for IXPE):
+      changequote(,)
+      MATPLOT_VER=`$PYTHON -c "import matplotlib; print(matplotlib.__version__)" 2>&1 | grep -o '^[0-9].[0-9]*'`
+      changequote([,])
+      if test "x$MATPLOT_VER" = x; then
+        AC_MSG_WARN(MatPlotLib unavailable but required for IXPE)
+      fi
+    else
+      AC_MSG_WARN(Disabling HEASoftPy for Python $PYTHON_VERSION. It requires Python 3.6 or newer)
+      PYTHON=""
+    fi
+  fi
+else
+  AC_MSG_NOTICE(Did not find HEASoftPy - skipping)
+fi
+
+AC_SUBST(UNAME_SYSTEM)
+
+case ${UNAME_SYSTEM} in
+  CYGWIN*)
+    EXT=win
+    ;;
+  Darwin*)
+    if test -f headas-setup; then
+      AC_MSG_WARN(configure has already been run on these binaries!)
+      AC_MSG_WARN(If you have relocated them since running configure the first time)
+      AC_MSG_WARN(please edit LHEA_TOP on line 68 of headas-setup instead.)
+      AC_MSG_ERROR(Cannot run this configure again on Mac binaries.)
+    fi
+    EXT=darwin
+    # HEASoft pre-compiled binaries are now 64-bit by default:
+    HD_BUILD_ARCH_32_BIT=no
+    ;;
+  Linux*)
+    EXT=lnx
+    ;;
+  OSF*)
+    EXT=osf
+    ;;
+  SunOS*)
+    EXT=sol
+  ;;
+esac
+AC_SUBST(EXT)
+AC_SUBST(HD_BUILD_ARCH_32_BIT)
+
+AC_CONFIG_FILES([headas-setup fermi-setup])
+AC_OUTPUT
+
+if test -f headas-setup; then chmod +x headas-setup; fi
+if test -f fermi-setup; then chmod +x fermi-setup; fi
+if test -f lhea-fixperl; then chmod +x lhea-fixperl; fi
+if test -f lhea-fixpfiles; then chmod +x lhea-fixpfiles; fi
+if test -f lhea-fixpython; then chmod +x lhea-fixpython; fi
+
+# Export variables for substitution during .parin -> .par file generation:
+LHEA_DATA=`cd ..; pwd`/refdata
+LHEA_HELP=`cd ..; pwd`/help
+export LHEA_DATA
+export LHEA_HELP
+
+# Generate .par files from .parin files (if any):
+if test -x lhea-fixpfiles -a -d ../syspfiles; then
+   if test `find ../syspfiles/ -name \*.parin 2> /dev/null | wc -l` -ne 0; then
+      touch ../syspfiles/*.parin
+      ./lhea-fixpfiles ../syspfiles/*
+   fi
+fi
+
+# Prepend LHEAPERL header to perl scripts:
+if test -x lhea-fixperl -a -d ../bin; then
+   cd ../bin; ../BUILD_DIR/lhea-fixperl; cd ../BUILD_DIR
+fi
+
+# Modify RPATH settings for Darwin 15.x and newer:
+case $host in
+  changequote(,)
+  *darwin[89]*|*darwin1[01234]*)
+    ;;
+  changequote([,])
+  *darwin*)
+    # Change these prior to each release, for each supported macOS and install path:
+    operator_path="/Users/birby"
+    h_version="6.33"
+    h_cfitsio="libcfitsio.10.4.4.0.dylib"
+    h_readline="libreadline.8.2.dylib"
+    h_ape="libape_2.9.dylib"
+
+    compiler_gcc_s="libgcc_s.1.1.dylib"
+    compiler_gfortran="libgfortran.5.dylib"
+    compiler_quadmath="libquadmath.0.dylib"
+
+    # mac_intel:
+    darwin_v="x86_64-apple-darwin21.6.0"
+    # path1 to libquadmath & libgfortran in tasks & libs:
+    compiler_lib_path1="$operator_path/homebrew/opt/gcc/lib/gcc/current"
+
+    # mac_silicon:
+    #darwin_v="aarch64-apple-darwin22.1.0"
+    #compiler_lib_path1="/opt/homebrew/opt/gcc/lib/gcc/current"
+
+    # Set GSFC binary lib directory (to be replaced in the binaries):
+    hd_lib_dir_gsfc="$operator_path/heasoft-$h_version/heasoft-$h_version/$darwin_v/lib"
+    # Find new binary lib directory:
+    hd_lib_dir=`cd ../lib; pwd`
+    # Make sure install_name_tool is installed:
+    if test ! -x /usr/bin/install_name_tool; then
+      AC_MSG_WARN(/usr/bin/install_name_tool is required!)
+      AC_MSG_WARN(Please run this command: xcode-select --install)
+      AC_MSG_WARN(Then restart the configure)
+      AC_MSG_ERROR(install_name_tool required)
+    fi
+    # Get listing of all items in bin directory, omitting a few task aliases:
+    #  newmakefilter -> makefilter
+    #  flx2xsp -> ftflx2xsp
+    #  sdss2xsp -> ftsdss2xsp
+    hd_bin_dir_contents=`/bin/ls -1 ../bin/. | grep -v ^fpack | grep -v ^funpack | grep -v ^hd_install | grep -v ^lynx | grep -v ^fftw | grep -v ^flx2xsp | grep -v ^sdss2xsp | grep -v ^newmakefilter | grep -v ^pgdisp | grep -v ^pgxwin_server | grep -v ^tclsh | grep -v ^wish | grep -v ^xpaaccess | grep -v ^xpaget | grep -v ^xpainfo | grep -v ^xpamb | grep -v ^xpans | grep -v ^xpaset | grep -v dhf | grep -v ^mkhelp | grep -v ^xhelp | grep -v ^gsl`
+
+    # Run install_name_tool to add rpaths with new location to compiled
+    # tasks and Perl bundles:
+    echo "Using install_name_tool to add rpath=$hd_lib_dir to compiled tasks, and fixing compiler library paths..."
+    for hd_task in $hd_bin_dir_contents; do
+      # If item is a Mach-O executable, change rpath with install_name_tool:
+      if test `/usr/bin/file -L ../bin/$hd_task | grep -c 'Mach-O'` -ne 0; then
+         #echo " /usr/bin/install_name_tool -rpath $hd_lib_dir_gsfc $hd_lib_dir ../bin/$hd_task"
+         /usr/bin/install_name_tool -rpath $hd_lib_dir_gsfc $hd_lib_dir ../bin/$hd_task
+         # Also fix the paths of compiler libraries:
+         /usr/bin/install_name_tool -change $compiler_lib_path1/$compiler_gfortran $hd_lib_dir/$compiler_gfortran ../bin/$hd_task
+         /usr/bin/install_name_tool -change $compiler_lib_path1/$compiler_quadmath $hd_lib_dir/$compiler_quadmath ../bin/$hd_task
+      fi
+    done
+    #echo "De-quarantining lynx, and saving ${PYTHONPATH} for later..."
+    PYPATH="${PYTHONPATH}"; PYTHONPATH=""; export PYTHONPATH;
+    /usr/bin/xattr -d com.apple.quarantine ../bin/lynx
+
+    # Add rpath to Perl bundles & fix compiler lib paths:
+    echo "Using install_name_tool to add rpath=$hd_lib_dir to Perl bundles..."
+    /usr/bin/install_name_tool -add_rpath $hd_lib_dir $hd_lib_dir/perl/auto/Astro/FITS/CFITSIO/CFITSIO.bundle
+    /usr/bin/install_name_tool -add_rpath $hd_lib_dir $hd_lib_dir/perl/auto/HEACORE/HEAINIT/HEAINIT.bundle
+    /usr/bin/install_name_tool -add_rpath $hd_lib_dir $hd_lib_dir/perl/auto/HEACORE/HEAUTILS/HEAUTILS.bundle
+    /usr/bin/install_name_tool -add_rpath $hd_lib_dir $hd_lib_dir/perl/auto/HEACORE/PIL/PIL.bundle
+    if test -f $hd_lib_dir/perl/auto/PGPLOT/PGPLOT.bundle; then
+       echo "Using install_name_tool to fix compiler library paths in PGPLOT.bundle..."
+       /usr/bin/install_name_tool -add_rpath $hd_lib_dir $hd_lib_dir/perl/auto/PGPLOT/PGPLOT.bundle
+       /usr/bin/install_name_tool -change $compiler_lib_path1/$compiler_gfortran $hd_lib_dir/$compiler_gfortran $hd_lib_dir/perl/auto/PGPLOT/PGPLOT.bundle
+       /usr/bin/install_name_tool -change $compiler_lib_path1/$compiler_quadmath $hd_lib_dir/$compiler_quadmath $hd_lib_dir/perl/auto/PGPLOT/PGPLOT.bundle
+    fi
+
+    # Change install name of compiler libraries in shared libs:
+    hd_lib_dir_contents=`/bin/ls -1 ../lib/. | grep .dylib`
+    echo "Using install_name_tool to fix compiler library paths in .dylibs..."
+    for hd_lib in $hd_lib_dir_contents; do
+      if test `/usr/bin/file -L ../lib/$hd_lib | grep -c 'Mach-O'` -ne 0; then
+         /usr/bin/install_name_tool -change $compiler_lib_path1/$compiler_gfortran $hd_lib_dir/$compiler_gfortran ../lib/$hd_lib
+         /usr/bin/install_name_tool -change $compiler_lib_path1/$compiler_quadmath $hd_lib_dir/$compiler_quadmath ../lib/$hd_lib
+      fi
+    done
+
+    # Change paths in (or add paths to) the compiler libraries themselves:
+    echo "Using install_name_tool to change compiler library paths in the heasoft copies of the compiler libraries themselves..."
+    /usr/bin/install_name_tool -add_rpath $hd_lib_dir $hd_lib_dir/$compiler_gcc_s
+    /usr/bin/install_name_tool -add_rpath $hd_lib_dir $hd_lib_dir/$compiler_gfortran
+    /usr/bin/install_name_tool -add_rpath $hd_lib_dir $hd_lib_dir/$compiler_quadmath
+
+    # Lastly, change the individual compiler library ids:
+    /usr/bin/install_name_tool -id $hd_lib_dir/$compiler_gcc_s $hd_lib_dir/$compiler_gcc_s
+    /usr/bin/install_name_tool -id $hd_lib_dir/$compiler_gfortran $hd_lib_dir/$compiler_gfortran
+    /usr/bin/install_name_tool -id $hd_lib_dir/$compiler_quadmath $hd_lib_dir/$compiler_quadmath
+
+    echo "NOTE: These binaries should not be relocated"
+    ;;
+  *)
+    ;;
+esac
+
+# Restore PYTHONPATH
+PYTHONPATH="$PYPATH"; export PYTHONPATH
+
+# Install HEASoftPy:
+pydirs="ixpe nicer"
+if test "x$PYTHON" != x; then
+   if test -x $PYTHON -a -d ../lib/python/heasoftpy/heasoftpy; then
+      echo "Installing heasoftpy..."
+      HEADAS="$HD_SRC"; export HEADAS
+      source $HEADAS/headas-init.sh;
+      cd ../lib/python/heasoftpy; $PYTHON local-build.py
+      for pydir in $pydirs; do
+        if test -d ./$pydir -a -d ./build/lib/heasoftpy/$pydir; then
+           cat $pydir/__init__.py >> build/lib/heasoftpy/$pydir/__init__.py;
+           rm -f $pydir/__init__.py;
+           mv build/lib/heasoftpy/$pydir/* $pydir/.;
+           rmdir build/lib/heasoftpy/$pydir;
+        fi
+      done
+      mv -f build/lib/heasoftpy/* .
+      cd ../../../BUILD_DIR
+   fi
+   # Fix Python scripts to use the configured PYTHON:
+   if test -x lhea-fixpython -a -d ../bin; then
+      LHEAPYTHON="$PYTHON"; export LHEAPYTHON;
+      cd ../bin; ../BUILD_DIR/lhea-fixpython; cd ../BUILD_DIR
+   fi
+fi
+
+# Test whether VERSIONER_PERL_PREFER_32_BIT=yes is needed for mismatch test:
+if test "x$HD_BUILD_ARCH_32_BIT" = xyes; then
+   $PERL -V > /tmp/$$.log
+   if test `cat /tmp/$$.log | grep -c 'USE_64_BIT'` -ne 0; then
+      VERSIONER_PERL_PREFER_32_BIT=yes; export VERSIONER_PERL_PREFER_32_BIT
+   fi
+   rm -f /tmp/$$.log
+fi
+
+# Test for mismatch between Perl used at GSFC and configured $PERL:
+if test -x ../bin/perldemo2; then
+   echo "Checking for Perl mismatch..."
+   LHEAPERL="$PERL"; export LHEAPERL
+   PERLLIB="$HD_SRC/lib/perl"; export PERLLIB
+   mkdir /tmp/$$.tmp; mkdir /tmp/$$.tmp/pfiles
+   PFILES="/tmp/$$.tmp/pfiles;$HD_SRC/syspfiles"; export PFILES
+   LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HD_SRC/lib"; export LD_LIBRARY_PATH
+   DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:$HD_SRC/lib"; export DYLD_LIBRARY_PATH
+   h_perl_cmd="../bin/perldemo2 infile=$LHEA_DATA/leapsec.fits outfile=/tmp/$$.fits text=perldemo2test scale=42"
+   (eval $h_perl_cmd)
+   if test $? -ne 0; then
+      AC_MSG_WARN(Perl error detected!)
+      AC_MSG_WARN(A conflict may exist between these binaries and $PERL.)
+      AC_MSG_WARN(Switching to PERL=/usr/bin/perl may help.)
+      AC_MSG_WARN(Please visit the link below for more information.)
+      AC_MSG_WARN(http://heasarc.gsfc.nasa.gov/lheasoft/perl.html)
+   else
+      echo "No Perl mismatch detected."
+   fi
+   rm -rf /tmp/$$.*
+fi
+
+echo "Finished"
