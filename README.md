@@ -44,7 +44,8 @@ Place the downloaded files in their respective directories as outlined below:
 .
 ├── file_initialisation.py                                   # Initialization and feature extraction.
 ├── top_k_features.ipynb                                     # Feature analysis and selection.
-├── Final.py                                                 # Full pipeline integration.
+├── Final.py
+├── Final_notebook.ipynb                                     # Full pipeline integration.
 ├── Lunar_LRO_LROC-WAC_Mosaic_global_100m_June2013.tif                
 ├── requirements.txt                                         # Dependency file.
 ├── Mare Classification/                                     # Directory for shapefiles.
@@ -56,7 +57,8 @@ Place the downloaded files in their respective directories as outlined below:
         | - LROC_GLOBAL_MARE_README.TXT  
 ├── PART2Output.npz                                           # Stores updated subregions
 ├── graphs/
-├── masks/     
+├── masks/
+├── models/ 
 └── regions/                                                  # Outputs of file_initialisation.py.
 ```
 
