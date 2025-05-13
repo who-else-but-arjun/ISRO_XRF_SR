@@ -1,6 +1,6 @@
 # Super-Resolution of Lunar XRF Elemental Abundances
 
-This repository contains code developed for super-resolution by deep spatial interpolation model of the mapping of lunar surface elemental abundances obtained from Chandrayaan-2 CLASS instrument XRF data. The detailed description of the project is avaiable in this report (https://drive.google.com/file/d/12J4m65JyD-cekRiMmBzjrCBWQKoxNWYq/view?usp=drive_link).
+This repository contains code developed for super-resolution by a deep spatial interpolation model of the mapping of lunar surface elemental abundances obtained from Chandrayaan-2 CLASS instrument XRF data. The detailed description of the project is available in this report (https://drive.google.com/file/d/12J4m65JyD-cekRiMmBzjrCBWQKoxNWYq/view?usp=drive_link). The folder ```data_processing_and_mapping``` contains the codes for the extraction and processing of XRF data from the FITS file using XSPEC, XSMDAS, and GDL, and Information related to the visualization of the abundances on the Lunar albedo map using QGIS.
 
 ## Project Structure
 ### Main Components:
@@ -11,7 +11,7 @@ This repository contains code developed for super-resolution by deep spatial int
    
 3. **file_initialisation.py**:
    - Initializes the 64 subregion CSV files for the Moon's surface.
-   - For each subregion, computes the latitudes and longitudes of 2 km x 2 km pixels.
+   - For each subregion, compute the latitudes and longitudes of 2 km x 2 km pixels.
    - Extracts features from image tiles using a pre-trained ResNet50 model.
    - Populates the CSV files with selected features, mare/highland classifications, and metadata.
 
@@ -23,7 +23,7 @@ This repository contains code developed for super-resolution by deep spatial int
    - Combines all parts of the project.
    - Constructs subgraphs for abundance maps.
    - Train the GNN-CNN combined model on these subgraphs.
-   - Returns the final high resolution abundance maps.
+   - Returns the final high-resolution abundance maps.
    
 ### Prerequisites :
 - Python 3.10+
@@ -73,7 +73,7 @@ Place the downloaded files in their respective directories as outlined below:
 ├── models/ 
 └── regions/                                                  # Outputs of file_initialisation.py.
 ```
-
+```Final.csv``` could be used as the input to further steps involving super-resolution.
 ### Outputs:
 - **regions CSVs**:
   - Files named `subregion_<i>_<j>.csv`.
@@ -109,19 +109,19 @@ python Final.py --mode 1 <input_data.csv>
 ```
 
 mode = 1 for population of initialised csv files with the input elemental abundances data.
-Assuming input.csv contains the data to be added. Headers required in input.csv:
+Assuming input.csv contains the data to be added. Headers required in input.csv (similar to the ```Final.csv```) :
 
 | lat0 | lon0 | lat1 | lon1 | lat2 | lon2 | lat3 | lon3 | Fe | Ti | Ca | Si | Al | Mg | Na | O | chi2 |  |
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | -- | -- | -- | -- | -- | -- | -- | - | ---- | - |
 
-This will populate all the regions csv and create a file by the name of PART2Output.npz (an example is present in OLD_RUN folder) in the current directory which is required for Abundance Generalisation to run. It contains information regarding the number of enteries added in each region and subregion along with the updated indices of each region file. This is required for mask creation during Abudance Generalisation.
+This will populate all the regions csv and create a file by the name of PART2Output.npz (an example is present in OLD_RUN folder) in the current directory which is required for Abundance Generalisation to run. It contains information regarding the number of enteries added in each region and subregion along with the updated indices of each region file. This is required for mask creation during Abundance Generalisation.
 
 To train on subregion i, j using parameters mode = 2, todo = run, and num_iterations :
 ```bash
 python Final.py --mode 2 <i> <j> <num_iterations>
 ```
-mode = 2 for create the graphs for each subregion and training and interpolation for final high resolution abundnaces mapping.
-The pretrained models are automatically saved and loaded from in ```models/```
+mode = 2 for creating the graphs for each subregion and training, and interpolation for final high-resolution abundance mapping.
+The pretrained models are automatically saved and loaded from ```models/```
 
 The first execution for any region will take longer and also create masks. Do not delete these masks as they are used to store number of old runs which is required for future runs.
 
