@@ -67,7 +67,9 @@ Place the downloaded files in their respective directories as outlined below:
         | - LROC_GLOBAL_MARE_180.SHP.XML
         | - LROC_GLOBAL_MARE_180.SHX
         | - LROC_GLOBAL_MARE_README.TXT  
-├── PART2Output.npz                                           # Stores updated subregions
+├── input.csv
+├── output.csv
+├── PART2Output.npz                                        # Stores updated subregions
 ├── graphs/
 ├── masks/
 ├── models/ 
